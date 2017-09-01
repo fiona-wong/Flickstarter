@@ -37,7 +37,8 @@
   "formation": {
   },
   "addons": [
-
+    "heroku-redis",
+    "heroku-postgresql"
   ],
   "buildpacks": [
     {
