@@ -1,6 +1,6 @@
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
-const redisClient = require('redis').createClient();
+const redisClient = require('redis').createClient(process.env.REDIS_URL || '');
 
 module.exports.verify = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -12,9 +12,8 @@ module.exports.verify = (req, res, next) => {
 module.exports.session = session({
   store: new RedisStore({
     client: redisClient,
-    host: 'ec2-52-21-74-44.compute-1.amazonaws.com',
-    port: 19699,
-    url: 'redis://h:p3ce4daeee3c050f49524c8134376a8fffb0beddecb75760895c47a2b21ea48cd@ec2-52-21-74-44.compute-1.amazonaws.com:19699'
+    host: 'ec2-52-21-74-44.compute-1.amazonaws.com' || 'localhost',
+    port: 6379
 
   }),
   secret: 'more laughter, more love, more life',
