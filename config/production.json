@@ -1,0 +1,36 @@
+{
+  "knex": {
+    "client": "postgresql",
+    "connection": {
+      "host": "ec2-54-83-48-188.compute-1.amazonaws.com",
+      "user": "dwzqlghplzyfzi",
+      "password": "c4c1aa193fd998c933e2b8122e46b123f5ce71838015de162796ca1973699888",
+      "database": "d7a4hmgge0uoj2",
+      "port": 5432
+    },
+    "debug": false,
+    "pool": {
+      "min": 2,
+      "max": 10
+    }
+  },
+  "passport": {
+    "Google": {
+      "clientID": "GOOGLE_CLIENT_ID",
+      "clientSecret": "GOOGLE_CLIENT_SECRET",
+      "callbackURL": "GOOGLE_CALLBACK_URL"
+    },
+
+    "Facebook": {
+      "clientID": "FACEBOOK_CLIENT_ID",
+      "clientSecret": "FACEBOOK_CLIENT_SECRET",
+      "callbackURL": "FACEBOOK_CALLBACK_URL"
+    },
+
+    "Twitter": {
+      "consumerKey": "TWITTER_CLIENT_ID",
+      "consumerSecret": "TWITTER_CLIENT_SECRET",
+      "callbackURL": "TWITTER_CALLBACK_URL"
+    }
+  }
+}

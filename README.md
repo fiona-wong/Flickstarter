@@ -1,13 +1,12 @@
 # Project Name
 
-The project description
+Crowdfunding platform for film creators
 
 ## Team
 
-- teamMember
-- teamMember
-- teamMember
-- teamMember
+- Pavan Sethi
+- Miles Sorce
+- Fiona Wang
 
 ## Roadmap
 
@@ -103,5 +102,4 @@ To run server: `yarn run start`
 To run tests: `yarn run test`
 
 To run your redis server for the session store `redis-server`
-
 
