@@ -95,7 +95,9 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTableIfExists('roles'),
     knex.schema.dropTableIfExists('projects'),
     knex.schema.dropTable('auths'),
-    knex.schema.dropTable('profiles')
+    knex.schema.dropTable('profiles'),
+    knex.schema.dropTable('roles'),
+    knex.schema.dropTable('projects')
   ]);
 };
 
