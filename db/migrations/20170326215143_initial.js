@@ -7,6 +7,7 @@ exports.up = function (knex, Promise) {
       table.string('last', 100).nullable();
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
+      table.string('username', 100).nullable().unique();
       table.string('phone', 100).nullable();
       table.text('about').nullable();
       table.string('photo_url').nullable();
@@ -15,7 +16,6 @@ exports.up = function (knex, Promise) {
       table.string('location').nullable();
       table.integer('total_contributions').nullable();
       table.timestamps(true, true);
-      table.integer('role').references('roles.id');
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
       table.increments('id').unsigned().primary();
@@ -73,6 +73,7 @@ exports.up = function (knex, Promise) {
       table.integer('project_id').references('projects.id').onDelete('CASCADE');
       table.integer('user_id').references('profiles.id').onDelete('CASCADE');
       table.integer('contribution');
+      table.timestamp('created_at', true);
     }),
     knex.schema.createTableIfNotExists('genres', function(table) {
       table.increments('id').unsigned().primary();
@@ -85,14 +86,14 @@ exports.down = function (knex, Promise) {
   return Promise.all([
     knex.schema.dropTable('auths'),
     knex.schema.dropTable('profiles'),
-    knex.schema.dropTable('roles'),
-    knex.schema.dropTable('projects'),
-    knex.schema.dropTable('youtubes'),
-    knex.schema.dropTable('open_roles'),
-    knex.schema.dropTable('follows_upvotes'),
-    knex.schema.dropTable('messages'),
-    knex.schema.dropTable('user_project_contributions'),
-    knex.schema.dropTable('genres')     
+    knex.schema.dropTableIfExists('roles'),
+    knex.schema.dropTableIfExists('projects'),
+    knex.schema.dropTableIfExists('youtubes'),
+    knex.schema.dropTableIfExists('open_roles'),
+    knex.schema.dropTableIfExists('follows_upvotes'),
+    knex.schema.dropTableIfExists('messages'),
+    knex.schema.dropTableIfExists('user_project_contributions'),
+    knex.schema.dropTableIfExists('genres')     
   ]);
 };
 

@@ -12,10 +12,10 @@ const Project = db.Model.extend({
     return this.hasMany('Message');
   },
   followsUpvotes: function() {
-    return this.hasMany('Follow_Upvote');
+    return this.hasMany('FollowUpvote');
   },
   contributions: function() {
-    return this.hasMany('Contribution');
+    return this.hasMany('UserProjectContribution');
   },
   openRoles: function() {
     return this.hasMany('Role');
