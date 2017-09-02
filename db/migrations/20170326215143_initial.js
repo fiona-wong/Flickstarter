@@ -59,7 +59,21 @@ exports.up = function (knex, Promise) {
       table.increments('id').unsigned().primary();
       table.integer('project_id').references('projects.id').onDelete('CASCADE');
       table.integer('user_id').references('profiles.id').onDelete('CASCADE');
-    })
+    }),
+    knex.schema.createTableIfNotExists('messages', function(table) {
+      table.increments('id').unsigned().primary();
+      table.integer('project_id').references('projects.id').onDelete('CASCADE');
+      table.integer('sender_id').references('profiles.id').onDelete('CASCADE');
+      table.integer('receiver_id').references('profiles.id').onDelete('CASCADE');
+      table.text('text').notNullable();
+      table.boolean('viewed').notNullable();
+    }),
+    knex.schema.createTableIfNotExists('user_project_contributions', function(table) {
+      table.increments('id').unsigned().primary();
+      table.integer('project_id').references('projects.id').onDelete('CASCADE');
+      table.integer('user_id').references('profiles.id').onDelete('CASCADE');
+      table.integer('contribution');
+    }),
   ]);
 };
 
@@ -71,7 +85,9 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTable('projects'),
     knex.schema.dropTable('youtubes'),
     knex.schema.dropTable('open_roles'),
-    knex.schema.dropTable('follows_upvotes')        
+    knex.schema.dropTable('follows_upvotes'),
+    knex.schema.dropTable('messages'),
+    knex.schema.dropTable('user_project_contributions')      
   ]);
 };
 

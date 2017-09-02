@@ -5,3 +5,5 @@ module.exports.Project = require('./projects');
 module.exports.Youtube = require('./youtubes');
 module.exports.OpenRole = require('./openroles');
 module.exports.FollowUpvote = require('./followsupvotes');
+module.exports.Message = require('./messages');
+module.exports.UserProjectContribution = require('./userprojectcontributions');
