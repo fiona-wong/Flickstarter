@@ -100,7 +100,8 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTable('roles'),
     knex.schema.dropTable('projects'),
     knex.schema.dropTable('youtubes'),
-    knex.schema.dropTable('open_roles')    
+    knex.schema.dropTable('open_roles'),
+    knex.schema.dropTable('follows_upvotes')        
   ]);
 };
 
