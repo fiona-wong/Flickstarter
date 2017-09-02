@@ -23,7 +23,7 @@ router.route('/signup')
     res.render('signup.ejs', { message: req.flash('signupMessage') });
   })
   .post(middleware.passport.authenticate('local-signup', {
-    successRedirect: '/profile',
+    successRedirect: '/',
     failureRedirect: '/signup',
     failureFlash: true
   }));

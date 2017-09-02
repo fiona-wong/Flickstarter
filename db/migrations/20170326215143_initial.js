@@ -17,6 +17,25 @@ exports.up = function (knex, Promise) {
       table.string('password', 100).nullable();
       table.string('salt', 100).nullable();
       table.integer('profile_id').references('profiles.id').onDelete('CASCADE');
+    }),
+    knex.schema.createTableIfNotExists('roles', function(table) {
+      table.increments('id').unsigned().primary();
+      table.string('position', 20).notNullable().unique();
+    }),
+    knex.schema.createTableIfNotExists('projects', function(table) {
+      table.increments('id').unsigned().primary();
+      table.string('name').nullable();
+      table.string('short_description').nullable();
+      table.text('long_description').nullable();
+      table.string('location').nullable();
+      table.string('video_url').nullable();
+      table.string('photo_url').nullable();
+      table.integer('goal_amount');
+      table.date('goal_deadline');
+      table.integer('upvote_count');
+      table.integer('raised_amount');
+      table.integer('creator_id').references('profiles.id').onDelete('CASCADE');
+      table.timestamps(true, true);
     })
   ]);
 };
@@ -24,7 +43,9 @@ exports.up = function (knex, Promise) {
 exports.down = function (knex, Promise) {
   return Promise.all([
     knex.schema.dropTable('auths'),
-    knex.schema.dropTable('profiles')
+    knex.schema.dropTable('profiles'),
+    knex.schema.dropTable('roles'),
+    knex.schema.dropTable('projects')
   ]);
 };
 
