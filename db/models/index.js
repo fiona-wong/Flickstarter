@@ -10,3 +10,4 @@ module.exports = {
   UserProjectContribution: require('./userprojectcontributions'),
   Genre: require('./genres')
 }
+
