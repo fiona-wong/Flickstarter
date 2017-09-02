@@ -8,7 +8,14 @@ exports.up = function (knex, Promise) {
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
+      table.text('about').nullable();
+      table.string('photo_url').nullable();
+      table.string('linkedin_url').nullable();
+      table.string('personal_site').nullable();
+      table.string('location').nullable();
+      table.integer('total_contributions').nullable();
       table.timestamps(true, true);
+      table.integer('role').references('roles.id');
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
       table.increments('id').unsigned().primary();
@@ -16,6 +23,7 @@ exports.up = function (knex, Promise) {
       table.string('oauth_id', 30).nullable();
       table.string('password', 100).nullable();
       table.string('salt', 100).nullable();
+      table.string('stripe_id').nullable();
       table.integer('profile_id').references('profiles.id').onDelete('CASCADE');
     }),
     knex.schema.createTableIfNotExists('roles', function(table) {
@@ -36,6 +44,11 @@ exports.up = function (knex, Promise) {
       table.integer('raised_amount');
       table.integer('creator_id').references('profiles.id').onDelete('CASCADE');
       table.timestamps(true, true);
+    }),
+    knex.schema.createTableIfNotExists('youtubes', function(table) {
+      table.increments('id').unsigned().primary();
+      table.string('link').notNullable();
+      table.integer('user_id').references('profiles.id').onDelete('CASCADE');
     })
   ]);
 };
@@ -45,7 +58,8 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTable('auths'),
     knex.schema.dropTable('profiles'),
     knex.schema.dropTable('roles'),
-    knex.schema.dropTable('projects')
+    knex.schema.dropTable('projects'),
+    knex.schema.dropTable('youtubes')
   ]);
 };
 
