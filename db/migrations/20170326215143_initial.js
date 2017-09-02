@@ -103,7 +103,8 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTable('open_roles'),
     knex.schema.dropTable('follows_upvotes'),
     knex.schema.dropTable('messages'),
-    knex.schema.dropTable('user_project_contributions')      
+    knex.schema.dropTable('user_project_contributions'),
+    knex.schema.dropTable('genres')     
   ]);
 };
 
