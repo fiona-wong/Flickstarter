@@ -54,6 +54,11 @@ exports.up = function (knex, Promise) {
       table.increments('id').unsigned().primary();
       table.integer('open_role').references('roles.id');
       table.integer('project_id').references('projects.id').onDelete('CASCADE');
+    }),
+    knex.schema.createTableIfNotExists('follows_upvotes', function(table) {
+      table.increments('id').unsigned().primary();
+      table.integer('project_id').references('projects.id').onDelete('CASCADE');
+      table.integer('user_id').references('profiles.id').onDelete('CASCADE');
     })
   ]);
 };
@@ -65,7 +70,8 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTable('roles'),
     knex.schema.dropTable('projects'),
     knex.schema.dropTable('youtubes'),
-    knex.schema.dropTable('open_roles')    
+    knex.schema.dropTable('open_roles'),
+    knex.schema.dropTable('follows_upvotes')        
   ]);
 };
 
