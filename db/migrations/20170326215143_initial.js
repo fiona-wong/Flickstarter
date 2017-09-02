@@ -74,6 +74,10 @@ exports.up = function (knex, Promise) {
       table.integer('user_id').references('profiles.id').onDelete('CASCADE');
       table.integer('contribution');
     }),
+    knex.schema.createTableIfNotExists('genres', function(table) {
+      table.increments('id').unsigned().primary();
+      table.string('genre').notNullable().unique();
+    })
   ]);
 };
 
@@ -87,7 +91,8 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTable('open_roles'),
     knex.schema.dropTable('follows_upvotes'),
     knex.schema.dropTable('messages'),
-    knex.schema.dropTable('user_project_contributions')      
+    knex.schema.dropTable('user_project_contributions'),
+    knex.schema.dropTable('genres')     
   ]);
 };
 
