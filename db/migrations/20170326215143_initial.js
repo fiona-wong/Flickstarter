@@ -95,15 +95,7 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTableIfExists('roles'),
     knex.schema.dropTableIfExists('projects'),
     knex.schema.dropTable('auths'),
-    knex.schema.dropTable('profiles'),
-    knex.schema.dropTableIfExists('roles'),
-    knex.schema.dropTableIfExists('projects'),
-    knex.schema.dropTableIfExists('youtubes'),
-    knex.schema.dropTableIfExists('open_roles'),
-    knex.schema.dropTableIfExists('follows_upvotes'),
-    knex.schema.dropTableIfExists('messages'),
-    knex.schema.dropTableIfExists('user_project_contributions'),
-    knex.schema.dropTableIfExists('genres')     
+    knex.schema.dropTable('profiles')
   ]);
 };
 
