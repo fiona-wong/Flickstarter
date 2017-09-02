@@ -16,7 +16,6 @@ exports.up = function (knex, Promise) {
       table.string('location').nullable();
       table.integer('total_contributions').nullable();
       table.timestamps(true, true);
-      table.integer('role').references('roles.id');
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
       table.increments('id').unsigned().primary();
@@ -97,14 +96,14 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTableIfExists('projects'),
     knex.schema.dropTable('auths'),
     knex.schema.dropTable('profiles'),
-    knex.schema.dropTable('roles'),
-    knex.schema.dropTable('projects'),
-    knex.schema.dropTable('youtubes'),
-    knex.schema.dropTable('open_roles'),
-    knex.schema.dropTable('follows_upvotes'),
-    knex.schema.dropTable('messages'),
-    knex.schema.dropTable('user_project_contributions'),
-    knex.schema.dropTable('genres')     
+    knex.schema.dropTableIfExists('roles'),
+    knex.schema.dropTableIfExists('projects'),
+    knex.schema.dropTableIfExists('youtubes'),
+    knex.schema.dropTableIfExists('open_roles'),
+    knex.schema.dropTableIfExists('follows_upvotes'),
+    knex.schema.dropTableIfExists('messages'),
+    knex.schema.dropTableIfExists('user_project_contributions'),
+    knex.schema.dropTableIfExists('genres')     
   ]);
 };
 
