@@ -16,6 +16,7 @@ exports.up = function (knex, Promise) {
       table.string('location').nullable();
       table.integer('total_contributions').nullable();
       table.timestamps(true, true);
+      table.integer('role').references('roles.id');
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
       table.increments('id').unsigned().primary();
