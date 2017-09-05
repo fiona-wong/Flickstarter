@@ -58,6 +58,7 @@ exports.up = function (knex, Promise) {
     }),
     knex.schema.createTableIfNotExists('follows_upvotes', function(table) {
       table.increments('id').unsigned().primary();
+      table.string('type').notNullable();
       table.integer('project_id').references('projects.id').onDelete('CASCADE');
       table.integer('user_id').references('profiles.id').onDelete('CASCADE');
     }),

@@ -16,7 +16,7 @@ const Project = db.Model.extend({
   },
   contributions: function() {
     return this.hasMany('UserProjectContribution');
-  }
+  },
   openRoles: function() {
     return this.hasMany('Role');
   }
