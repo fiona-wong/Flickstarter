@@ -7,7 +7,6 @@ module.exports.save = (req, res) => {
       receiver_id: req.body.receiverId,
       text: req.body.text,
       viewed: false
-
     })
     .save()
     .then(result => {
@@ -20,8 +19,7 @@ module.exports.save = (req, res) => {
 
 module.exports.view = (req, res) => {
   models.Message.where({ 
-    receiver_id: req.params.receiverId,
-    viewed: false
+    receiver_id: req.params.receiverId
   }).fetch()
     .then(messages => {
       if (!messages) {
