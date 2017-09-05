@@ -18,5 +18,4 @@ exports.seed = function (knex, Promise) {
     .catch(() => {
       console.log('WARNING: genre already exists.');
     });
-
 };

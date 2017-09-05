@@ -1,47 +1,47 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const FollowsUpvotesController = require('../controllers').FollowsUpvotes
+const FollowsUpvotesController = require('../controllers').FollowsUpvotes;
 
 
 router.route('/upvote')
-  .post(FollowsUpvotesController.upvote)
-);
+  .post(FollowsUpvotesController.upvote);
+
 
 router.route('/undoUpvote')
-  .delete(FollowsUpvotesController.undoUpvote)
-);
+  .delete(FollowsUpvotesController.undoUpvote);
+
 
 router.route('/follow')
-  .post(FollowsUpvotesController.follow)
-);
+  .post(FollowsUpvotesController.follow);
+
 
 router.route('/unfollow')
-  .delete(FollowsUpvotesController.unfollow)
-);
+  .delete(FollowsUpvotesController.unfollow);
+
 
 router.route('/getProjectFollowsUpvotes')
-  .get(FollowsUpvotesController.getProjectFollowsUpvotes)
-);
+  .get(FollowsUpvotesController.getProjectFollowsUpvotes);
+
 
 router.route('/getUserFollowsUpvotes')
-  .get(FollowsUpvotesController.getUserFollowsUpvotes)
-);
+  .get(FollowsUpvotesController.getUserFollowsUpvotes);
+
 
 router.route('/getProjectFollows')
-  .get(FollowsUpvotesController.getProjectFollows)
-);
+  .get(FollowsUpvotesController.getProjectFollows);
+
 
 router.route('/getUserFollows')
-  .get(FollowsUpvotesController.getUserFollows)
-);
+  .get(FollowsUpvotesController.getUserFollows);
+
 
 router.route('/getProjectUpvotes')
-  .get(FollowsUpvotesController.getProjectUpvotes)
-);
+  .get(FollowsUpvotesController.getProjectUpvotes);
+
 
 router.route('/getUserUpvotes')
-  .get(FollowsUpvotesController.getUserUpvotes)
-);
+  .get(FollowsUpvotesController.getUserUpvotes);
+
 
 module.exports = router;

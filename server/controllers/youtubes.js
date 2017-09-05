@@ -2,9 +2,9 @@ const models = require('../../db/models');
 
 module.exports.addVideo = (req, res) => {
   models.Youtube.forge({ 
-      user_id: req.body.userId,
-      link: req.body.link
-    })
+    user_id: req.body.userId,
+    link: req.body.link
+  })
     .save()
     .then(result => {
       res.status(201).send(result);

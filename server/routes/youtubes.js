@@ -1,18 +1,15 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const YoutubeController = require('../controllers').Youtubes
+const YoutubeController = require('../controllers').Youtubes;
 
 router.route('/addVideo')
-  .post(YoutubeController.addVideo)
-);
+  .post(YoutubeController.addVideo);
 
 router.route('/removeVideo')
-  .delete(YoutubeController.removeVideo)
-);
+  .delete(YoutubeController.removeVideo);
 
 router.route('/getUserVideos')
-  .get(UserProjectContributionController.getUserVideos)
-);
+  .get(YoutubeController.getUserVideos);
 
 module.exports = router;

@@ -1,22 +1,18 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const UserProjectContributionController = require('../controllers').UserProjectContributions
+const UserProjectContributionController = require('../controllers').UserProjectContributions;
 
 router.route('/newContribution')
-  .post(UserProjectContributionController.newContribution)
-);
+  .post(UserProjectContributionController.newContribution);
 
 router.route('/projectContributions')
-  .get(UserProjectContributionController.getProjectContributions)
-);
+  .get(UserProjectContributionController.getProjectContributions);
 
 router.route('/userContributions')
-  .get(UserProjectContributionController.getUserContributions)
-);
+  .get(UserProjectContributionController.getUserContributions);
 
 router.route('/userProjectContributions')
-  .get(UserProjectContributionController.getUserProjectContributions)
-);
+  .get(UserProjectContributionController.getUserProjectContributions);
 
 module.exports = router;

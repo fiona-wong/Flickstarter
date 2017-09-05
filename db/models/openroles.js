@@ -5,7 +5,7 @@ const OpenRole = db.Model.extend({
   project: function() {
     return this.belongsTo('Project');
   },
-  role: function() {
+  openRole: function() {
     this.belongsTo('Role');
   }
 });
