@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 
 const config = {
-  entry: './client/src/app.jsx',
+  entry: './client/src/index',
   output: {
     path: path.join(__dirname, 'public/dist'),
     filename: 'bundle.js'
@@ -19,7 +19,14 @@ const config = {
             }
           }
         ]
-      }
+      },
+      {test: /\.css$/,
+        use: 'css-loader',
+        exclude: ['node_modules']
+      },
+      {test: /\.(eot|woff|woff2|svg|ttf|png)$/,
+        use: 'file-loader',
+        exclude: ['node_modules']}
     ]
   }
 };

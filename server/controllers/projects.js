@@ -27,8 +27,8 @@ module.exports.getOne = (req, res) => {
 };
 
 module.exports.create = (req, res) => {
-  models.Project.forge({ 
-    name: req.body.name, 
+  models.Project.forge({
+    name: req.body.name,
     short_description: req.body.shortDescription,
     long_description: req.body.longDescription,
     location: req.body.location,

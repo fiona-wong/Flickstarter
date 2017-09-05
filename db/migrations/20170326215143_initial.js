@@ -92,7 +92,7 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTableIfExists('follows_upvotes'),
     knex.schema.dropTableIfExists('messages'),
     knex.schema.dropTableIfExists('user_project_contributions'),
-    knex.schema.dropTableIfExists('genres'),    
+    knex.schema.dropTableIfExists('genres'),
     knex.schema.dropTableIfExists('roles'),
     knex.schema.dropTableIfExists('projects'),
     knex.schema.dropTable('auths'),
