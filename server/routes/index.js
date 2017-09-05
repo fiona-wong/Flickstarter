@@ -1,3 +1,9 @@
 module.exports.api = require('./api');
 module.exports.auth = require('./auth');
 module.exports.profiles = require('./profiles');
+module.exports.projects = require('./projects');
+module.exports.followsUpvotes = require('./followsUpvotes');
+module.exports.openRoles = require('./openRoles');
+module.exports.messages = require('./messages');
+module.exports.userProjectContributions = require('./userProjectContributions');
+module.exports.youtubes = require('./youtubes');
