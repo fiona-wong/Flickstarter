@@ -1,26 +1,22 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const ProjectController = require('../controllers').Projects
+const ProjectController = require('../controllers').Projects;
 
 router.route('/newProject')
-  .post(ProjectController.create)
-);
+  .post(ProjectController.create);
+
 
 router.route('/save')
-  .post(ProjectController.update)
-);
+  .post(ProjectController.update);
 
 router.route('/upvote')
-  .post(ProjectController.upvote)
-);
+  .post(ProjectController.upvote);
 
 router.route('/view')
-  .get(ProjectController.getOne)
-);
+  .get(ProjectController.getOne);
 
 router.route('/delete')
-  .delete(ProjectController.deleteOne)
-);
+  .delete(ProjectController.deleteOne);
 
 module.exports = router;

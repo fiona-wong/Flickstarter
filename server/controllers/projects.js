@@ -28,19 +28,19 @@ module.exports.getOne = (req, res) => {
 
 module.exports.create = (req, res) => {
   models.Project.forge({ 
-      name: req.body.name, 
-      short_description: req.body.shortDescription,
-      long_description: req.body.longDescription,
-      location: req.body.location,
-      photo_url: req.body.photoUrl,
-      video_url: req.body.videoUrl,
-      goal_amount: req.body.goalAmount,
-      goal_deadline: req.body.goalDeadline,
-      raised_amount: 0,
-      creator_id: req.body.userId,
-      upvote_count: 0,
-      genre: req.body.genre
-    })
+    name: req.body.name, 
+    short_description: req.body.shortDescription,
+    long_description: req.body.longDescription,
+    location: req.body.location,
+    photo_url: req.body.photoUrl,
+    video_url: req.body.videoUrl,
+    goal_amount: req.body.goalAmount,
+    goal_deadline: req.body.goalDeadline,
+    raised_amount: 0,
+    creator_id: req.body.userId,
+    upvote_count: 0,
+    genre: req.body.genre
+  })
     .save()
     .then(result => {
       res.status(201).send(result);

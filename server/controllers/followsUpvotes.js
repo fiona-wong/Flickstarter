@@ -2,10 +2,10 @@ const models = require('../../db/models');
 
 module.exports.upvote = (req, res) => {
   models.FollowUpvote.forge({
-      project_id: req.body.projectId, 
-      user_id: req.body.userId,
-      type: 'upvote'
-    })
+    project_id: req.body.projectId, 
+    user_id: req.body.userId,
+    type: 'upvote'
+  })
     .save()
     .then(result => {
       res.status(201).send(result);
@@ -17,10 +17,10 @@ module.exports.upvote = (req, res) => {
 
 module.exports.undoUpvote = (req, res) => {
   models.FollowUpvote.where({
-      project_id: req.body.projectId, 
-      user_id: req.body.userId,
-      type: 'upvote'
-    })
+    project_id: req.body.projectId, 
+    user_id: req.body.userId,
+    type: 'upvote'
+  })
     .fetch()
     .then(result => {
       if (!result) {
@@ -38,14 +38,14 @@ module.exports.undoUpvote = (req, res) => {
       res.sendStatus(404);
     }); 
 };
-};
+
 
 module.exports.follow = (req, res) => {
   models.FollowUpvote.forge({
-      project_id: req.body.projectId, 
-      user_id: req.body.userId,
-      type: 'follow'
-    })
+    project_id: req.body.projectId, 
+    user_id: req.body.userId,
+    type: 'follow'
+  })
     .save()
     .then(result => {
       res.status(201).send(result);
@@ -57,10 +57,10 @@ module.exports.follow = (req, res) => {
 
 module.exports.unfollow = (req, res) => {
   models.FollowUpvote.where({
-      project_id: req.body.projectId, 
-      user_id: req.body.userId,
-      type: 'follow'
-    })
+    project_id: req.body.projectId, 
+    user_id: req.body.userId,
+    type: 'follow'
+  })
     .fetch()
     .then(result => {
       if (!result) {
@@ -81,8 +81,8 @@ module.exports.unfollow = (req, res) => {
 
 module.exports.getProjectFollowsUpvotes = (req, res) => {
   models.FollowUpvote.where({
-      project_id: req.body.projectId
-    })
+    project_id: req.body.projectId
+  })
     .fetch()
     .then(followsUpvotes => {
       res.status(200).send(followsUpvotes);
@@ -94,8 +94,8 @@ module.exports.getProjectFollowsUpvotes = (req, res) => {
 
 module.exports.getUserFollowsUpvotes = (req, res) => {
   models.FollowUpvote.where({
-      user_id: req.body.userId
-    })
+    user_id: req.body.userId
+  })
     .fetch()
     .then(followsUpvotes => {
       res.status(200).send(followsUpvotes);
@@ -108,9 +108,9 @@ module.exports.getUserFollowsUpvotes = (req, res) => {
 
 module.exports.getProjectFollows = (req, res) => {
   models.FollowUpvote.where({
-      project_id: req.body.projectId,
-      type: 'follow'
-    })
+    project_id: req.body.projectId,
+    type: 'follow'
+  })
     .fetch()
     .then(follows => {
       res.status(200).send(follows);
@@ -122,9 +122,9 @@ module.exports.getProjectFollows = (req, res) => {
 
 module.exports.getUserFollows = (req, res) => {
   models.FollowUpvote.where({
-      user_id: req.body.userId,
-      type: 'follow'
-    })
+    user_id: req.body.userId,
+    type: 'follow'
+  })
     .fetch()
     .then(follows => {
       res.status(200).send(follows);
@@ -136,9 +136,9 @@ module.exports.getUserFollows = (req, res) => {
 
 module.exports.getProjectUpvotes = (req, res) => {
   models.FollowUpvote.where({
-      project_id: req.body.projectId,
-      type: 'upvote'
-    })
+    project_id: req.body.projectId,
+    type: 'upvote'
+  })
     .fetch()
     .then(upvotes => {
       res.status(200).send(upvotes);
@@ -150,9 +150,9 @@ module.exports.getProjectUpvotes = (req, res) => {
 
 module.exports.getUserUpvotes = (req, res) => {
   models.FollowUpvote.where({
-      user_id: req.body.userId,
-      type: 'upvote'
-    })
+    user_id: req.body.userId,
+    type: 'upvote'
+  })
     .fetch()
     .then(upvotes => {
       res.status(200).send(upvotes);
