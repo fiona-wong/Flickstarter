@@ -20,7 +20,7 @@ class CreateProject extends React.Component {
     this.handleProjectLocationInput = this.handleProjectLocationInput.bind(this);
     this.handleContinueClick = this.handleContinueClick.bind(this);
     this.getWarningMessage = this.getWarningMessage.bind(this);
-  }
+  };
 
   handleGenreSelection(event, data) {
     this.setState({
@@ -91,20 +91,20 @@ class CreateProject extends React.Component {
               marginBottom: '3%'
             }}>
             <Header as='h3'>Choose a genre</Header>
-            <div className="ui one column stackable center aligned page grid">
-              <div>
-                <Menu >
-                  <Dropdown fluid
-                    text={this.state.genreDropdownText}
-                    options={this.state.genreOptions}
-                    onChange={this.handleGenreSelection}
-                    closeOnChange={true}
-                    scrolling={true}
-                    item={true}
-                  />
-                </Menu>
+              <div className="ui one column stackable center aligned page grid">
+                <div>
+                  <Menu >
+                    <Dropdown fluid
+                      text={this.state.genreDropdownText}
+                      options={this.state.genreOptions}
+                      onChange={this.handleGenreSelection}
+                      closeOnChange={true}
+                      scrolling={true}
+                      item={true}
+                    />
+                  </Menu>
+                </div>
               </div>
-            </div>
             <Header as='h3'> Give your project a title</Header>
             <Input fluid
               placeholder='title...'
