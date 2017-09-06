@@ -100,13 +100,9 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTableIfExists('genres'),
     knex.schema.dropTableIfExists('projects'),
     knex.schema.dropTable('auths'),
-<<<<<<< HEAD
     knex.schema.dropTable('users_roles'),
     knex.schema.dropTable('profiles'),
     knex.schema.dropTableIfExists('roles')
-=======
-    knex.schema.dropTable('profiles')
->>>>>>> passed tests
   ]);
 };
 

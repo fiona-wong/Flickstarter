@@ -8,9 +8,15 @@ import AddDescription from './components/addDescription.jsx';
 import AddWebsites from './components/addwebsite.jsx';
 
 class SetupProfile extends React.Component {
+<<<<<<< HEAD
 
   constructor(props) {
     super(props);
+=======
+	constructor(props) {
+		super(props)
+
+>>>>>>> added edit profile page
     this.state = {
       username: '',
       first: '',
@@ -121,18 +127,28 @@ class SetupProfile extends React.Component {
           webComplete: true
         });
       });
+	}
+
+  handleNameSubmit(event) {
+    event.preventDefault();
+    console.log('submited', event.target.value)
+    this.setState({
+      nameComplete: false,
+      roleComplete: true
+    })
   }
 
   handleChange(event) {
     event.preventDefault();
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value;
     });
   }
 
   render() {
     return (
       <div>
+
         <Step.Group ordered vertical>
           <EditName 
             nameActive={this.state.nameActive}
