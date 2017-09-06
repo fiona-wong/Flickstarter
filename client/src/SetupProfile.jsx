@@ -5,8 +5,9 @@ import $ from 'jquery';
 import PickRole from './components/pickrole.jsx';
 
 class SetupProfile extends React.Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props)
+
     this.state = {
       username: '',
       firstName: '',
@@ -69,18 +70,28 @@ class SetupProfile extends React.Component {
           roleActive: false
         });
       });
+	}
+
+  handleNameSubmit(event) {
+    event.preventDefault();
+    console.log('submited', event.target.value)
+    this.setState({
+      nameComplete: false,
+      roleComplete: true
+    })
   }
 
   handleChange(event) {
     event.preventDefault();
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value;
     });
   }
 
   render() {
     return (
       <div>
+
         <Step.Group ordered vertical>
 
           <EditName 
