@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import Home from './components/home';
-import Profile from './components/profile';
-import CreateProject from './components/createProject';
-import ViewProjects from './components/viewProjects';
-import Search from './components/search';
-import Messages from './components/messages';
+import Home from './components/home.jsx';
+import Profile from './components/profile.jsx';
+import CreateProject from './components/createProject.jsx';
+import ViewProjects from './components/viewProjects.jsx';
+import Search from './components/search.jsx';
+import Messages from './components/messages.jsx';
 import { Button, Container, Header } from 'semantic-ui-react';
 
 class App extends React.Component {

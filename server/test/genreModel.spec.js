@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const Genre = require('../../db/models/genres.js');
 const dbUtils = require('../../db/lib/utils.js');
 
-describe('Genres model tests', function () {
+xdescribe('Genres model tests', function () {
   // Deletes all tables, creates new tables, and seeds tables with test data
   beforeEach(function (done) {
     dbUtils.rollbackMigrate(done);

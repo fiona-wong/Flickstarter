@@ -2,7 +2,10 @@ const models = require('../../db/models');
 
 module.exports.getAll = (req, res) => {
   models.Project.fetchAll()
-    .then(profiles => {
+    .then(projects => {
+      if (!projects) {
+        throw projects;
+      }
       res.status(200).send(projects);
     })
     .catch(err => {
@@ -11,7 +14,7 @@ module.exports.getAll = (req, res) => {
 };
 
 module.exports.getOne = (req, res) => {
-  models.Project.where({id: req.body.id}).fetch()
+  models.Project.where({id: req.params.id}).fetch()
     .then(project => {
       if (!project) {
         throw project;
@@ -51,7 +54,7 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.update = (req, res) => {
-  models.Project.where({id: req.body.id}).fetch()
+  models.Project.where({id: req.params.id}).fetch()
     .then(project => {
       if (!project) {
         throw project;
@@ -70,7 +73,7 @@ module.exports.update = (req, res) => {
 };
 
 module.exports.deleteOne = (req, res) => {
-  models.Project.where({id: req.body.id}).fetch()
+  models.Project.where({id: req.params.id}).fetch()
     .then(project => {
       if (!project) {
         throw project;
@@ -97,7 +100,7 @@ module.exports.upvote = (req, res) => {
       project.query().increment('upvote_count', 1);
     })
     .then(() => {
-      res.sendStatus(201);
+      res.sendStatus(201, project.upvote_count);
     })
     .error(err => {
       res.status(500).send(err);
@@ -107,5 +110,22 @@ module.exports.upvote = (req, res) => {
     });
 };
 
-
+module.exports.decrementVoteCount = (req, res) => {
+  models.Project.where({id: req.body.id}).fetch()
+    .then(project => {
+      if (!project) {
+        throw project;
+      }
+      project.query().increment('upvote_count', -1);
+    })
+    .then(() => {
+      res.sendStatus(201, project.upvote_count);
+    })
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
 

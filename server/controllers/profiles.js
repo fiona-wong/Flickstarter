@@ -60,6 +60,25 @@ module.exports.update = (req, res) => {
     });
 };
 
+module.exports.updateTotalContributions = (req, res) => {
+  models.Profile.where({ id: req.params.id }).fetch()
+    .then(profile => {
+      if (!profile) {
+        throw profile;
+      }
+      profile.query().increment('upvote_count', req.body.contribution);
+    })
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
+
 // module.exports.deleteOne = (req, res) => {
 //   models.Profile.where({ id: req.params.id }).fetch()
 //     .then(profile => {

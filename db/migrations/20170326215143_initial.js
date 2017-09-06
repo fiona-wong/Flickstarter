@@ -43,7 +43,7 @@ exports.up = function (knex, Promise) {
       table.date('goal_deadline');
       table.integer('upvote_count');
       table.integer('raised_amount');
-      table.integer('creator_id').references('profiles.id').onDelete('CASCADE');
+      table.integer('creator_id');
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('youtubes', function(table) {
@@ -61,6 +61,7 @@ exports.up = function (knex, Promise) {
       table.string('type').notNullable();
       table.integer('project_id').references('projects.id').onDelete('CASCADE');
       table.integer('user_id').references('profiles.id').onDelete('CASCADE');
+      table.string('type', 6).notNullable();
     }),
     knex.schema.createTableIfNotExists('messages', function(table) {
       table.increments('id').unsigned().primary();

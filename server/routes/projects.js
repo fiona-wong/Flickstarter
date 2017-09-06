@@ -3,20 +3,19 @@ const express = require('express');
 const router = express.Router();
 const ProjectController = require('../controllers').Projects;
 
-router.route('/newProject')
-  .post(ProjectController.create);
+router.route('/')
+  .get(ProjectController.getAll);
 
-
-router.route('/save')
-  .post(ProjectController.update);
-
-router.route('/upvote')
-  .post(ProjectController.upvote);
-
-router.route('/view')
+router.route('/:id')
   .get(ProjectController.getOne);
 
-router.route('/delete')
+router.route('/new')
+  .post(ProjectController.create);
+
+router.route('/update/:id')
+  .put(ProjectController.update);
+
+router.route('/delete/:id')
   .delete(ProjectController.deleteOne);
 
 module.exports = router;

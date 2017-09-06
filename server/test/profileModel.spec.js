@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const Profile = require('../../db/models/profiles.js');
 const dbUtils = require('../../db/lib/utils.js');
 
-describe('Profile model tests', function () {
+xdescribe('Profile model tests', function () {
   // Deletes all tables, creates new tables, and seeds tables with test data
   beforeEach(function (done) {
     dbUtils.rollbackMigrate(done);

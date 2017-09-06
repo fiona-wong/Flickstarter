@@ -1,18 +1,28 @@
 const models = require('../../db/models');
 
 module.exports.upvote = (req, res) => {
-  models.FollowUpvote.forge({
+  return models.FollowUpvote.where({
     project_id: req.body.projectId, 
     user_id: req.body.userId,
     type: 'upvote'
-  })
-    .save()
+  }).fetch()
     .then(result => {
-      res.status(201).send(result);
-    })
-    .catch(err => {
-      res.status(500).send(err);
-    });
+      if (result) {
+        throw result;
+      }
+      return models.FollowUpvote.forge({
+          project_id: req.body.projectId, 
+          user_id: req.body.userId,
+          type: 'upvote'
+        })
+        .save()
+        .then(result => {
+          res.status(201).send(result);
+        })
+        .catch(err => {
+          res.status(500).send(err);
+        })
+    }).end(done);
 };
 
 module.exports.undoUpvote = (req, res) => {
@@ -36,9 +46,8 @@ module.exports.undoUpvote = (req, res) => {
     })
     .catch(() => {
       res.sendStatus(404);
-    }); 
+    });
 };
-
 
 module.exports.follow = (req, res) => {
   models.FollowUpvote.forge({

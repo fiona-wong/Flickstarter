@@ -37,3 +37,21 @@ module.exports.view = (req, res) => {
       res.sendStatus(404);
     });
 };
+
+module.exports.get = (req, res) => {
+  models.Message.where({ 
+    receiver_id: req.params.receiverId
+  }).fetch()
+    .then(messages => {
+      if (!messages) {
+        throw messages;
+      }
+      res.status(200).send(messages);
+    })
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
