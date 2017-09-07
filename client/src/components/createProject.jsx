@@ -20,7 +20,7 @@ class CreateProject extends React.Component {
     this.handleProjectLocationInput = this.handleProjectLocationInput.bind(this);
     this.handleContinueClick = this.handleContinueClick.bind(this);
     this.getWarningMessage = this.getWarningMessage.bind(this);
-  };
+  }
 
   handleGenreSelection(event, data) {
     this.setState({
@@ -32,13 +32,13 @@ class CreateProject extends React.Component {
   handleProjectTitleInput(event, data) {
     this.setState({
       projectTitle: data.value
-    })
+    });
   }
 
   handleProjectLocationInput(event, data) {
     this.setState({
       projectLocation: data.value
-    })
+    });
   }
 
   getWarningMessage() {
@@ -46,7 +46,7 @@ class CreateProject extends React.Component {
       <Message color='red' negative>
         <Message.Header>You must complete each field to continue. </Message.Header>
       </Message>
-    )
+    );
   }
 
   handleContinueClick(event) {
@@ -57,13 +57,13 @@ class CreateProject extends React.Component {
     } else {
       this.setState({
         incompleteField: true
-      })
+      });
     }
   }
 
   render() {
     return (
-      this.state.currentPage === 'start' ? 
+      this.state.currentPage === 'start' ?
       <div
         id="selection-component"
         style={{
@@ -79,11 +79,11 @@ class CreateProject extends React.Component {
         <div style={{textAlign: 'center', paddingTop: '20px', paddingBottom: '15px'}}>
           <Header as='h1'>Create a project</Header>
         </div>
-        <Segment 
+        <Segment
           raised
           style={{textAlign: 'center', width: '80%'}}
-        > 
-          <Container 
+        >
+          <Container
             style={{
               width: '50%',
               paddingBottom: '30px',
@@ -91,12 +91,12 @@ class CreateProject extends React.Component {
               marginBottom: '3%'
             }}>
             <Header as='h3'>Choose a genre</Header>
-            <div class="ui one column stackable center aligned page grid">
+            <div className="ui one column stackable center aligned page grid">
               <div>
                 <Menu >
                   <Dropdown fluid
-                    text={this.state.genreDropdownText} 
-                    options={this.state.genreOptions} 
+                    text={this.state.genreDropdownText}
+                    options={this.state.genreOptions}
                     onChange={this.handleGenreSelection}
                     closeOnChange={true}
                     scrolling={true}
@@ -107,12 +107,12 @@ class CreateProject extends React.Component {
             </div>
             <Header as='h3'> Give your project a title</Header>
             <Input fluid
-              placeholder='title...' 
+              placeholder='title...'
               onChange={this.handleProjectTitleInput}
             />
             <Header as='h3'> Enter your location</Header>
             <Input fluid
-              placeholder='e.g. San Francisco, CA' 
+              placeholder='e.g. San Francisco, CA'
               onChange={this.handleProjectLocationInput}
             />
           </Container>

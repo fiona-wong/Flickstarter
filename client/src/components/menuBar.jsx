@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import { Menu, Search, Segment } from 'semantic-ui-react';
+import { Menu, Search } from 'semantic-ui-react';
 import CreateProject from './createProject.jsx';
 import ViewProjects from './viewProjects.jsx';
 import Profile from './profile.jsx';
 import Messages from './messages.jsx';
+import SearchBar from './searchBar.jsx';
+
 
 class MenuBar extends React.Component {
   constructor(props) {
@@ -15,6 +18,7 @@ class MenuBar extends React.Component {
     return (
         <div>
           <Menu pointing secondary>
+
             <Link to={'/createproject'}>
               <Menu.Item name='Create Project' />
             </Link>
@@ -25,6 +29,8 @@ class MenuBar extends React.Component {
 
             <Menu.Menu position='right' />
 
+            <SearchBar />
+
             <Link to={'/messages'}>
               <Menu.Item name='Messages' />
             </Link>
@@ -32,6 +38,7 @@ class MenuBar extends React.Component {
             <Link to={'/profile'}>
               <Menu.Item name='Profile' />
             </Link>
+
           </Menu>
 
           <Route path='/createproject' component={CreateProject} />
