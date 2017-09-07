@@ -1,11 +1,12 @@
-module.exports.Auth = require('./auths');
-module.exports.Profile = require('./profiles');
-module.exports.Role = require('./roles');
-module.exports.Project = require('./projects');
-module.exports.Youtube = require('./youtubes');
-module.exports.OpenRole = require('./openroles');
-module.exports.FollowUpvote = require('./followsupvotes');
-module.exports.Message = require('./messages');
-module.exports.UserProjectContribution = require('./userprojectcontributions');
-module.exports.Genre = require('./genres');
-module.exports.UserRole = require('./userrole');
+module.exports = {
+  Auth: require('./auths'),
+  Profile: require('./profiles'),
+  Role: require('./roles'),
+  Project: require('./projects'),
+  Youtube: require('./youtubes'),
+  OpenRole: require('./openroles'),
+  FollowUpvote: require('./followsupvotes'),
+  Message: require('./messages'),
+  UserProjectContribution: require('./userprojectcontributions'),
+  Genre: require('./genres')
+}
