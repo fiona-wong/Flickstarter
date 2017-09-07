@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Grid, Step, Dropdown, Button } from 'semantic-ui-react';
 
-
 const PickRole = (props) => (
   <Grid columns={2}>
     <Grid.Column width={5}>
@@ -20,7 +19,6 @@ const PickRole = (props) => (
     </Grid.Column>
   </Grid>
 );
-
 
 
 export default PickRole;

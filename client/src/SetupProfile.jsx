@@ -123,7 +123,6 @@ class SetupProfile extends React.Component {
       });
 	}
 
-
   handleChange(event) {
     event.preventDefault();
     this.setState({
@@ -148,7 +147,6 @@ class SetupProfile extends React.Component {
             handleRoleSelect={this.handleRoleSelect}
             saveRoles={this.saveRoles}
             roleComplete={this.state.roleComplete}
-<<<<<<< HEAD
           />
 
           <AddLocation
