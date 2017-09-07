@@ -7,8 +7,6 @@ const EditName = (props) => (
   <Grid columns={2}>
 
     <Grid.Column width={5}>
-
-
       <Step active={props.nameActive} completed={!props.nameActive}>
         <Step.Content>
           <Step.Title>Name</Step.Title>

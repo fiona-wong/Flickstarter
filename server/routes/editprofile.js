@@ -6,5 +6,6 @@ const EditProfileController = require('../controllers/editprofile');
 router.post('/updateprofile', EditProfileController.updateProfile);
 router.get('/getroles', EditProfileController.roles);
 router.post('/saveuserroles', EditProfileController.updateUserRoles);
+router.post('/updatelocation', EditProfileController.updateLocation);
 
 module.exports = router;

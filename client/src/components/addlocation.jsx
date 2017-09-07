@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Grid, Step, Form, Button } from 'semantic-ui-react';
 
-
 const AddLocation = (props) => (
 
   <Grid columns={2}>

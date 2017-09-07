@@ -7,6 +7,7 @@ import AddLocation from './components/addlocation.jsx';
 import AddDescription from './components/addDescription.jsx';
 import AddWebsites from './components/addwebsite.jsx';
 
+
 class SetupProfile extends React.Component {
 
   constructor(props) {
@@ -89,6 +90,7 @@ class SetupProfile extends React.Component {
   }
 
   handleLocation() {
+
     $.post('/editprofile/updateprofile', 
       {location: this.state.location}, 
       (data) => {
