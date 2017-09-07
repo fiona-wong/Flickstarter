@@ -22,9 +22,6 @@ class App extends React.Component {
 
           </div>
         </Router>
-        <Container>
-
-        </Container>
       </div>
     );
   }
