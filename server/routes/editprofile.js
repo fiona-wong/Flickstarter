@@ -8,7 +8,4 @@ router.get('/getroles', EditProfileController.roles);
 router.post('/saveuserroles', EditProfileController.updateUserRoles);
 
 
-
-
-
 module.exports = router;

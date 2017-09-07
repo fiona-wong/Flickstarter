@@ -73,15 +73,6 @@ class SetupProfile extends React.Component {
 	}
 
 
-  handleNameSubmit(event) {
-    event.preventDefault();
-    console.log('submited', event.target.value);
-    this.setState({
-      nameComplete: false,
-      roleComplete: true
-    });
-  }
-
   handleChange(event) {
     event.preventDefault();
     this.setState({
@@ -92,8 +83,6 @@ class SetupProfile extends React.Component {
   render() {
     return (
       <div>
-
-
         <Step.Group ordered vertical>
 
           <EditName 
@@ -108,6 +97,8 @@ class SetupProfile extends React.Component {
             roles={this.state.roles}
             handleRoleSelect={this.handleRoleSelect}
             saveRoles={this.saveRoles}
+            roleComplete={this.state.roleComplete}
+            roles={this.state.roles}
           />
 
           <Grid columns={2}>
