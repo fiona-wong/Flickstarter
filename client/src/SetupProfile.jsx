@@ -3,6 +3,7 @@ import { Grid, Step, Form, Button } from 'semantic-ui-react';
 import EditName from './components/editName.jsx';
 import $ from 'jquery';
 import PickRole from './components/pickrole.jsx';
+import AddLocation from './components/addlocation.jsx';
 
 class SetupProfile extends React.Component {
 
@@ -14,19 +15,23 @@ class SetupProfile extends React.Component {
       lastName: '',
       roles: [],
       chosenRole: [],
-      experience: '',
+      location: '',
       description: '',
       linkedin: '',
       personalSite: '',
       youtube: '',
       photo: '',
       nameActive: true,
-      roleActive: false
+      roleActive: false,
+      roleComplete: false,
+      locationActive: false,
+      locationComplete: false
     };
     this.handleNameSubmit = this.handleNameSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleRoleSelect = this.handleRoleSelect.bind(this);
     this.saveRoles = this.saveRoles.bind(this);
+    this.handleLocation = this.handleLocation.bind(this);
   }
 
   componentDidMount () {
@@ -67,7 +72,20 @@ class SetupProfile extends React.Component {
       {userrole: this.state.chosenRole}, 
       (data) => {
         this.setState({
-          roleActive: false
+          roleActive: false,
+          roleComplete: true,
+          locationActive: true
+        });
+      });
+  }
+
+  handleLocation() {
+    $.post('/editprofile/updatelocation', 
+      {location: this.state.location}, 
+      (data) => {
+        this.setState({
+          locationActive: false,
+          locationComplete: true
         });
       });
 	}
@@ -92,6 +110,7 @@ class SetupProfile extends React.Component {
           />
 
           <PickRole
+            roleComplete={this.state.roleComplete}
             roleActive={this.state.roleActive}
             roles={this.state.roles}
             handleRoleSelect={this.handleRoleSelect}
@@ -99,22 +118,20 @@ class SetupProfile extends React.Component {
             roleComplete={this.state.roleComplete}
           />
 
+          <AddLocation
+            locationActive={this.state.locationActive}
+            handleLocation={this.handleLocation}
+            handleChange={this.handleChange}
+            locationComplete={this.state.locationComplete}
+          />
+
           <Grid columns={2}>
-            <Grid.Column>
-              <Step>
-                <Step.Content>
-                  <Step.Title>Experience</Step.Title>
-        What have you done?
-                </Step.Content>
-              </Step>
-            </Grid.Column>
-            <Grid.Column>
-            </Grid.Column>
+
             <Grid.Column>
               <Step>
                 <Step.Content>
                   <Step.Title>Description</Step.Title>
-        Write a little about me:
+        Tell us a little about yourself:
                 </Step.Content>
               </Step>
             </Grid.Column>

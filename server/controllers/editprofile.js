@@ -40,3 +40,13 @@ module.exports.updateUserRoles = (req, res) => {
       });
   });
 };
+
+module.exports.updateLocation = (req, res) => {
+  model.Profile.where({id: req.user.id}).save({location: req.body.location}, {method: 'update'})
+    .then((data) => {
+      res.status(200).send('location has been updated');
+    })
+    .catch(() => {
+      res.status(500);
+    });
+};
