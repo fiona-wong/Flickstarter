@@ -72,7 +72,6 @@ class SetupProfile extends React.Component {
       });
 	}
 
-
   handleChange(event) {
     event.preventDefault();
     this.setState({
@@ -98,7 +97,6 @@ class SetupProfile extends React.Component {
             handleRoleSelect={this.handleRoleSelect}
             saveRoles={this.saveRoles}
             roleComplete={this.state.roleComplete}
-            roles={this.state.roles}
           />
 
           <Grid columns={2}>

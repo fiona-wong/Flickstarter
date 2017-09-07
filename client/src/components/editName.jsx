@@ -7,7 +7,7 @@ const EditName = (props) => (
   <Grid columns={2}>
 
     <Grid.Column width={5}>
-      <Step active={props.nameComplete} completed={props.roleComplete}>
+      <Step active={props.nameActive} completed={props.roleActive}>
         <Step.Content>
           <Step.Title>Name</Step.Title>
       What's your name?
