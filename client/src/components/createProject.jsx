@@ -1,25 +1,34 @@
 import React from 'react';
 import { Dropdown, Menu, Container, Header, Input, Button, Segment, Message, TextArea, Form } from 'semantic-ui-react';
+import $ from 'jquery';
+
+const genreOptions = [{ key: 1, text: 'Action', value: 'Action' }, { key: 2, text: 'Adventure', value: 'Adventure' }, { key: 3, text: 'Animated', value: 'Animated' }, { key: 4, text: 'Comedy', value: 'Comedy' }, { key: 5, text: 'Crime', value: 'Crime' }, { key: 6, text: 'Documentary', value: 'Documentary' }, { key: 7, text: 'Drama', value: 'Drama' }, { key: 8, text: 'Musical', value: 'Musical' }, { key: 9, text: 'Science Fiction', value: 'Science Fiction' }, { key: 10, text: 'War', value: 'War' }, { key: 11, text: 'Western', value: 'Western' }];
 
 class CreateProject extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      genreOptions: [
-        { key: 1, text: 'Action', value: 'Action' }, { key: 2, text: 'Adventure', value: 'Adventure' }, { key: 3, text: 'Animated', value: 'Animated' }, { key: 4, text: 'Comedy', value: 'Comedy' }, { key: 5, text: 'Crime', value: 'Crime' }, { key: 6, text: 'Documentary', value: 'Documentary' }, { key: 7, text: 'Drama', value: 'Drama' }, { key: 8, text: 'Musical', value: 'Musical' }, { key: 9, text: 'Science Fiction', value: 'Science Fiction' }, { key: 10, text: 'War', value: 'War' }, { key: 11, text: 'Western', value: 'Western' }
-      ],
-      genreDropdownText: 'Select a genre',
       projectGenre: '',
       projectTitle: '',
       projectLocation: '',
+      projectDuration: '',
+      projectBlurb: '',
+      projectDescription: '',
       currentPage: 'start',
-      incompleteField: false
+      projectFundingGoal: '',
+      incompleteField: false,
+      saving: false
     };
     this.handleGenreSelection = this.handleGenreSelection.bind(this);
     this.handleProjectTitleInput = this.handleProjectTitleInput.bind(this);
     this.handleProjectLocationInput = this.handleProjectLocationInput.bind(this);
     this.handleContinueClick = this.handleContinueClick.bind(this);
+    this.handleSaveClick = this.handleSaveClick.bind(this);
     this.getWarningMessage = this.getWarningMessage.bind(this);
+    this.handleProjectDurationInput = this.handleProjectDurationInput.bind(this);
+    this.handleBlurbInput = this.handleBlurbInput.bind(this);
+    this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
+    this.handleFundingGoalInput = this.handleFundingGoalInput.bind(this);
   };
 
   handleGenreSelection(event, data) {
@@ -41,18 +50,35 @@ class CreateProject extends React.Component {
     });
   }
 
-  getWarningMessage() {
-    return (
-      <Message color='red' negative>
-        <Message.Header>You must complete each field to continue. </Message.Header>
-      </Message>
-    );
+  handleProjectDurationInput(event, data) {
+    this.setState({
+      projectDuration: data.value
+    });
+  }
+
+  handleBlurbInput(event, data) {
+    this.setState({
+      projectBlurb: data.value
+    });
+  }
+
+  handleDescriptionInput(event, data) {
+    this.setState({
+      projectDescription: data.value
+    });
+  }
+
+  handleFundingGoalInput(event, data) {
+    this.setState({
+      projectFundingGoal: data.value
+    });
   }
 
   handleContinueClick(event) {
-    if (this.state.genre !== '' && this.state.projectTitle !== '' && this.state.projectLocation) {
+    if (this.state.projectGenre !== '' && this.state.projectTitle !== '' && this.state.projectLocation) {
       this.setState({
-        currentPage: 'details'
+        currentPage: 'details',
+        incompleteField: false
       });
     } else {
       this.setState({
@@ -61,20 +87,45 @@ class CreateProject extends React.Component {
     }
   }
 
+  handleSaveClick(event) {
+    if (this.state.projectGenre !== '' && this.state.projectTitle !== '' && this.state.projectLocation !== '' && this.state.projectDuration !== '' && this.state.projectBlurb !== '' && this.state.projectDescription !== '' && this.state.projectFundingGoal !== '') {
+      this.setState({
+        saving: true,
+        incompleteField: false
+      });
+      console.log('save project');
+      // $.ajax({
+      //   url: '/new',
+      //   type: 'POST',
+      //   data: {},
+      //   success: (data) => {
+      //     console.log('hooray');
+      //   },
+      //   error: (err) => {
+      //     console.log('error: ', err);
+      //   }
+      // });
+    } else {
+      this.setState({
+        incompleteField: true
+      });
+    }
+  }
+
+  getWarningMessage() {
+    return (
+      <Message color='red' negative>
+        <Message.Header>You must complete each field to continue. </Message.Header>
+      </Message>
+    )
+  }
+
   render() {
     return (
       this.state.currentPage === 'start' ?
       <div
         id="selection-component"
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          backgroundColor: '#FFFFFF'
-        }}
+        style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', backgroundColor: '#FFFFFF'}}
       >
         <div style={{textAlign: 'center', paddingTop: '20px', paddingBottom: '15px'}}>
           <Header as='h1'>Create a project</Header>
@@ -82,32 +133,25 @@ class CreateProject extends React.Component {
         <Segment
           raised
           style={{textAlign: 'center', width: '80%'}}
-        >
-          <Container
-            style={{
-              width: '50%',
-              paddingBottom: '30px',
-              marginTop: '3%',
-              marginBottom: '3%'
-            }}>
+        > 
+          <Container 
+            style={{width: '50%', paddingBottom: '30px', marginTop: '3%', marginBottom: '3%'}}>
             <Header as='h3'>Choose a genre</Header>
-              <div className="ui one column stackable center aligned page grid">
-                <div>
-                  <Menu >
-                    <Dropdown fluid
-                      text={this.state.genreDropdownText}
-                      options={this.state.genreOptions}
-                      onChange={this.handleGenreSelection}
-                      closeOnChange={true}
-                      scrolling={true}
-                      item={true}
-                    />
-                  </Menu>
-                </div>
+              <div>
+                <Menu widths={1} >
+                  <Dropdown fluid selection
+                    placeholder='Select a genre'
+                    options={genreOptions} 
+                    onChange={this.handleGenreSelection}
+                    closeOnChange={true}
+                    scrolling={true}
+                    item={true}
+                  />
+                </Menu>
               </div>
             <Header as='h3'> Give your project a title</Header>
             <Input fluid
-              placeholder='title...'
+              placeholder='Add your title here...' 
               onChange={this.handleProjectTitleInput}
             />
             <Header as='h3'> Enter your location</Header>
@@ -125,33 +169,19 @@ class CreateProject extends React.Component {
       :
       <div
         id="selection-component"
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          backgroundColor: '#FFFFFF'
-        }}
+        style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', backgroundColor: '#FFFFFF'}}
       >
-        <div style={{textAlign: 'center', paddingTop: '20px', paddingBottom: '15px'}}>
-          <Header as='h1'>Lets get into the details.</Header>
+        <div style={{textAlign: 'center', paddingTop: '20px', paddingBottom: '22px'}}>
+          <Header as='h1'>Lets get into the details</Header>
         </div>
         <Segment raised style={{textAlign: 'center', width: '98%'}}>
-          <div style={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-evenly',
-            paddingBottom: '30px'
+          <div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', paddingBottom: '30px'
           }}>
             <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'left'}}>
               <div style={{width: '28%', textAlign: 'left'}}>
                 <Header as='h3'>Project Image</Header>
               </div>
-              <div style={{width: '72%', textAlign: 'left', paddingBottom: '15px'}}>
+              <div style={{width: '72%', textAlign: 'left', paddingBottom: '22px'}}>
                 <p> This is the first thing that people will see when they come across your project. Choose an image that’s crisp and text-free. </p>
               </div>
             </div>
@@ -159,7 +189,7 @@ class CreateProject extends React.Component {
               <div style={{width: '28%', textAlign: 'left'}}>
                 <Header as='h3'>Project Title</Header>
               </div>
-              <div style={{width: '72%', textAlign: 'left', paddingBottom: '15px'}}>
+              <div style={{width: '72%', textAlign: 'left', paddingBottom: '22px'}}>
                 <Input style={{width: '50%'}}
                   value={this.state.projectTitle}
                   onChange={this.handleProjectTitleInput}
@@ -171,7 +201,11 @@ class CreateProject extends React.Component {
               <div style={{width: '28%', textAlign: 'left'}}>
                 <Header as='h3'>Short blurb</Header>
               </div>
-              <div style={{width: '72%', textAlign: 'left', paddingBottom: '15px'}}>
+              <div style={{width: '72%', textAlign: 'left', paddingBottom: '22px'}}>
+                <Input fluid 
+                  placeholder='Add your blurb here...'
+                  onChange={this.handleBlurbInput}
+                />
                 <p> Give people a sense of what you’re doing. Skip “Help me” and focus on what you’re making. </p>
               </div>
             </div>
@@ -179,26 +213,37 @@ class CreateProject extends React.Component {
               <div style={{width: '28%', textAlign: 'left'}}>
                 <Header as='h3'>Full description</Header>
               </div>
-              <div style={{width: '72%', textAlign: 'left', paddingBottom: '15px'}}>
+              <div style={{width: '72%', textAlign: 'left', paddingBottom: '22px'}}>
                 <Form>
-                  <TextArea autoHeight placeholder='Add your description here...' />
+                  <TextArea autoHeight placeholder='Add your description here...' onChange={this.handleDescriptionInput}/>
                 </Form>
-                <p> Here is where you tell the world your detailed plans. </p>
+                <p> Tell the world your detailed plans. </p>
               </div>
             </div>
             <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'left'}}>
               <div style={{width: '28%', textAlign: 'left'}}>
                 <Header as='h3'>Genre</Header>
               </div>
-              <div style={{width: '72%', textAlign: 'left', paddingBottom: '15px'}}>
-
+              <div style={{width: '72%', textAlign: 'left', paddingBottom: '22px'}}>
+                <div style={{width: '25%'}}>
+                  <Menu widths={1}>
+                    <Dropdown compact selection
+                      value={this.state.projectGenre}
+                      options={genreOptions} 
+                      onChange={this.handleGenreSelection}
+                      closeOnChange={true}
+                      scrolling={true}
+                      item={true}
+                    />
+                  </Menu>
+                </div>
               </div>
             </div>
             <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'left'}}>
               <div style={{width: '28%', textAlign: 'left'}}>
                 <Header as='h3'>Location</Header>
               </div>
-              <div style={{width: '72%', textAlign: 'left', paddingBottom: '15px'}}>
+              <div style={{width: '72%', textAlign: 'left', paddingBottom: '22px'}}>
                 <Input style={{width: '50%'}}
                   value={this.state.projectLocation}
                   onChange={this.handleProjectLocationInput}
@@ -210,21 +255,38 @@ class CreateProject extends React.Component {
               <div style={{width: '28%', textAlign: 'left'}}>
                 <Header as='h3'>Funding Duration</Header>
               </div>
-              <div style={{width: '72%', textAlign: 'left', paddingBottom: '15px'}}>
-                <p> Projects with shorter durations have higher success rates. You won’t be able to adjust your duration after you launch. </p>
+              <div style={{width: '72%', textAlign: 'left', paddingBottom: '22px'}}>
+                <Input style={{width: '70px'}}
+                  placeholder='e.g. 30' 
+                  onChange={this.handleProjectDurationInput}
+                  label={{ basic: true, content: 'days' }}
+                  labelPosition='right'
+                />
+                <p> How many days do you want your crowdfunding to last? Projects with shorter durations have higher success rates. You won’t be able to adjust your duration after you launch. </p>
               </div>
             </div>
             <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'left'}}>
-              <div style={{width: '28%', textAlign: 'left', paddingBottom: '15px'}}>
+              <div style={{width: '28%', textAlign: 'left', paddingBottom: '22px'}}>
                 <Header as='h3'>Funding Goal</Header>
               </div>
-              <div style={{width: '72%', textAlign: 'left', paddingBottom: '15px'}}>
+              <div style={{width: '72%', textAlign: 'left', paddingBottom: '22px'}}>
+                <Input style={{width: '100px'}}
+                  placeholder='e.g. 10,000' 
+                  onChange={this.handleFundingGoalInput}
+                  label={{ basic: true, content: '$' }}
+                  labelPosition='left'
+                />
                 <p> Funding on FlickStarter is all-or-nothing. If your goal isn’t met, no money will be collected. Your goal should reflect the minimum amount of funds you need to complete your project. </p>
               </div>
             </div>
           </div>
-          <Button primary onClick={this.handleContinueClick}>Save
-          </Button>
+          {
+            this.state.saving ? <Button loading primary onClick={this.handleSaveClick}>Save</Button> : <Button primary onClick={this.handleSaveClick}>Save</Button>
+          }
+
+          {
+            this.state.incompleteField ? this.getWarningMessage() : null
+          }
         </Segment>
       </div>
     );
