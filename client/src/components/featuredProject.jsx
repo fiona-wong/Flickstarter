@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import { Image, Segment } from 'semantic-ui-react';
+
 
 class FeaturedProject extends React.Component {
   constructor(props) {
@@ -21,3 +23,4 @@ class FeaturedProject extends React.Component {
 export default FeaturedProject;
 
 // https://i2.wp.com/www.anuvawines.com/tasting-argentina/wp-content/uploads/2013/02/Pinot-Noir.jpg
+

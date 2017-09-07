@@ -9,6 +9,7 @@ import Messages from './messages.jsx';
 import SearchBar from './searchBar.jsx';
 import SetupProfile from '../SetupProfile.jsx';
 
+
 class MenuBar extends React.Component {
   constructor(props) {
     super(props);

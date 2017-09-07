@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import { Image, Segment } from 'semantic-ui-react';
 
 class ProjectPreview extends React.Component {

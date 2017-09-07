@@ -4,6 +4,7 @@ import { Grid, Segment } from 'semantic-ui-react';
 
 import FeaturedProject from './featuredProject.jsx';
 import ProjectPreview from './projectPreview.jsx';
+import Filter from './filter.jsx';
 
 
 class Home extends React.Component {
@@ -22,35 +23,37 @@ class Home extends React.Component {
 
         Trending Projects
 
+        <Filter />
+
         <Segment>
 
-          <Grid columns={2} padded>
+            <Grid columns={2} padded>
 
-            <Grid.Column>
-              <ProjectPreview />
-            </Grid.Column>
+              <Grid.Column>
+                <ProjectPreview />
+              </Grid.Column>
 
-            <Grid.Column>
-              <ProjectPreview />
-            </Grid.Column>
+              <Grid.Column>
+                <ProjectPreview />
+              </Grid.Column>
 
-            <Grid.Column>
-              <ProjectPreview />
-            </Grid.Column>
+              <Grid.Column>
+                <ProjectPreview />
+              </Grid.Column>
 
-            <Grid.Column>
-              <ProjectPreview />
-            </Grid.Column>
+              <Grid.Column>
+                <ProjectPreview />
+              </Grid.Column>
 
-            <Grid.Column>
-              <ProjectPreview />
-            </Grid.Column>
+              <Grid.Column>
+                <ProjectPreview />
+              </Grid.Column>
 
-            <Grid.Column>
-              <ProjectPreview />
-            </Grid.Column>
+              <Grid.Column>
+                <ProjectPreview />
+              </Grid.Column>
 
-          </Grid>
+            </Grid>
 
         </Segment>
       </div>
