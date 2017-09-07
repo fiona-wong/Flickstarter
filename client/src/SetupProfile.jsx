@@ -124,15 +124,6 @@ class SetupProfile extends React.Component {
 	}
 
 
-  handleNameSubmit(event) {
-    event.preventDefault();
-    console.log('submited', event.target.value);
-    this.setState({
-      nameComplete: false,
-      roleComplete: true
-    });
-  }
-
   handleChange(event) {
     event.preventDefault();
     this.setState({
@@ -143,8 +134,6 @@ class SetupProfile extends React.Component {
   render() {
     return (
       <div>
-
-
         <Step.Group ordered vertical>
           <EditName 
             nameActive={this.state.nameActive}
@@ -159,6 +148,7 @@ class SetupProfile extends React.Component {
             handleRoleSelect={this.handleRoleSelect}
             saveRoles={this.saveRoles}
             roleComplete={this.state.roleComplete}
+<<<<<<< HEAD
           />
 
           <AddLocation
@@ -180,6 +170,7 @@ class SetupProfile extends React.Component {
             handleWebsite={this.handleWebsite}
             handleChange={this.handleChange}
             webComplete={this.state.webComplete}
+            roles={this.state.roles}
           />
 
           <Grid columns={2}>
