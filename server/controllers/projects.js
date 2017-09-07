@@ -110,6 +110,7 @@ module.exports.upvote = (req, res) => {
     });
 };
 
+
 module.exports.decrementVoteCount = (req, res) => {
   models.Project.where({id: req.body.id}).fetch()
     .then(project => {
@@ -128,4 +129,3 @@ module.exports.decrementVoteCount = (req, res) => {
       res.sendStatus(404);
     });
 };
-

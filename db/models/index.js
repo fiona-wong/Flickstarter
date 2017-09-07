@@ -8,3 +8,4 @@ module.exports.FollowUpvote = require('./followsupvotes');
 module.exports.Message = require('./messages');
 module.exports.UserProjectContribution = require('./userprojectcontributions');
 module.exports.Genre = require('./genres');
+module.exports.UserRole = require('./userrole');

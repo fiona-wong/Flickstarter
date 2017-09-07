@@ -63,7 +63,7 @@ router.get('/auth/facebook/callback', middleware.passport.authenticate('facebook
 router.get('/auth/twitter', middleware.passport.authenticate('twitter'));
 
 router.get('/auth/twitter/callback', middleware.passport.authenticate('twitter', {
-  successRedirect: '/profile',
+  successRedirect: '/',
   failureRedirect: '/login'
 }));
 

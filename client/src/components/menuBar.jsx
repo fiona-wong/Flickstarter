@@ -7,7 +7,7 @@ import ViewProjects from './viewProjects.jsx';
 import Profile from './profile.jsx';
 import Messages from './messages.jsx';
 import SearchBar from './searchBar.jsx';
-
+import SetupProfile from '../SetupProfile.jsx';
 
 class MenuBar extends React.Component {
   constructor(props) {
@@ -16,36 +16,36 @@ class MenuBar extends React.Component {
 
   render() {
     return (
-        <div>
-          <Menu pointing secondary>
+      <div>
+        <Menu pointing secondary>
 
-            <Link to={'/createproject'}>
-              <Menu.Item name='Create Project' />
-            </Link>
+          <Link to={'/createproject'}>
+            <Menu.Item name='Create Project' />
+          </Link>
 
-            <Link to={'/viewprojects'}>
-              <Menu.Item name='View Project' />
-            </Link>
+          <Link to={'/viewprojects'}>
+            <Menu.Item name='View Project' />
+          </Link>
 
-            <Menu.Menu position='right' />
+          <Menu.Menu position='right' />
 
-            <SearchBar />
+          <SearchBar />
 
-            <Link to={'/messages'}>
-              <Menu.Item name='Messages' />
-            </Link>
+          <Link to={'/messages'}>
+            <Menu.Item name='Messages' />
+          </Link>
 
-            <Link to={'/profile'}>
-              <Menu.Item name='Profile' />
-            </Link>
+          <Link to={'/setupprofile'}>
+            <Menu.Item name='Profile' />
+          </Link>
 
-          </Menu>
+        </Menu>
 
-          <Route path='/createproject' component={CreateProject} />
-          <Route path='/viewprojects' component={ViewProjects} />
-          <Route path='/messages' component={Messages} />
-          <Route path='/profile' component={Profile} />
-        </div>
+        <Route path='/createproject' component={CreateProject} />
+        <Route path='/viewprojects' component={ViewProjects} />
+        <Route path='/messages' component={Messages} />
+        <Route path='/setupprofile' component={SetupProfile} />
+      </div>
     );
   }
 }

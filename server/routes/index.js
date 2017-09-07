@@ -7,3 +7,4 @@ module.exports.openRoles = require('./openRoles');
 module.exports.messages = require('./messages');
 module.exports.userProjectContributions = require('./userProjectContributions');
 module.exports.youtubes = require('./youtubes');
+module.exports.editprofile = require('./editprofile');

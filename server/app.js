@@ -23,11 +23,13 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/', routes.auth);
 app.use('/api', routes.api);
 app.use('/api/profiles', routes.profiles);
+app.use('/editprofile', routes.editprofile);
 app.use('/api/projects', routes.projects);
 // app.use('/api/messages', routes.messages);
 app.use('/api/followsUpvotes', routes.followsUpvotes);
 // app.use('/api/openRoles', routes.openRoles);
 // app.use('/api/userProjectContributions', routes.userProjectContributions);
 // app.use('/api/youtubes', routes.youtubes);
+
 
 module.exports = app;
