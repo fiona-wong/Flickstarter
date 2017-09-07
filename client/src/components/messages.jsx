@@ -4,7 +4,7 @@ class Messages extends React.Component {
   render() {
     return (
       <div>
-        <h1>Here are some of your messages!</h1>
+        Here are some of your messages!
       </div>
     );
   }
