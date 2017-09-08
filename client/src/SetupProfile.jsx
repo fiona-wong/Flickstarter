@@ -165,7 +165,7 @@ class SetupProfile extends React.Component {
 
           <AddWebsites
             webActive={this.state.webActive}
-            handleWebsite={this.handleLocation}
+            handleWebsite={this.handleWebsite}
             handleChange={this.handleChange}
             webComplete={this.state.webComplete}
           />
