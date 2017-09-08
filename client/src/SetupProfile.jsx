@@ -165,16 +165,9 @@ class SetupProfile extends React.Component {
 
           <AddWebsites
             webActive={this.state.webActive}
-<<<<<<< HEAD
             handleWebsite={this.handleWebsite}
             handleChange={this.handleChange}
             webComplete={this.state.webComplete}
-            roles={this.state.roles}
-=======
-            handleWebsite={this.handleLocation}
-            handleChange={this.handleChange}
-            webComplete={this.state.webComplete}
->>>>>>> fixed bug in adding user roles in controller
           />
 
           <Grid columns={2}>
