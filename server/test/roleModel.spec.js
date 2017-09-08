@@ -16,8 +16,8 @@ describe('Role model tests', function () {
   it('Should be able to retrieve test data', function (done) {
     Role.forge().fetchAll()
       .then(function (results) {
-        expect(results.length).to.equal(1);
-        expect(results.at(0).get('id')).to.equal(1);
+        expect(results.length).to.equal(7);
+        expect(results.at(0).get('id')).to.equal(7);
         done();
       })
       .catch(function (err) {
