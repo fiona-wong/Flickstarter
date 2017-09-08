@@ -21,7 +21,7 @@ class App extends React.Component {
             <Route exact={true} path='/' component={Home} />
 
           </div>
-
+          
         </Router>
       </div>
     );

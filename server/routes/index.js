@@ -1,10 +1,11 @@
-module.exports.api = require('./api');
-module.exports.auth = require('./auth');
-module.exports.profiles = require('./profiles');
-module.exports.projects = require('./projects');
-module.exports.followsUpvotes = require('./followsUpvotes');
-module.exports.openRoles = require('./openRoles');
-module.exports.messages = require('./messages');
-module.exports.userProjectContributions = require('./userProjectContributions');
-module.exports.youtubes = require('./youtubes');
-module.exports.editprofile = require('./editprofile');
+module.exports = {
+  api: require('./api'),
+  auth: require('./auth'),
+  profiles: require('./profiles'),
+  projects: require('./projects'),
+  followsUpvotes: require('./followsUpvotes'),
+  openRoles: require('./openRoles'),
+  messages: require('./messages'),
+  userProjectContributions: require('./userProjectContributions'),
+  youtubes: require('./youtubes')
+}
