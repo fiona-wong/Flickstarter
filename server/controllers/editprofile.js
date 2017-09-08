@@ -59,3 +59,4 @@ module.exports.updateUserRoles = (req, res) => {
       res.status(500).end();
     });    
 };
+

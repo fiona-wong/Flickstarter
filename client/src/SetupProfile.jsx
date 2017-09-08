@@ -90,7 +90,6 @@ class SetupProfile extends React.Component {
   }
 
   handleLocation() {
-
     $.post('/editprofile/updateprofile', 
       {location: this.state.location}, 
       (data) => {
@@ -123,12 +122,24 @@ class SetupProfile extends React.Component {
           webComplete: true
         });
       });
-	}
+  }
+
+  handleDescription() {
+    console.log(this.state.about);
+    $.post('/editprofile/updateprofile', 
+      {about: this.state.about}, 
+      (data) => {
+        this.setState({
+          descriptionActive: false,
+          descriptionComplete: true
+        });
+      });
+  }
 
   handleChange(event) {
     event.preventDefault();
     this.setState({
-      [event.target.name]: event.target.value;
+      [event.target.name]: event.target.value
     });
   }
 
@@ -157,7 +168,6 @@ class SetupProfile extends React.Component {
             handleChange={this.handleChange}
             locationComplete={this.state.locationComplete}
           />
-
           <AddDescription
             descriptionActive={this.state.descriptionActive}
             handleDescription={this.handleDescription}
