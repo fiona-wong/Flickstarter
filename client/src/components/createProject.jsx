@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown, Menu, Container, Header, Input, Button, Segment, Message, TextArea, Form } from 'semantic-ui-react';
 import $ from 'jquery';
+import ImageUploader from './ImageUploader.jsx';
 
 const genreOptions = [{ key: 1, text: 'Action', value: 'Action' }, { key: 2, text: 'Adventure', value: 'Adventure' }, { key: 3, text: 'Animated', value: 'Animated' }, { key: 4, text: 'Comedy', value: 'Comedy' }, { key: 5, text: 'Crime', value: 'Crime' }, { key: 6, text: 'Documentary', value: 'Documentary' }, { key: 7, text: 'Drama', value: 'Drama' }, { key: 8, text: 'Musical', value: 'Musical' }, { key: 9, text: 'Science Fiction', value: 'Science Fiction' }, { key: 10, text: 'War', value: 'War' }, { key: 11, text: 'Western', value: 'Western' }];
 
@@ -14,8 +15,9 @@ class CreateProject extends React.Component {
       projectDuration: '',
       projectBlurb: '',
       projectDescription: '',
-      currentPage: 'start',
       projectFundingGoal: '',
+      projectImage: '',
+      currentPage: 'start',
       incompleteField: false,
       saving: false
     };
@@ -29,6 +31,7 @@ class CreateProject extends React.Component {
     this.handleBlurbInput = this.handleBlurbInput.bind(this);
     this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
     this.handleFundingGoalInput = this.handleFundingGoalInput.bind(this);
+    this.getUploadWidget = this.getUploadWidget.bind(this);
   };
 
   handleGenreSelection(event, data) {
@@ -92,7 +95,6 @@ class CreateProject extends React.Component {
         saving: true,
         incompleteField: false
       });
-      console.log('save project');
       // $.ajax({
       //   url: '/new',
       //   type: 'POST',
@@ -118,7 +120,6 @@ class CreateProject extends React.Component {
     }
   }
 
-
   getWarningMessage() {
     return (
       <div id="saveAlert" style={{paddingTop: '5px'}}>
@@ -127,6 +128,16 @@ class CreateProject extends React.Component {
         </Message>
       </div>
     )
+  }
+
+   getUploadWidget() {
+    let context = this;
+    cloudinary.openUploadWidget({ cloud_name: 'dyrrwpemp', upload_preset: 'us2utltx'},
+      function(error, result) {
+        context.setState({
+          projectImage: result[0].url
+        });
+      });
   }
 
   render() {
@@ -186,6 +197,7 @@ class CreateProject extends React.Component {
                 <Header as='h4'>Project image</Header>
               </div>
               <div style={{width: '76%', textAlign: 'left', marginBottom: '15px', paddingRight: '15px'}}>
+                <ImageUploader getUploadWidget={this.getUploadWidget}/>
                 <p> This is the first thing that people will see when they come across your project. Choose an image that’s crisp and text-free. </p>
               </div>
             </div>
