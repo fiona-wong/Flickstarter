@@ -5,5 +5,6 @@ module.exports = {
   OpenRoles: require('./openRoles'),
   Messages: require('./messages'),
   UserProjectContributions: require('./userProjectContributions'),
-  Youtubes: require('./youtubes')
-}
+  Youtubes: require('./youtubes'),
+  EditProfile: require('./editprofile')
+};

@@ -16,13 +16,13 @@ class MenuBar extends React.Component {
       activeItem: ''
     };
     this.handleItemClick = this.handleItemClick.bind(this);
-  };
+  }
 
   handleItemClick (e, {name}) {
     this.setState({ 
       activeItem: name 
     });
-  };
+  }
 
   render() {
     const {activeItem} = this.state;
@@ -40,24 +40,24 @@ class MenuBar extends React.Component {
 
           <Menu.Menu position='right' />
 
-            <Link to={'/messages'} style={{textDecoration: 'none'}}>
-              <Menu.Item name='Messages' active={activeItem === 'Messages'} onClick={this.handleItemClick}/>
-            </Link>
-            <Menu.Item active={activeItem === 'Profile'}>
-              <Dropdown pointing text='Profile'>
-                <Dropdown.Menu>
-                  <Link to={'/profile'} style={{textDecoration: 'none'}} >
-                    <Dropdown.Item name='Profile' onClick={this.handleItemClick}>View Profile</Dropdown.Item>
-                  </Link>
-                  <Link to={'/profile'} style={{textDecoration: 'none'}} >
-                    <Dropdown.Item name='Profile' onClick={this.handleItemClick}>Edit Profile</Dropdown.Item>
-                  </Link>
-                  <Link to={'/profile'} style={{textDecoration: 'none'}}>
-                    <Dropdown.Item >Log Out</Dropdown.Item>
-                  </Link>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Menu.Item>
+          <Link to={'/messages'} style={{textDecoration: 'none'}}>
+            <Menu.Item name='Messages' active={activeItem === 'Messages'} onClick={this.handleItemClick}/>
+          </Link>
+          <Menu.Item active={activeItem === 'Profile'}>
+            <Dropdown pointing text='Profile'>
+              <Dropdown.Menu>
+                <Link to={'/profile'} style={{textDecoration: 'none'}} >
+                  <Dropdown.Item name='Profile' onClick={this.handleItemClick}>View Profile</Dropdown.Item>
+                </Link>
+                <Link to={'/editprofile'} style={{textDecoration: 'none'}} >
+                  <Dropdown.Item name='Profile' onClick={this.handleItemClick}>Edit Profile</Dropdown.Item>
+                </Link>
+                <Link to={'/profile'} style={{textDecoration: 'none'}}>
+                  <Dropdown.Item >Log Out</Dropdown.Item>
+                </Link>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu.Item>
 
         </Menu>
 
@@ -65,6 +65,7 @@ class MenuBar extends React.Component {
         <Route path='/viewprojects' component={ViewProjects} />
         <Route path='/messages' component={Messages} />
         <Route path='/profile' component={Profile} />
+        <Route path='/editprofile' component={SetupProfile} />
       </div>
     );
   }
