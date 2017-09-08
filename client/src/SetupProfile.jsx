@@ -5,6 +5,7 @@ import $ from 'jquery';
 import PickRole from './components/pickrole.jsx';
 import AddLocation from './components/addlocation.jsx';
 import AddDescription from './components/addDescription.jsx';
+import AddWebsites from './components/addwebsite.jsx';
 
 class SetupProfile extends React.Component {
 
@@ -28,13 +29,16 @@ class SetupProfile extends React.Component {
       locationActive: false,
       locationComplete: false,
       descriptionActive: false,
-      descriptionComplete: false
+      descriptionComplete: false,
+      webActive: false,
+      webComplete: false
     };
     this.handleNameSubmit = this.handleNameSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleRoleSelect = this.handleRoleSelect.bind(this);
     this.saveRoles = this.saveRoles.bind(this);
     this.handleLocation = this.handleLocation.bind(this);
+    this.handleWebsite = this.handleWebsite.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
   }
 
@@ -73,7 +77,6 @@ class SetupProfile extends React.Component {
   }
 
   saveRoles() {
-    console.log('saved', this.state.chosenRole);
     $.post('/editprofile/saveuserroles', 
       {userrole: this.state.chosenRole}, 
       (data) => {
@@ -98,13 +101,24 @@ class SetupProfile extends React.Component {
   }
 
   handleDescription() {
-    console.log(this.state.about);
     $.post('/editprofile/updateprofile', 
       {about: this.state.about}, 
       (data) => {
         this.setState({
           descriptionActive: false,
           descriptionComplete: true
+        });
+      });
+  }
+
+  handleWebsite() {
+    $.post('/editprofile/updateprofile', 
+      {linkedin: this.state.linkedin,
+        personalsite: this.state.personalsite}, 
+      (data) => {
+        this.setState({
+          webActive: false,
+          webComplete: true
         });
       });
   }
@@ -141,6 +155,7 @@ class SetupProfile extends React.Component {
             handleChange={this.handleChange}
             locationComplete={this.state.locationComplete}
           />
+
           <AddDescription
             descriptionActive={this.state.descriptionActive}
             handleDescription={this.handleDescription}
@@ -148,17 +163,14 @@ class SetupProfile extends React.Component {
             descriptionComplete={this.state.descriptionComplete}
           />
 
+          <AddWebsites
+            webActive={this.state.webActive}
+            handleWebsite={this.handleLocation}
+            handleChange={this.handleChange}
+            webComplete={this.state.webComplete}
+          />
+
           <Grid columns={2}>
-            <Grid.Column>
-              <Step>
-                <Step.Content>
-                  <Step.Title>LinkedIn/Personal Website</Step.Title>
-        Let's Connect!
-                </Step.Content>
-              </Step>
-            </Grid.Column>
-            <Grid.Column>
-            </Grid.Column>
             <Grid.Column>
               <Step>
                 <Step.Content>

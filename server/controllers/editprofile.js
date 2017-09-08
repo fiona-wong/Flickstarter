@@ -22,22 +22,41 @@ module.exports.roles = (req, res) => {
 };
 
 module.exports.updateUserRoles = (req, res) => {
-  req.body['userrole[]'].map(role => {
-    model.Role.where({position: role}).fetch()
-      .then(data => {
-        model.UserRole.where({user_id: req.user.id, role_id: data.id}).fetch()
-          .then(result => {
-            if (result === null) {
-              return model.UserRole.forge().save({user_id: req.user.id, role_id: data.id}, {method: 'insert'});
-            } 
-          });
-      })
-      .then(() => {
-        res.status(200).end(); 
-      })
-      .catch(() => {
-        res.status(500).end();
-      });
-  });
+  model.UserRole.where({user_id: req.user.id}).destroy()
+    .then(() => {
+
+      if (!Array.isArray(req.body['userrole[]'])) {
+        if (JSON.stringify(req.body) === '{}') {
+          return;
+        }
+        model.Role.where({position: req.body['userrole[]']}).fetch()
+          .then(data => {
+            model.UserRole.where({user_id: req.user.id, role_id: data.id}).fetch()
+              .then(result => {
+                if (result === null) {
+                  return model.UserRole.forge().save({user_id: req.user.id, role_id: data.id}, {method: 'insert'});
+                }
+              });
+          }); 
+      } else {
+        req.body['userrole[]'].map(role => {
+          model.Role.where({position: role}).fetch()
+            .then(data => {
+              model.UserRole.where({user_id: req.user.id, role_id: data.id}).fetch()
+                .then(result => {
+                  if (result === null) {
+                    return model.UserRole.forge().save({user_id: req.user.id, role_id: data.id}, {method: 'insert'});
+                  } 
+                });
+            });
+        });
+      }
+    })
+    .then(() => {
+      res.status(200).end(); 
+    })
+    .catch(() => {
+      res.status(500).end();
+    });    
 };
 
