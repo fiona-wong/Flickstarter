@@ -2,24 +2,24 @@ import React from 'react';
 import { Container, Grid, Step, Form, Button } from 'semantic-ui-react';
 
 
-const AddLocation = (props) => (
+const AddDescription = (props) => (
 
   <Grid columns={2}>
 
     <Grid.Column width={5}>
-      <Step active={props.locationActive} completed={props.locationComplete}>
+      <Step active={props.descriptionActive} completed={props.descriptionComplete}>
         <Step.Content>
-          <Step.Title>Location</Step.Title>
-          Where are you located?
+          <Step.Title>Description</Step.Title>
+          Tell us about yourself:
         </Step.Content>
       </Step>
     </Grid.Column>
 
     <Grid.Column width={11}>
       <Container>
-        <Form onSubmit={props.handleLocation}>
+        <Form onSubmit={props.handleDescription}>
           <Form.Field>
-            <input required={true} name='location' onChange={props.handleChange} placeholder='e.g. San Francisco, CA' />
+            <textarea name='about' onChange={props.handleChange} placeholder='Write something about yourself and your prior experiences...' />
           </Form.Field>
           <Button floated="right">Next</Button>
         </Form>    
@@ -28,4 +28,4 @@ const AddLocation = (props) => (
   </Grid>
 );
 
-export default AddLocation;
+export default AddDescription;

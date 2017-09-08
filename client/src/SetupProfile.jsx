@@ -4,6 +4,7 @@ import EditName from './components/editName.jsx';
 import $ from 'jquery';
 import PickRole from './components/pickrole.jsx';
 import AddLocation from './components/addlocation.jsx';
+import AddDescription from './components/addDescription.jsx';
 
 class SetupProfile extends React.Component {
 
@@ -11,27 +12,30 @@ class SetupProfile extends React.Component {
     super(props);
     this.state = {
       username: '',
-      firstName: '',
-      lastName: '',
+      first: '',
+      last: '',
       roles: [],
       chosenRole: [],
       location: '',
-      description: '',
+      about: '',
       linkedin: '',
-      personalSite: '',
+      personalsite: '',
       youtube: '',
       photo: '',
       nameActive: true,
       roleActive: false,
       roleComplete: false,
       locationActive: false,
-      locationComplete: false
+      locationComplete: false,
+      descriptionActive: false,
+      descriptionComplete: false
     };
     this.handleNameSubmit = this.handleNameSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleRoleSelect = this.handleRoleSelect.bind(this);
     this.saveRoles = this.saveRoles.bind(this);
     this.handleLocation = this.handleLocation.bind(this);
+    this.handleDescription = this.handleDescription.bind(this);
   }
 
   componentDidMount () {
@@ -47,10 +51,12 @@ class SetupProfile extends React.Component {
   }
 
   handleNameSubmit() {
-    $.post('/editprofile/updatename', 
+    $.post('/editprofile/updateprofile', 
       {username: this.state.username, 
-        firstName: this.state.firstName, 
-        lastName: this.state.lastName}, 
+        first: this.state.first, 
+        last: this.state.last,
+        display: this.state.first + ' ' + this.state.last
+      }, 
       (data) => {
         this.setState({
           nameActive: false,
@@ -80,20 +86,33 @@ class SetupProfile extends React.Component {
   }
 
   handleLocation() {
-    $.post('/editprofile/updatelocation', 
+    $.post('/editprofile/updateprofile', 
       {location: this.state.location}, 
       (data) => {
         this.setState({
           locationActive: false,
-          locationComplete: true
+          locationComplete: true,
+          descriptionActive: true
         });
       });
-	}
+  }
+
+  handleDescription() {
+    console.log(this.state.about);
+    $.post('/editprofile/updateprofile', 
+      {about: this.state.about}, 
+      (data) => {
+        this.setState({
+          descriptionActive: false,
+          descriptionComplete: true
+        });
+      });
+  }
 
   handleChange(event) {
     event.preventDefault();
     this.setState({
-      [event.target.name]: event.target.value;
+      [event.target.name]: event.target.value
     });
   }
 
@@ -101,14 +120,12 @@ class SetupProfile extends React.Component {
     return (
       <div>
         <Step.Group ordered vertical>
-
           <EditName 
             nameActive={this.state.nameActive}
             roleActive={this.state.roleActive}
             handleNameSubmit={this.handleNameSubmit}
             handleChange={this.handleChange}
           />
-
           <PickRole
             roleComplete={this.state.roleComplete}
             roleActive={this.state.roleActive}
@@ -124,19 +141,14 @@ class SetupProfile extends React.Component {
             handleChange={this.handleChange}
             locationComplete={this.state.locationComplete}
           />
+          <AddDescription
+            descriptionActive={this.state.descriptionActive}
+            handleDescription={this.handleDescription}
+            handleChange={this.handleChange}
+            descriptionComplete={this.state.descriptionComplete}
+          />
 
           <Grid columns={2}>
-
-            <Grid.Column>
-              <Step>
-                <Step.Content>
-                  <Step.Title>Description</Step.Title>
-        Tell us a little about yourself:
-                </Step.Content>
-              </Step>
-            </Grid.Column>
-            <Grid.Column>
-            </Grid.Column>
             <Grid.Column>
               <Step>
                 <Step.Content>

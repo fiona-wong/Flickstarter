@@ -1,9 +1,10 @@
 const model = require('../../db/models');
 
-module.exports.updateName = (req, res) => {
-  model.Profile.where({id: req.user.id}).save({first: req.body.firstName, last: req.body.lastName, username: req.body.username}, {method: 'update'})
+module.exports.updateProfile = (req, res) => {
+  console.log(req.body);
+  model.Profile.where({id: req.user.id}).save(req.body, {method: 'update'})
     .then((data) => {
-      res.status(200).send('name has been updated');
+      res.status(200).send('profile has been updated');
     })
     .catch(() => {
       res.status(500);
@@ -33,7 +34,6 @@ module.exports.updateUserRoles = (req, res) => {
       })
       .then(() => {
         res.status(200).end(); 
-
       })
       .catch(() => {
         res.status(500).end();
@@ -41,12 +41,3 @@ module.exports.updateUserRoles = (req, res) => {
   });
 };
 
-module.exports.updateLocation = (req, res) => {
-  model.Profile.where({id: req.user.id}).save({location: req.body.location}, {method: 'update'})
-    .then((data) => {
-      res.status(200).send('location has been updated');
-    })
-    .catch(() => {
-      res.status(500);
-    });
-};
