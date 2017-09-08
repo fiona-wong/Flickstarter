@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, Menu, Container, Header, Input, Button, Segment, Message, TextArea, Form } from 'semantic-ui-react';
+import { Dropdown, Menu, Container, Header, Input, Button, Segment, Message, TextArea, Form, Image } from 'semantic-ui-react';
 import $ from 'jquery';
 import ImageUploader from './ImageUploader.jsx';
 
@@ -16,7 +16,7 @@ class CreateProject extends React.Component {
       projectBlurb: '',
       projectDescription: '',
       projectFundingGoal: '',
-      projectImage: '',
+      projectImage: 'https://imgur.com/h5EmrDh',
       currentPage: 'start',
       incompleteField: false,
       saving: false
@@ -131,10 +131,10 @@ class CreateProject extends React.Component {
   }
 
    getUploadWidget() {
-    let context = this;
+    let _this = this;
     cloudinary.openUploadWidget({ cloud_name: 'dyrrwpemp', upload_preset: 'us2utltx'},
       function(error, result) {
-        context.setState({
+        _this.setState({
           projectImage: result[0].url
         });
       });
@@ -197,6 +197,9 @@ class CreateProject extends React.Component {
                 <Header as='h4'>Project image</Header>
               </div>
               <div style={{width: '76%', textAlign: 'left', marginBottom: '15px', paddingRight: '15px'}}>
+                <div>
+                  <Image src={this.state.projectImage} size='medium' shape='rounded' centered/>
+                </div>
                 <ImageUploader getUploadWidget={this.getUploadWidget}/>
                 <p> This is the first thing that people will see when they come across your project. Choose an image that’s crisp and text-free. </p>
               </div>
