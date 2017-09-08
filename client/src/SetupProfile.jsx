@@ -7,7 +7,6 @@ import AddLocation from './components/addlocation.jsx';
 import AddDescription from './components/addDescription.jsx';
 import AddWebsites from './components/addwebsite.jsx';
 
-
 class SetupProfile extends React.Component {
 
   constructor(props) {
@@ -124,18 +123,6 @@ class SetupProfile extends React.Component {
       });
   }
 
-  handleDescription() {
-    console.log(this.state.about);
-    $.post('/editprofile/updateprofile', 
-      {about: this.state.about}, 
-      (data) => {
-        this.setState({
-          descriptionActive: false,
-          descriptionComplete: true
-        });
-      });
-  }
-
   handleChange(event) {
     event.preventDefault();
     this.setState({
@@ -168,6 +155,7 @@ class SetupProfile extends React.Component {
             handleChange={this.handleChange}
             locationComplete={this.state.locationComplete}
           />
+
           <AddDescription
             descriptionActive={this.state.descriptionActive}
             handleDescription={this.handleDescription}
@@ -177,10 +165,16 @@ class SetupProfile extends React.Component {
 
           <AddWebsites
             webActive={this.state.webActive}
+<<<<<<< HEAD
             handleWebsite={this.handleWebsite}
             handleChange={this.handleChange}
             webComplete={this.state.webComplete}
             roles={this.state.roles}
+=======
+            handleWebsite={this.handleLocation}
+            handleChange={this.handleChange}
+            webComplete={this.state.webComplete}
+>>>>>>> fixed bug in adding user roles in controller
           />
 
           <Grid columns={2}>
