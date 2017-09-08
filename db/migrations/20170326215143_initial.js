@@ -10,9 +10,9 @@ exports.up = function (knex, Promise) {
       table.string('username', 100).nullable().unique();
       table.string('phone', 100).nullable();
       table.text('about').nullable();
-      table.string('photo_url').nullable();
-      table.string('linkedin_url').nullable();
-      table.string('personal_site').nullable();
+      table.string('photo').nullable();
+      table.string('linkedin').nullable();
+      table.string('personalsite').nullable();
       table.string('location').nullable();
       table.integer('total_contributions').nullable();
       table.timestamps(true, true);
