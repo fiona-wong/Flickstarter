@@ -2,8 +2,8 @@ import React from 'react';
 import { Dropdown, Menu, Container, Header, Input, Button, Segment, Message, TextArea, Form, Image } from 'semantic-ui-react';
 import $ from 'jquery';
 import moment from 'moment';
-import ImageUploader from './imageUploader.jsx';
-import SaveProjectModal from './saveProjectModal.jsx'
+import ImageUploader from '../imageUploader.jsx';
+import SaveProjectModal from './components/saveProjectModal.jsx'
 
 const genreOptions = [{ key: 1, text: 'Action', value: 'Action' }, { key: 2, text: 'Adventure', value: 'Adventure' }, { key: 3, text: 'Animated', value: 'Animated' }, { key: 4, text: 'Comedy', value: 'Comedy' }, { key: 5, text: 'Crime', value: 'Crime' }, { key: 6, text: 'Documentary', value: 'Documentary' }, { key: 7, text: 'Drama', value: 'Drama' }, { key: 8, text: 'Musical', value: 'Musical' }, { key: 9, text: 'Science Fiction', value: 'Science Fiction' }, { key: 10, text: 'War', value: 'War' }, { key: 11, text: 'Western', value: 'Western' }];
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { Menu, Search, Segment, Dropdown } from 'semantic-ui-react';
-import CreateProject from './createProject.jsx';
+import CreateProject from './createProjectView/createProject.jsx';
 import ViewProjects from './viewProjects.jsx';
 import Profile from './profile.jsx';
 import Messages from './messages.jsx';

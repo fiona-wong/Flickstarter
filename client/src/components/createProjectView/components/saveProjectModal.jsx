@@ -1,12 +1,24 @@
 import React from 'react';
-import ViewProjects from './viewProjects.jsx';
+import ViewProjects from '../../viewProjects.jsx';
 import { Button, Header, Icon, Modal, Image, List } from 'semantic-ui-react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 class SaveProjectModal extends React.Component {
   constructor(props) {
     super(props);
+    this.commafy = this.commafy.bind(this);
   };
+
+  commafy(number) {
+    let str = number.toString().split('.');
+    if (str[0].length >= 5) {
+      str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+    }
+    if (str[1] && str[1].length >= 5) {
+      str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+    }
+    return str.join('.');
+  }
 
   render() {
     return (
@@ -45,7 +57,7 @@ class SaveProjectModal extends React.Component {
                 </List.Item>
                 <List.Item>
                   <List.Header>Funding goal</List.Header>
-                  ${this.props.projectFundingGoal}
+                  ${this.commafy(this.props.projectFundingGoal)}
                 </List.Item>
               </List>
             </Modal.Description>
