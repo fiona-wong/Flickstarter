@@ -6,6 +6,8 @@ import PickRole from './components/pickrole.jsx';
 import AddLocation from './components/addlocation.jsx';
 import AddDescription from './components/addDescription.jsx';
 import AddWebsites from './components/addwebsite.jsx';
+import AddYoutube from './components/addYoutube.jsx';
+import UploadPhoto from './components/uploadprofilephoto.jsx';
 
 class SetupProfile extends React.Component {
 
@@ -21,7 +23,8 @@ class SetupProfile extends React.Component {
       about: '',
       linkedin: '',
       personalsite: '',
-      youtube: '',
+      youtube: [],
+      currentYoutube: '',
       photo: '',
       nameActive: true,
       roleActive: false,
@@ -31,7 +34,10 @@ class SetupProfile extends React.Component {
       descriptionActive: false,
       descriptionComplete: false,
       webActive: false,
-      webComplete: false
+      webComplete: false,
+      youtubeActive: false,
+      youtubeComplete: false,
+      readySubmit: false
     };
     this.handleNameSubmit = this.handleNameSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -40,6 +46,9 @@ class SetupProfile extends React.Component {
     this.handleLocation = this.handleLocation.bind(this);
     this.handleWebsite = this.handleWebsite.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
+    this.handleYoutubeSubmit = this.handleYoutubeSubmit.bind(this);
+    this.youtubeAdd = this.youtubeAdd.bind(this);
+    this.getUploadWidget = this.getUploadWidget.bind(this);
   }
 
   componentDidMount () {
@@ -55,12 +64,12 @@ class SetupProfile extends React.Component {
   }
 
   handleNameSubmit() {
-    $.post('/editprofile/updateprofile', 
-      {username: this.state.username, 
-        first: this.state.first, 
+    $.post('/editprofile/updateprofile',
+      {username: this.state.username,
+        first: this.state.first,
         last: this.state.last,
         display: this.state.first + ' ' + this.state.last
-      }, 
+      },
       (data) => {
         this.setState({
           nameActive: false,
@@ -77,8 +86,8 @@ class SetupProfile extends React.Component {
   }
 
   saveRoles() {
-    $.post('/editprofile/saveuserroles', 
-      {userrole: this.state.chosenRole}, 
+    $.post('/editprofile/saveuserroles',
+      {userrole: this.state.chosenRole},
       (data) => {
         this.setState({
           roleActive: false,
@@ -89,8 +98,8 @@ class SetupProfile extends React.Component {
   }
 
   handleLocation() {
-    $.post('/editprofile/updateprofile', 
-      {location: this.state.location}, 
+    $.post('/editprofile/updateprofile',
+      {location: this.state.location},
       (data) => {
         this.setState({
           locationActive: false,
@@ -101,24 +110,26 @@ class SetupProfile extends React.Component {
   }
 
   handleDescription() {
-    $.post('/editprofile/updateprofile', 
-      {about: this.state.about}, 
+    $.post('/editprofile/updateprofile',
+      {about: this.state.about},
       (data) => {
         this.setState({
           descriptionActive: false,
-          descriptionComplete: true
+          descriptionComplete: true,
+          webActive: true
         });
       });
   }
 
   handleWebsite() {
-    $.post('/editprofile/updateprofile', 
+    $.post('/editprofile/updateprofile',
       {linkedin: this.state.linkedin,
-        personalsite: this.state.personalsite}, 
+        personalsite: this.state.personalsite},
       (data) => {
         this.setState({
           webActive: false,
-          webComplete: true
+          webComplete: true,
+          youtubeActive: true
         });
       });
   }
@@ -130,11 +141,49 @@ class SetupProfile extends React.Component {
     });
   }
 
+  youtubeAdd() {
+    if (this.state.currentYoutube.length > 0) {
+      this.setState({
+        youtube: this.state.youtube.concat([this.state.currentYoutube]),
+        currentYoutube: ''
+      });
+    }
+  }
+
+  handleYoutubeSubmit() {
+    $.post('/editprofile/updateyoutube',
+      {youtube: this.state.youtube},
+      (data) => {
+        this.setState({
+          youtubeActive: false,
+          youtubeComplete: true,
+          photoActive: true
+        });
+      });
+  }
+  getUploadWidget() {
+    let _this = this;
+    cloudinary.openUploadWidget({ cloud_name: 'dyrrwpemp', upload_preset: 'us2utltx'},
+      function(error, result) {
+        _this.setState({
+          photo: result[0].url
+        });
+        $.post('/editprofile/updateprofile',
+          {photo: _this.state.photo},
+          (data) => {
+            _this.setState({
+              photoActive: false,
+              readySubmit: true
+            });
+          });
+      });
+  }
+
   render() {
     return (
       <div>
         <Step.Group ordered vertical>
-          <EditName 
+          <EditName
             nameActive={this.state.nameActive}
             roleActive={this.state.roleActive}
             handleNameSubmit={this.handleNameSubmit}
@@ -169,29 +218,20 @@ class SetupProfile extends React.Component {
             handleChange={this.handleChange}
             webComplete={this.state.webComplete}
           />
-
-          <Grid columns={2}>
-            <Grid.Column>
-              <Step>
-                <Step.Content>
-                  <Step.Title>Youtube</Step.Title>
-        Show off your past work
-                </Step.Content>
-              </Step>
-            </Grid.Column>
-            <Grid.Column>
-            </Grid.Column>
-            <Grid.Column>
-              <Step>
-                <Step.Content>
-                  <Step.Title>Upload Photo</Step.Title>
-          Now vogue
-                </Step.Content>
-              </Step>
-            </Grid.Column>
-            <Grid.Column>
-            </Grid.Column>
-          </Grid></Step.Group>
+          <AddYoutube
+            handleChange={this.handleChange}
+            handleYoutubeSubmit={this.handleYoutubeSubmit}
+            youtubeAdd={this.youtubeAdd}
+            youtubeActive={this.state.youtubeActive}
+            youtubeComplete={this.state.youtubeComplete}
+          />
+          <UploadPhoto
+            photo={this.state.photo}
+            photoActive={this.state.photoActive}
+            getUploadWidget={this.getUploadWidget}
+            readySubmit={this.state.readySubmit}
+          />
+        </Step.Group>
       </div>
     );
   }
