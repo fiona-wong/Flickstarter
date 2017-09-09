@@ -40,7 +40,7 @@ exports.up = function (knex, Promise) {
       table.string('photo_url').nullable();
       table.string('genre').nullable();
       table.integer('goal_amount');
-      table.date('goal_deadline');
+      table.string('goal_deadline');
       table.integer('upvote_count');
       table.integer('raised_amount');
       table.integer('creator_id');

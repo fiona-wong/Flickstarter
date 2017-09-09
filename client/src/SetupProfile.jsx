@@ -181,7 +181,7 @@ class SetupProfile extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{paddingTop: '55px'}}>
         <Step.Group ordered vertical>
           <EditName
             nameActive={this.state.nameActive}

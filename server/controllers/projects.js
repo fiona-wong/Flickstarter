@@ -27,6 +27,7 @@ module.exports.getOne = (req, res) => {
     });
 };
 module.exports.create = (req, res) => {
+  console.log(req.body);
   models.Project.forge({
     name: req.body.name,
     short_description: req.body.shortDescription,
@@ -37,11 +38,10 @@ module.exports.create = (req, res) => {
     goal_amount: req.body.goalAmount,
     goal_deadline: req.body.goalDeadline,
     raised_amount: 0,
-    creator_id: req.user,
+    creator_id: req.user.id,
     upvote_count: 0,
     genre: req.body.genre
-  },
-  {table: 'Project'}).save()
+  }).save()
     .then(result => {
       res.status(201).send(result);
     })

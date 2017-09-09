@@ -3,7 +3,7 @@ import React from 'react';
 class Messages extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{paddingTop: '55px'}}>
         Here are some of your messages!
       </div>
     );

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Dropdown, Menu, Container, Header, Input, Button, Segment, Message, TextArea, Form, Image } from 'semantic-ui-react';
 import $ from 'jquery';
-import ImageUploader from './ImageUploader.jsx';
+import moment from 'moment';
+import ImageUploader from './imageUploader.jsx';
+import SaveProjectModal from './saveProjectModal.jsx'
 
 const genreOptions = [{ key: 1, text: 'Action', value: 'Action' }, { key: 2, text: 'Adventure', value: 'Adventure' }, { key: 3, text: 'Animated', value: 'Animated' }, { key: 4, text: 'Comedy', value: 'Comedy' }, { key: 5, text: 'Crime', value: 'Crime' }, { key: 6, text: 'Documentary', value: 'Documentary' }, { key: 7, text: 'Drama', value: 'Drama' }, { key: 8, text: 'Musical', value: 'Musical' }, { key: 9, text: 'Science Fiction', value: 'Science Fiction' }, { key: 10, text: 'War', value: 'War' }, { key: 11, text: 'Western', value: 'Western' }];
 
@@ -16,10 +18,11 @@ class CreateProject extends React.Component {
       projectBlurb: '',
       projectDescription: '',
       projectFundingGoal: '',
-      projectImage: 'https://imgur.com/h5EmrDh',
+      projectImage: '',
       currentPage: 'start',
       incompleteField: false,
-      saving: false
+      saving: false,
+      showSaveModal: false
     };
     this.handleGenreSelection = this.handleGenreSelection.bind(this);
     this.handleProjectTitleInput = this.handleProjectTitleInput.bind(this);
@@ -90,22 +93,35 @@ class CreateProject extends React.Component {
   }
 
   handleSaveClick(event) {
-    if (this.state.projectGenre !== '' && this.state.projectTitle !== '' && this.state.projectLocation !== '' && this.state.projectDuration !== '' && this.state.projectBlurb !== '' && this.state.projectDescription !== '' && this.state.projectFundingGoal !== '') {
+    let _this = this;
+    if (this.state.projectGenre !== '' && this.state.projectTitle !== '' && this.state.projectLocation !== '' && this.state.projectDuration !== '' && this.state.projectBlurb !== '' && this.state.projectDescription !== '' && this.state.projectFundingGoal !== '' && this.state.projectImage !== '') {
+      $.ajax({
+        url: '/api/projects/new',
+        type: 'POST',
+        data: {
+          name: this.state.projectTitle, 
+          shortDescription: this.state.projectBlurb,
+          longDescription: this.state.projectDescription,
+          location: this.state.projectLocation,
+          photoUrl: this.state.projectImage,
+          goalAmount: this.state.projectFundingGoal,
+          goalDeadline: moment().add(this.state.projectDuration, 'days').calendar(),
+          genre: this.state.projectGenre
+        },
+        success: () => {
+          _this.setState({
+            saving: false,
+            showSaveModal: true
+          });
+        },
+        error: (err) => {
+          console.log(err.statusText, err);
+        }
+      });
       this.setState({
         saving: true,
         incompleteField: false
       });
-      // $.ajax({
-      //   url: '/new',
-      //   type: 'POST',
-      //   data: {},
-      //   success: (data) => {
-      //     console.log('hooray');
-      //   },
-      //   error: (err) => {
-      //     console.log('error: ', err);
-      //   }
-      // });
     } else {
       this.setState({
         incompleteField: true
@@ -143,11 +159,8 @@ class CreateProject extends React.Component {
   render() {
     return (
       this.state.currentPage === 'start' ?
-      <div
-        id="selection-component"
-        style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', backgroundColor: '#FFFFFF'}}
-      >
-        <div style={{textAlign: 'center', paddingTop: '20px', paddingBottom: '15px'}}>
+      <div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', backgroundColor: '#FFFFFF'}}>
+        <div style={{textAlign: 'center', paddingTop: '20px', paddingBottom: '15px', marginTop: '55px'}}>
           <Header as='h1'>Create a project</Header>
         </div>
         <Segment
@@ -170,7 +183,7 @@ class CreateProject extends React.Component {
                 </Menu>
               </div>
             <Header as='h3'> Give your project a title</Header>
-            <Input fluid 
+            <Input fluid
               onChange={this.handleProjectTitleInput}
             />
             <Header as='h3'> Enter your location</Header>
@@ -186,7 +199,8 @@ class CreateProject extends React.Component {
         </Segment>
       </div>
       :
-      <div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>
+      <div style={{width: '100%', height: '98%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', marginTop: '55px'}}>
+        {this.state.showSaveModal ? <SaveProjectModal projectImage={this.state.projectImage} projectTitle={this.state.projectTitle} projectFundingGoal={this.state.projectFundingGoal} projectDescription={this.state.projectDescription} projectBlurb={this.state.projectBlurb} projectDuration={this.state.projectDuration} projectLocation={this.state.projectLocation} projectGenre={this.state.projectGenre} /> : null}
         <div style={{textAlign: 'center', paddingTop: '20px', paddingBottom: '22px', backgroundColor: '#FFFFFF'}}>
           <Header as='h1'>Let's get into the details</Header>
         </div>
@@ -198,7 +212,7 @@ class CreateProject extends React.Component {
               </div>
               <div style={{width: '76%', textAlign: 'left', marginBottom: '15px', paddingRight: '15px'}}>
                 <div>
-                  <Image src={this.state.projectImage} size='medium' shape='rounded' centered/>
+                  <Image src={this.state.projectImage} size='medium' shape='rounded'/>
                 </div>
                 <ImageUploader getUploadWidget={this.getUploadWidget}/>
                 <p> This is the first thing that people will see when they come across your project. Choose an image that’s crisp and text-free. </p>
@@ -295,17 +309,12 @@ class CreateProject extends React.Component {
                   label={{ basic: true, content: '$' }}
                   labelPosition='left'
                 />
-                <p> Funding on FlickStarter is all-or-nothing. If your goal isn’t met, no money will be collected. Your goal should reflect the minimum amount of funds you need to complete your project. </p>
+                <p> Funding on Flickstarter is all-or-nothing. If your goal isn’t met, no money will be collected. Your goal should reflect the minimum amount of funds you need to complete your project. </p>
               </div>
             </div>
           </div>
-          {
-            this.state.saving ? <Button loading primary onClick={this.handleSaveClick}>Save</Button> : <Button primary onClick={this.handleSaveClick}>Save</Button>
-          }
-
-          {
-            this.state.incompleteField ? this.getWarningMessage() : null
-          }
+          {this.state.saving ? <Button loading primary onClick={this.handleSaveClick}>Save</Button> : <Button primary onClick={this.handleSaveClick}>Save</Button>}
+          {this.state.incompleteField ? this.getWarningMessage() : null}
         </Segment>
       </div>
     );

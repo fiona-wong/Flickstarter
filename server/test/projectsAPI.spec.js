@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const app = require('../app.js');
 const dbUtils = require('../../db/lib/utils.js');
 
-xdescribe('Projects API', function () {
+describe('Projects API', function () {
   beforeEach(function (done) {
     dbUtils.rollbackMigrate(done);
   });
@@ -40,7 +40,7 @@ xdescribe('Projects API', function () {
           goal_amount: res.body.goalAmount,
           goal_deadline: res.body.goalDeadline,
           raised_amount: 0,
-          creator_id: res.body.userId,
+          creator_id: res.user,
           upvote_count: 0,
           genre: res.body.genre
         };

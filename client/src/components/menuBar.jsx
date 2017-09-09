@@ -27,41 +27,40 @@ class MenuBar extends React.Component {
   render() {
     const {activeItem} = this.state;
     return (
-      <div>
-        <Menu pointing secondary>
-          <Link to={'/createproject'} style={{textDecoration: 'none'}}>
+      <div style={{width: '92%', marginLeft: '4%', marginBottom: '5%'}}>
+        <Menu pointing secondary fluid fixed='top' style={{backgroundColor: 'white', opacity: '.93'}}>
+          <Link to={'/createproject'} style={{textDecoration: 'none', marginLeft: '3%'}}>
             <Menu.Item name='Create Project' active={activeItem === 'Create Project'} onClick={this.handleItemClick}/>
           </Link>
           <Link to={'/viewprojects'} style={{textDecoration: 'none'}}>
-            <Menu.Item name='View Project' active={activeItem === 'View Project'} onClick={this.handleItemClick}/>
+            <Menu.Item name='View Projects' active={activeItem === 'View Projects'} onClick={this.handleItemClick} />
           </Link>
           <Menu.Menu position='right' />
-            <Link to={'/messages'} style={{textDecoration: 'none'}}>
-              <Menu.Item name='Messages' active={activeItem === 'Messages'} onClick={this.handleItemClick}/>
-            </Link>
-            <Menu.Item active={activeItem === 'Profile'}>
-              <Dropdown pointing text='Profile'>
-                <Dropdown.Menu>
-                  <Link to={'/profile'} style={{textDecoration: 'none'}} >
-                    <Dropdown.Item name='Profile' onClick={this.handleItemClick}>View Profile</Dropdown.Item>
-                  </Link>
-                  <Link to={'/setupprofile'} style={{textDecoration: 'none'}} >
-                    <Dropdown.Item name='Profile' onClick={this.handleItemClick}>Edit Profile</Dropdown.Item>
-                  </Link>
-                  <Link to={'/profile'} style={{textDecoration: 'none'}}>
-                    <Dropdown.Item >Log Out</Dropdown.Item>
-                  </Link>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Menu.Item>
+          <Link to={'/messages'} style={{textDecoration: 'none'}}>
+            <Menu.Item name='Messages' active={activeItem === 'Messages'} onClick={this.handleItemClick}/>
+          </Link>
+          <Menu.Item active={activeItem === 'Profile'} style={{marginRight: '3%'}}>
+            <Dropdown pointing text='Profile'>
+              <Dropdown.Menu>
+                <Link to={'/profile'} style={{textDecoration: 'none'}} >
+                  <Dropdown.Item name='Profile' onClick={this.handleItemClick}>View Profile</Dropdown.Item>
+                </Link>
+                <Link to={'/setupprofile'} style={{textDecoration: 'none'}} >
+                  <Dropdown.Item name='Profile' onClick={this.handleItemClick}>Edit Profile</Dropdown.Item>
+                </Link>
+                <Link to={'/profile'} style={{textDecoration: 'none'}}>
+                  <Dropdown.Item >Log Out</Dropdown.Item>
+                </Link>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu.Item>
         </Menu>
 
         <Route path='/createproject' component={CreateProject} />
         <Route path='/viewprojects' component={ViewProjects} />
         <Route path='/messages' component={Messages} />
-        <Route path='/setupprofile' component={SetupProfile} />
         <Route path='/profile' component={Profile} />
-        <Route path='/editprofile' component={SetupProfile} />
+        <Route path='/setupprofile' component={SetupProfile} />
       </div>
     );
   }

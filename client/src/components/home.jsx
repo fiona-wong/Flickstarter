@@ -10,7 +10,7 @@ import Filter from './filter.jsx';
 class Home extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{width: '94%', marginLeft: '3%', paddingtop: '55px'}}>
         Featured Project
 
         <Segment>

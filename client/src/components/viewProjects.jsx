@@ -3,7 +3,7 @@ import React from 'react';
 class ViewProjects extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{paddingTop: '55px'}}>
         Some sweet projects go here.
       </div>
     );
