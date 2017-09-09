@@ -1,8 +1,8 @@
 const models = require('../../db/models');
 
 module.exports.newContribution = (req, res) => {
-  models.UserProjectContribution.forge({ 
-    project_id: req.body.projectId, 
+  models.UserProjectContribution.forge({
+    project_id: req.body.projectId,
     user_id: req.body.userId,
     contribution: req.body.contribution
   })

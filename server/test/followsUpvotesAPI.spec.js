@@ -50,11 +50,11 @@ xdescribe('FollowsUpvotes API', function () {
   //         user_id: 1,
   //         type: 'upvote'
   //       })
-  //       .expect(500)    
+  //       .expect(500)
   //     })
-    
+
   //     .end(done);
-  // });  
+  // });
 
   // it('accepts POST requests to /api/followsUpvotes/follow', function (done) {
   //   request(app)

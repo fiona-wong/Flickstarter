@@ -18,7 +18,7 @@ describe('Projects API', function () {
     request(app)
       .post('/api/projects/new')
       .send({
-        name: 'My Awesome Project', 
+        name: 'My Awesome Project',
         short_description: 'The best project',
         long_description: 'This project is really really good',
         location: 'San Francisco, CA',
@@ -31,7 +31,7 @@ describe('Projects API', function () {
       })
       .expect(res => {
         res.body = {
-          name: res.body.name, 
+          name: res.body.name,
           short_description: res.body.shortDescription,
           long_description: res.body.longDescription,
           location: res.body.location,
@@ -62,7 +62,7 @@ describe('Projects API', function () {
       })
       .end(done);
   });
-  
+
   it('accepts GET requests to /api/projects/:id', function (done) {
     request(app)
       .get('/api/projects/1')

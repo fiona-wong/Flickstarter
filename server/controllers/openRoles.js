@@ -2,7 +2,7 @@ const models = require('../../db/models');
 
 module.exports.add = (req, res) => {
   models.OpenRole.forge({
-    project_id: req.body.projectId, 
+    project_id: req.body.projectId,
     open_role: req.body.roleId
   })
     .save()
@@ -16,7 +16,7 @@ module.exports.add = (req, res) => {
 
 module.exports.remove = (req, res) => {
   models.OpenRole.where({
-    project_id: req.body.projectId, 
+    project_id: req.body.projectId,
     open_role: req.body.roleId
   })
     .fetch()
@@ -34,12 +34,12 @@ module.exports.remove = (req, res) => {
     })
     .catch(() => {
       res.sendStatus(404);
-    });  
+    });
 };
 
 module.exports.getProjectRoles = (req, res) => {
-  models.OpenRole.where({ 
-    project_id: req.body.projectId 
+  models.OpenRole.where({
+    project_id: req.body.projectId
   }).fetch()
     .then(roles => {
       if (!roles) {

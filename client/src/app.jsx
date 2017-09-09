@@ -6,8 +6,6 @@ import Home from './components/home.jsx';
 import MenuBar from './components/menuBar.jsx';
 
 
-
-
 class App extends React.Component {
   render() {
     return (
@@ -21,7 +19,7 @@ class App extends React.Component {
             <Route exact={true} path='/' component={Home} />
 
           </div>
-          
+
         </Router>
       </div>
     );

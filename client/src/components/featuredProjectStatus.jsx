@@ -1,11 +1,9 @@
 import React from 'react';
 import {Statistic, Progress} from 'semantic-ui-react';
-
 class FeaturedProjectStatus extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     return (
       <div style={{width: '70%', height: '15%', display: 'flex', flexDirection: 'column', justifyContent: 'left', marginLeft: '15%'}}>
@@ -28,12 +26,11 @@ class FeaturedProjectStatus extends React.Component {
               <Statistic.Value>6</Statistic.Value>
               <Statistic.Label>days remaining</Statistic.Label>
             </Statistic>
-          </Statistic.Group>  
-          
+          </Statistic.Group>
+
         </div>
       </div>
     );
   }
 }
-
 export default FeaturedProjectStatus;

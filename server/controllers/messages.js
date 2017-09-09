@@ -2,7 +2,7 @@ const models = require('../../db/models');
 
 module.exports.save = (req, res) => {
   models.Message.forge({
-    project_id: req.body.projectId, 
+    project_id: req.body.projectId,
     sender_id: req.body.senderId,
     receiver_id: req.body.receiverId,
     text: req.body.text,
@@ -18,7 +18,7 @@ module.exports.save = (req, res) => {
 };
 
 module.exports.view = (req, res) => {
-  models.Message.where({ 
+  models.Message.where({
     receiver_id: req.params.receiverId
   }).fetch()
     .then(messages => {
@@ -39,7 +39,7 @@ module.exports.view = (req, res) => {
 };
 
 module.exports.get = (req, res) => {
-  models.Message.where({ 
+  models.Message.where({
     receiver_id: req.params.receiverId
   }).fetch()
     .then(messages => {

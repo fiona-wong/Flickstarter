@@ -1,7 +1,7 @@
 const models = require('../../db/models');
 
 module.exports.addVideo = (req, res) => {
-  models.Youtube.forge({ 
+  models.Youtube.forge({
     user_id: req.body.userId,
     link: req.body.link
   })
