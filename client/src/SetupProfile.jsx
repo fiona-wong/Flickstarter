@@ -36,7 +36,8 @@ class SetupProfile extends React.Component {
       webActive: false,
       webComplete: false,
       youtubeActive: false,
-      youtubeComplete: false
+      youtubeComplete: false,
+      readySubmit: false
     };
     this.handleNameSubmit = this.handleNameSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -45,7 +46,6 @@ class SetupProfile extends React.Component {
     this.handleLocation = this.handleLocation.bind(this);
     this.handleWebsite = this.handleWebsite.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
-    this.handleYoutubeLinks = this.handleYoutubeLinks.bind(this);
     this.handleYoutubeSubmit = this.handleYoutubeSubmit.bind(this);
     this.youtubeAdd = this.youtubeAdd.bind(this);
     this.getUploadWidget = this.getUploadWidget.bind(this);
@@ -141,13 +141,6 @@ class SetupProfile extends React.Component {
     });
   }
 
-  handleYoutubeLinks (event) {
-    event.preventDefault();
-    this.setState({
-      currentYoutube: event.target.value
-    });
-  }
-
   youtubeAdd() {
     if (this.state.currentYoutube.length > 0) {
       this.setState({
@@ -179,7 +172,8 @@ class SetupProfile extends React.Component {
           {photo: _this.state.photo},
           (data) => {
             _this.setState({
-              photoActive: false
+              photoActive: false,
+              readySubmit: true
             });
           });
       });
@@ -225,15 +219,17 @@ class SetupProfile extends React.Component {
             webComplete={this.state.webComplete}
           />
           <AddYoutube
-            handleYoutubeLinks={this.handleYoutubeLinks}
+            handleChange={this.handleChange}
             handleYoutubeSubmit={this.handleYoutubeSubmit}
             youtubeAdd={this.youtubeAdd}
             youtubeActive={this.state.youtubeActive}
             youtubeComplete={this.state.youtubeComplete}
           />
           <UploadPhoto
+            photo={this.state.photo}
             photoActive={this.state.photoActive}
             getUploadWidget={this.getUploadWidget}
+            readySubmit={this.state.readySubmit}
           />
         </Step.Group>
       </div>

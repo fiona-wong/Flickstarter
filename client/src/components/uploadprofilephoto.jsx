@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Step, Form, Button } from 'semantic-ui-react';
+import { Image, Container, Grid, Step, Button } from 'semantic-ui-react';
 import ImageUploader from './ImageUploader.jsx';
 
 const UploadPhoto = (props) => (
@@ -19,6 +19,12 @@ const UploadPhoto = (props) => (
       {props.photoActive ? (
         <Container>
           <ImageUploader getUploadWidget={props.getUploadWidget}/>
+        </Container>
+      ) : (<div></div>)}
+      {props.readySubmit ? (
+        <Container>
+          <Image src={props.photo}/>
+          <Button>Submit</Button>
         </Container>
       ) : (<div></div>)}
     </Grid.Column>

@@ -21,14 +21,14 @@ const AddYoutube = (props) => (
           <Form.Field>
             <Segment.Group horizontal>
               <Segment>
-                <input name='youtube1' onBlur={props.youtubeAdd} onChange={props.handleYoutubeLinks} placeholder='sample of work' />
-                <input name='youtube2' onBlur={props.youtubeAdd} onChange={props.handleYoutubeLinks} placeholder='sample of work' />
-                <input name='youtube3' onBlur={props.youtubeAdd} onChange={props.handleYoutubeLinks} placeholder='sample of work' />
+                <input name='currentYoutube' onBlur={props.youtubeAdd} onChange={props.handleChange} placeholder='sample of work' />
+                <input name='currentYoutube' onBlur={props.youtubeAdd} onChange={props.handleChange} placeholder='sample of work' />
+                <input name='currentYoutube' onBlur={props.youtubeAdd} onChange={props.handleChange} placeholder='sample of work' />
               </Segment>
               <Segment>
-                <input name='youtube4' onBlur={props.youtubeAdd} onChange={props.handleYoutubeLinks} placeholder='sample of work' />
-                <input name='youtube5' onBlur={props.youtubeAdd} onChange={props.handleYoutubeLinks} placeholder='sample of work' />
-                <input name='youtube6' onBlur={props.youtubeAdd} onChange={props.handleYoutubeLinks} placeholder='sample of work' />
+                <input name='currentYoutube' onBlur={props.youtubeAdd} onChange={props.handleChange} placeholder='sample of work' />
+                <input name='currentYoutube' onBlur={props.youtubeAdd} onChange={props.handleChange} placeholder='sample of work' />
+                <input name='currentYoutube' onBlur={props.youtubeAdd} onChange={props.handleChange} placeholder='sample of work' />
               </Segment>
             </Segment.Group>
           </Form.Field>
