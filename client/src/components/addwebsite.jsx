@@ -16,17 +16,19 @@ const AddWebsites = (props) => (
     </Grid.Column>
 
     <Grid.Column width={11}>
-      <Container>
-        <Form onSubmit={props.handleWebsite}>
-          <Form.Field>
-            <input name='linkedin' onChange={props.handleChange} placeholder='LinkedIn' />
-          </Form.Field>
-          <Form.Field>
-            <input name='personalsite' onChange={props.handleChange} placeholder='Personal Website' />
-          </Form.Field>
-          <Button floated="right">Next</Button>
-        </Form>    
-      </Container>
+      {props.webActive ? (
+        <Container>
+          <Form onSubmit={props.handleWebsite}>
+            <Form.Field>
+              <input name='linkedin' onChange={props.handleChange} placeholder='LinkedIn' />
+            </Form.Field>
+            <Form.Field>
+              <input name='personalsite' onChange={props.handleChange} placeholder='Personal Website' />
+            </Form.Field>
+            <Button floated="right">Next</Button>
+          </Form>
+        </Container>
+      ) : (<div></div>)}
     </Grid.Column>
   </Grid>
 );

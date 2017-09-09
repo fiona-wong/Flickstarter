@@ -16,14 +16,16 @@ const AddLocation = (props) => (
     </Grid.Column>
 
     <Grid.Column width={11}>
-      <Container>
-        <Form onSubmit={props.handleLocation}>
-          <Form.Field>
-            <input required={true} name='location' onChange={props.handleChange} placeholder='e.g. San Francisco, CA' />
-          </Form.Field>
-          <Button floated="right">Next</Button>
-        </Form>    
-      </Container>
+      {props.locationActive ? (
+        <Container>
+          <Form onSubmit={props.handleLocation}>
+            <Form.Field>
+              <input required={true} name='location' onChange={props.handleChange} placeholder='e.g. San Francisco, CA' />
+            </Form.Field>
+            <Button floated="right">Next</Button>
+          </Form>
+        </Container>
+      ) : (<div></div>)}
     </Grid.Column>
   </Grid>
 );

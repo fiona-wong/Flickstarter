@@ -16,14 +16,16 @@ const AddDescription = (props) => (
     </Grid.Column>
 
     <Grid.Column width={11}>
-      <Container>
-        <Form onSubmit={props.handleDescription}>
-          <Form.Field>
-            <textarea name='about' onChange={props.handleChange} placeholder='Write something about yourself and your prior experiences...' />
-          </Form.Field>
-          <Button floated="right">Next</Button>
-        </Form>    
-      </Container>
+      {props.descriptionActive ? (
+        <Container>
+          <Form onSubmit={props.handleDescription}>
+            <Form.Field>
+              <textarea name='about' onChange={props.handleChange} placeholder='Write something about yourself and your prior experiences...' />
+            </Form.Field>
+            <Button floated="right">Next</Button>
+          </Form>
+        </Container>
+      ) : (<div></div>)}
     </Grid.Column>
   </Grid>
 );

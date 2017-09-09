@@ -8,5 +8,6 @@ module.exports = {
   FollowUpvote: require('./followsupvotes'),
   Message: require('./messages'),
   UserProjectContribution: require('./userprojectcontributions'),
-  Genre: require('./genres')
+  Genre: require('./genres'),
+  UserRole: require('./userrole')
 };
