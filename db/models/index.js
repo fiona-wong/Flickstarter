@@ -9,4 +9,4 @@ module.exports = {
   Message: require('./messages'),
   UserProjectContribution: require('./userprojectcontributions'),
   Genre: require('./genres')
-}
+};
