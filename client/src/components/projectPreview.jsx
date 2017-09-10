@@ -1,47 +1,63 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ProjectStatus from './projectStatus.jsx';
+import moment from 'moment';
 
 import { Card, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 
-const ProjectPreview = (props) => (
-  <div>
-    <Grid columns={2} padded>
-    {props.projects.map((project, index) =>
-        <Grid.Column>
+class ProjectPreview extends React.Component {
+  constructor(props) {
+    super(props);
+    this.daysRemaining = this.daysRemaining.bind(this);
+  };
 
-          <Card key={index}>
+  daysRemaining(project) {
+    let eventDate = moment(project.goal_deadline);
+    let todaysDate = moment();
+    return eventDate.diff(todaysDate, 'days');
+  }
 
-            <Image src={project.photo_url} />
+  render() {
+    return (
+      <div>
+        <Grid columns={2} padded>
+          {this.props.projects.map((project, index) =>
 
-            <Card.Content >
+          <Grid.Column>
 
-              <Card.Header>
-                {project.name}
-              </Card.Header>
+            <Card key={index} fluid>
 
-              <Card.Meta>
-                {project.short_description}
-              </Card.Meta>
+              <Image src={project.photo_url} />
 
-              <Card.Description>
-               {project.long_description}
-              </Card.Description>
+              <Card.Content >
 
+                <Card.Header>
+                  {project.name}
+                </Card.Header>
 
-            </Card.Content>
+                <Card.Meta>
+                  {project.short_description}
+                </Card.Meta>
 
-            <Card.Content extra>
-              <a>
-                Insert progress bar here.
-              </a>
+                <Card.Description>
+                 {project.long_description}
+                </Card.Description>
 
-            </Card.Content>
+              </Card.Content>
 
-          </Card>
-        </Grid.Column>
-    )}
-    </Grid>
-  </div>
-);
+              <Card.Content extra>
+                
+                <ProjectStatus name={project.name} contributed={project.raised_amount} funded={(100 * (project.raised_amount / project.goal_amount)).toString().slice(0,2)} daysRemaining={this.daysRemaining(project)}/>
+
+              </Card.Content>
+
+            </Card>
+          </Grid.Column>
+        )}
+        </Grid>
+      </div>
+    )
+  }
+};
 
 export default ProjectPreview;

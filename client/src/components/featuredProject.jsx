@@ -14,7 +14,7 @@ class FeaturedProject extends React.Component {
                 <Image shape='rounded' src='http://res.cloudinary.com/dyrrwpemp/image/upload/v1504929225/pxmzjibkdn56bcgfmdt9.jpg' size='medium' />
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', paddingTop: '1%'}}>
                   <Header as='h4'>
-                  <Icon name="map pin" size="large"/>
+                  <Icon name="map pin" size='small'/>
                     <Header.Content>
                       Los Angeles, CA
                     </Header.Content>

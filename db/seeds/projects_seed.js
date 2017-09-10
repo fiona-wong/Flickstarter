@@ -2,18 +2,18 @@ const models = require('../models');
 
 exports.seed = function (knex, Promise) {
   return models.Project.forge({
-    name: 'Parakeets: The Movie',
-    short_description: 'Dive into the colorful world of Parakeets',
-    long_description: 'See Parakeets like you\'ve never seen them before, in unreal 4K high definition',
-    location: 'Hawaii',
-    photo_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmgdFyI783lYSIrLwi3fWxFszpgg_EX3UmRVVGDvMWpEQq1mD5som7eQ',
-    video_url: 'https://www.youtube.com/watch?v=TpGbx4fxogE',
-    goal_amount: 10000,
-    goal_deadline: '11/01/2017',
-    raised_amount: 0,
-    creator_id: 1,
-    upvote_count: 1,
-    genre: 1
+    name: 'voluptates aut quis',
+    short_description: 'Incidunt consequuntur repellendus nesciunt sunt impedit.',
+    long_description: 'In fugiat amet et aliquid aut. Rerum adipisci dicta. Qui necessitatibus praesentium. Voluptatibus qui provident sunt. Hic illo fuga cupiditate.',
+    location: 'Los Angeles, CA',
+    video_url: 'https://youtu.be/YFYHZcx40es',
+    photo_url: 'http://lorempixel.com/640/480/nightlife',
+    goal_amount: 4000,
+    goal_deadline: '11/20/2017',
+    upvote_count: 87,
+    raised_amount: 3600,
+    creator_id: 7,
+    genre: 8
   }).save()
   .then(() => {
     models.Project.forge({
@@ -21,10 +21,10 @@ exports.seed = function (knex, Promise) {
       short_description: 'Incidunt consequuntur repellendus nesciunt sunt impedit.',
       long_description: 'Vero sit id qui rerum iure autem deserunt. Facilis in repellat rerum odit non sit quo. Tempore voluptatem hic molestiae dolorum. Facilis tempore voluptas sunt eum impedit.',
       location: 'San Francisco,CA',
-      photo_url: 'https://youtu.be/0roUuwYOYYI',
-      video_url: 'http://lorempixel.com/640/480/cats',
+      photo_url: 'http://lorempixel.com/640/480/cats',
+      video_url: 'https://youtu.be/0roUuwYOYYI',
       goal_amount: 1000,
-      goal_deadline: '11/01/2017',
+      goal_deadline: '10/08/2017',
       raised_amount: 500,
       creator_id: 1,
       upvote_count: 3,
@@ -39,7 +39,7 @@ exports.seed = function (knex, Promise) {
         video_url: 'https://youtu.be/M8i0ObU-_LQ',
         photo_url: 'http://lorempixel.com/640/480/business',
         goal_amount: 1500,
-        goal_deadline: '11/10/2017',
+        goal_deadline: '10/10/2017',
         upvote_count: 6,
         raised_amount: 1000,
         creator_id: 2,
@@ -54,7 +54,7 @@ exports.seed = function (knex, Promise) {
         video_url: 'https://youtu.be/YOkUjVV17sY',
         photo_url: 'http://lorempixel.com/640/480/technics',
         goal_amount: 2000,
-        goal_deadline: '11/20/2017',
+        goal_deadline: '10/20/2017',
         upvote_count: 7,
         raised_amount: 1500,
         creator_id: 3,
@@ -69,7 +69,7 @@ exports.seed = function (knex, Promise) {
         video_url: 'https://youtu.be/2REkk9SCRn0',
         photo_url: 'http://lorempixel.com/640/480/people',
         goal_amount: 2500,
-        goal_deadline: '11/28/2017',
+        goal_deadline: '10/28/2017',
         upvote_count: 2,
         raised_amount: 2300,
         creator_id: 4,
@@ -84,7 +84,7 @@ exports.seed = function (knex, Promise) {
         video_url: 'https://youtu.be/T54igmon0Vw',
         photo_url: 'http://lorempixel.com/640/480/transport',
         goal_amount: 3000,
-        goal_deadline: '12/01/2017',
+        goal_deadline: '11/01/2017',
         upvote_count: 56,
         raised_amount: 1000,
         creator_id: 5,
@@ -99,7 +99,7 @@ exports.seed = function (knex, Promise) {
         video_url: 'https://youtu.be/i0dp5wPvi8E',
         photo_url: 'http://lorempixel.com/640/480/abstract',
         goal_amount: 3500,
-        goal_deadline: '12/10/2017',
+        goal_deadline: '11/10/2017',
         upvote_count: 23,
         raised_amount: 3400,
         creator_id: 6,
@@ -107,18 +107,18 @@ exports.seed = function (knex, Promise) {
       }).save()
     .then(() => {
       models.Project.forge({
-        name: 'voluptates aut quis',
-        short_description: 'Incidunt consequuntur repellendus nesciunt sunt impedit.',
-        long_description: 'In fugiat amet et aliquid aut. Rerum adipisci dicta. Qui necessitatibus praesentium. Voluptatibus qui provident sunt. Hic illo fuga cupiditate.',
-        location: 'Los Angeles, CA',
-        video_url: 'https://youtu.be/YFYHZcx40es',
-        photo_url: 'http://lorempixel.com/640/480/nightlife',
-        goal_amount: 4000,
-        goal_deadline: '12/20/2017',
-        upvote_count: 87,
-        raised_amount: 3600,
-        creator_id: 7,
-        genre: 8
+        name: 'Parakeets: The Movie',
+        short_description: 'Dive into the colorful world of Parakeets',
+        long_description: 'See Parakeets like you\'ve never seen them before, in unreal 4K high definition',
+        location: 'Hawaii',
+        photo_url: 'http://img-aws.ehowcdn.com/600x600p/photos.demandstudios.com/getty/article/178/205/79168149.jpg',
+        video_url: 'https://www.youtube.com/watch?v=TpGbx4fxogE',
+        goal_amount: 10000,
+        goal_deadline: '11/01/2017',
+        raised_amount: 0,
+        creator_id: 1,
+        upvote_count: 1,
+        genre: 1
       }).save();
     });
     });

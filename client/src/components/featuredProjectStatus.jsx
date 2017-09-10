@@ -1,5 +1,6 @@
 import React from 'react';
 import {Statistic, Progress} from 'semantic-ui-react';
+
 class FeaturedProjectStatus extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +9,7 @@ class FeaturedProjectStatus extends React.Component {
     return (
       <div style={{width: '70%', height: '15%', display: 'flex', flexDirection: 'column', justifyContent: 'left', marginLeft: '15%'}}>
         <Progress size='medium' percent='88' indicating style={{marginBottom: '10px'}}/>
-        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-around', paddingRight: '2%'}}>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', paddingRight: '2%'}}>
           <Statistic.Group size='mini' style={{marginBottom: '-3%'}}>
             <Statistic>
               <Statistic.Value>88%</Statistic.Value>

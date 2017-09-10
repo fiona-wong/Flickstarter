@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import { Menu, Search, Segment, Dropdown } from 'semantic-ui-react';
+import { Menu, Search, Segment, Dropdown, Image } from 'semantic-ui-react';
 
 import CreateProject from './createProjectView/createProject.jsx';
 import ViewProjects from './viewProjects.jsx';
@@ -36,6 +36,9 @@ class MenuBar extends React.Component {
           <Link to={'/viewprojects'} style={{textDecoration: 'none'}}>
             <Menu.Item name='View Projects' active={activeItem === 'View Projects'} onClick={this.handleItemClick} />
           </Link>
+          
+      
+          
           <Menu.Menu position='right' />
           <Link to={'/messages'} style={{textDecoration: 'none'}}>
             <Menu.Item name='Messages' active={activeItem === 'Messages'} onClick={this.handleItemClick}/>
@@ -67,3 +70,10 @@ class MenuBar extends React.Component {
   }
 }
 export default MenuBar;
+
+// {<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: '100%'}}>
+//             <div style={{width: '40%'}}>
+//               <Image fluid src='http://i.imgur.com/hIjqiJ0.png' />
+//             </div>
+//           </div>
+// }
