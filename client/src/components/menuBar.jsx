@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, browserHistory } from 'react-router-dom';
 import { Menu, Search, Segment, Dropdown, Image } from 'semantic-ui-react';
 
 import CreateProject from './createProjectView/createProject.jsx';
@@ -28,38 +28,25 @@ class MenuBar extends React.Component {
   render() {
     const {activeItem} = this.state;
     return (
-      <div style={{width: '92%', marginLeft: '4%', marginBottom: '5%'}}>
+      <div style={{width: '92%', marginLeft: '4%', marginRight:'4%', marginBottom: '5%'}}>
         <Menu pointing secondary fluid fixed='top' style={{backgroundColor: 'white', opacity: '.93'}}>
-          <Link to={'/createproject'} style={{textDecoration: 'none', marginLeft: '3%'}}>
-            <Menu.Item name='Create Project' active={activeItem === 'Create Project'} onClick={this.handleItemClick}/>
-          </Link>
-          <Link to={'/viewprojects'} style={{textDecoration: 'none'}}>
-            <Menu.Item name='View Projects' active={activeItem === 'View Projects'} onClick={this.handleItemClick} />
-          </Link>
-          
-      
-          
+          <Menu.Item as={Link} to={'/createproject'} name='Create Project' active={activeItem === 'Create Project'} onClick={this.handleItemClick} style={{marginLeft: '3%'}}/>
+          <Menu.Item as={Link} to={'/viewprojects'} name='View Projects' active={activeItem === 'View Projects'} onClick={this.handleItemClick} />
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: '100%'}}>
+            <Image height='40' src='http://i.imgur.com/hIjqiJ0.png' />
+          </div>
           <Menu.Menu position='right' />
-          <Link to={'/messages'} style={{textDecoration: 'none'}}>
-            <Menu.Item name='Messages' active={activeItem === 'Messages'} onClick={this.handleItemClick}/>
-          </Link>
+          <Menu.Item as={Link} to={'/messages'} name='Messages' active={activeItem === 'Messages'} onClick={this.handleItemClick} style={{marginLeft: '4%'}}/>
           <Menu.Item active={activeItem === 'Profile'} style={{marginRight: '3%'}}>
             <Dropdown pointing text='Profile'>
               <Dropdown.Menu>
-                <Link to={'/profile'} style={{textDecoration: 'none'}} >
-                  <Dropdown.Item name='Profile' onClick={this.handleItemClick}>View Profile</Dropdown.Item>
-                </Link>
-                <Link to={'/setupprofile'} style={{textDecoration: 'none'}} >
-                  <Dropdown.Item name='Profile' onClick={this.handleItemClick}>Edit Profile</Dropdown.Item>
-                </Link>
-                <Link to={'/profile'} style={{textDecoration: 'none'}}>
-                  <Dropdown.Item >Log Out</Dropdown.Item>
-                </Link>
+                <Dropdown.Item as={Link} to={'/profile'} name='Profile' onClick={this.handleItemClick}>View Profile</Dropdown.Item>
+                <Dropdown.Item as={Link} to={'/setupprofile'} name='Profile' onClick={this.handleItemClick}>Edit Profile</Dropdown.Item>
+                <Dropdown.Item as={Link} to={'/profile'}>Log Out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>
         </Menu>
-
         <Route path='/createproject' component={CreateProject} />
         <Route path='/viewprojects' component={ViewProjects} />
         <Route path='/messages' component={Messages} />
