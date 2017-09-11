@@ -4206,7 +4206,7 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-<<<<<<< HEAD
+
 react-youtube@^7.4.0:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/react-youtube/-/react-youtube-7.4.0.tgz#d346c30ec77eec61871e8c0784cef2cb2c69b63d"
@@ -4214,7 +4214,7 @@ react-youtube@^7.4.0:
     lodash.isequal "^4.4.0"
     prop-types "^15.5.3"
     youtube-player "^4.2.3"
-=======
+
 react-search-input@^0.11.2:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/react-search-input/-/react-search-input-0.11.2.tgz#0e185b614541448439bfcace281fa280b367968e"
@@ -4222,7 +4222,7 @@ react-search-input@^0.11.2:
     create-react-class "^15.5.2"
     fuse.js "^3.0.0"
     prop-types "^15.5.8"
->>>>>>> Adds Search Bar and Filter Posts functionality
+
 
 react@^15.4.2:
   version "15.4.2"
