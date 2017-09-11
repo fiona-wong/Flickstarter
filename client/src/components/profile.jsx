@@ -32,7 +32,7 @@ class Profile extends React.Component {
           return 'error';
         }
       };
-
+      console.log(data);
       this.setState({
         username: data.profile.username,
         first: data.profile.first,

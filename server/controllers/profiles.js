@@ -37,9 +37,13 @@ module.exports.getOwn = (req, res) => {
         .then(youtubes => {
           youtubes = youtubes.toJSON();
           fullProfile.youtubes = youtubes;
-          res.status(200).send(fullProfile);
+          models.Project.where({creator_id: req.user.id}).fetchAll()
+            .then(projects => {
+              projects = projects.toJSON();
+              fullProfile.projects = projects;
+              res.status(200).send(fullProfile);
+            });
         });
-
     })
     .catch(()=> {
       res.status(500).send('Could not retrieve data');
