@@ -1,4 +1,5 @@
 const models = require('../../db/models');
+const knex = require('knex')(require('../../knexfile'));
 
 module.exports.getAll = (req, res) => {
   models.Profile.fetchAll()
@@ -10,20 +11,6 @@ module.exports.getAll = (req, res) => {
       res.status(503).send(err);
     });
 };
-
-// module.exports.create = (req, res) => {
-//   models.Profile.forge({ username: req.body.username, password: req.body.password })
-//     .save()
-//     .then(result => {
-//       res.status(201).send(result.omit('password'));
-//     })
-//     .catch(err => {
-//       if (err.constraint === 'users_username_unique') {
-//         return res.status(403);
-//       }
-//       res.status(500).send(err);
-//     });
-// };
 
 module.exports.getOne = (req, res) => {
   models.Profile.where({ id: req.params.id }).fetch()
@@ -41,25 +28,37 @@ module.exports.getOne = (req, res) => {
     });
 };
 
-module.exports.update = (req, res) => {
-  models.Profile.where({ id: req.params.id }).fetch()
-    .then(profile => {
-      if (!profile) {
-        throw profile;
+module.exports.getOwn = (req, res) => {
+  const wholeProfile = {};
+  models.Profile.query().innerJoin('youtubes', 'profile.id', 'youtubes.user_id')
+  // models.Youtube.query().where({user_id: req.user.id}).select("link").innerJoin('profiles', 'user_id', '')
+    .then(youtubes => {
+      if (!youtubes) {
+        throw youtubes;
       }
-      return profile.save(req.body, { method: 'update' });
+      res.send(youtubes);
+      wholeProfile.youtube = youtubes;
+    })
+    .then((profile) => {
+      models.Profile.where({id: req.user.id}).fetch()
+        .then(() => {
+          if (!profile) {
+            throw profile;
+          }
+          wholeProfile.profile = profile;
+        });
     })
     .then(() => {
-      res.sendStatus(201);
+      res.status(200).send(wholeProfile);
     })
-    .error(err => {
-      res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
+    .catch(()=> {
+      res.status(500).send('Could not retrieve data');
     });
+
 };
 
+module.exports.getYoutube = (req, res) => {
+};
 module.exports.updateTotalContributions = (req, res) => {
   models.Profile.where({ id: req.params.id }).fetch()
     .then(profile => {

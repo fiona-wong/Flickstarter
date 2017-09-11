@@ -9,7 +9,7 @@ const Profile = db.Model.extend({
     return this.hasMany('Message');
   },
   roles: function() {
-    return this.belongsToMany('Role');
+    return this.hasMany('Role');
   },
   projects: function() {
     return this.hasMany('Project');

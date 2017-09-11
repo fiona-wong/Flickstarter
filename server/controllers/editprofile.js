@@ -1,5 +1,6 @@
 const model = require('../../db/models');
 
+
 module.exports.updateProfile = (req, res) => {
   console.log(req.body);
   model.Profile.where({id: req.user.id}).save(req.body, {method: 'update'})
@@ -68,6 +69,7 @@ module.exports.updateYoutube = (req, res) => {
         return;
       } else {
         if (!Array.isArray(req.body['youtube[]'])) {
+
           return model.Youtube.forge().save({user_id: req.user.id, link: req.body['youtube[]']}, {method: 'insert'});
         } else {
           req.body['youtube[]'].map(youtubeLink => {

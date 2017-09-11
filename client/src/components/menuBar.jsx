@@ -7,7 +7,7 @@ import ViewProjects from './viewProjects.jsx';
 import Profile from './profile.jsx';
 import Messages from './messages.jsx';
 import SearchBar from './searchBar.jsx';
-import SetupProfile from '../SetupProfile.jsx';
+import SetupProfile from './createProfileView/setupProfile.jsx';
 
 
 class MenuBar extends React.Component {
