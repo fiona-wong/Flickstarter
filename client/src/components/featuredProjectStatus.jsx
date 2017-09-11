@@ -28,7 +28,9 @@ class FeaturedProjectStatus extends React.Component {
               <Statistic.Label>days remaining</Statistic.Label>
             </Statistic>
           </Statistic.Group>
-
+        </div>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
+         <a className="coinbase-button" data-code="2b30a03995ec62f15bdc54e8428caa87" href="https://www.coinbase.com/checkouts/2b30a03995ec62f15bdc54e8428caa87">Donate Bitcoin!</a>
         </div>
       </div>
     );

@@ -10,7 +10,7 @@ const AddWebsites = (props) => (
       <Step active={props.webActive} completed={props.webComplete}>
         <Step.Content>
           <Step.Title>LinkedIn/Personal Website</Step.Title>
-          Let's Connect!
+          Let's connect!
         </Step.Content>
       </Step>
     </Grid.Column>
