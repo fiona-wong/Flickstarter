@@ -50,7 +50,7 @@ class ProjectPreview extends React.Component {
 
                 <ProjectStatus name={project.name} contributed={project.raised_amount} funded={(100 * (project.raised_amount / project.goal_amount)).toString().slice(0, 2)} daysRemaining={this.daysRemaining(project)}/>
 
-                <a className="coinbase-button" data-code="2b30a03995ec62f15bdc54e8428caa87" href="https://www.coinbase.com/checkouts/2b30a03995ec62f15bdc54e8428caa87">Donate Bitcoin</a>
+                <a className="coinbase-button" data-code="2b30a03995ec62f15bdc54e8428caa87" href="https://www.coinbase.com/checkouts/2b30a03995ec62f15bdc54e8428caa87">Donate Bitcoin!</a>
                 <script src="https://www.coinbase.com/assets/button.js" type="text/javascript"></script>
 
               </Card.Content>
