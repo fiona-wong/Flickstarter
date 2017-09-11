@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, Container, Grid, Step, Button } from 'semantic-ui-react';
-
-import ImageUploader from './imageUploader.jsx';
-
+import ImageUploader from '../../imageUploader.jsx';
+import { BrowserRouter as Router, Link, Route, browserHistory } from 'react-router-dom';
+import Profile from '../../profile.jsx';
 
 const UploadPhoto = (props) => (
 
@@ -26,7 +26,8 @@ const UploadPhoto = (props) => (
       {props.readySubmit ? (
         <Container>
           <Image src={props.photo}/>
-          <Button>Submit</Button>
+          <Button as={Link} to={'/profile'}>Submit</Button>
+          <Route path='/profile' component={Profile} />
         </Container>
       ) : (<div></div>)}
     </Grid.Column>

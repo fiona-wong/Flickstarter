@@ -2,12 +2,12 @@ import React from 'react';
 import { Grid, Step, Form, Button } from 'semantic-ui-react';
 import EditName from './components/editName.jsx';
 import $ from 'jquery';
-import PickRole from './components/pickrole.jsx';
-import AddLocation from './components/addlocation.jsx';
+import PickRole from './components/pickRole.jsx';
+import AddLocation from './components/addLocation.jsx';
 import AddDescription from './components/addDescription.jsx';
-import AddWebsites from './components/addwebsite.jsx';
+import AddWebsites from './components/addWebsite.jsx';
 import AddYoutube from './components/addYoutube.jsx';
-import UploadPhoto from './components/uploadprofilephoto.jsx';
+import UploadPhoto from './components/uploadProfilePhoto.jsx';
 
 class SetupProfile extends React.Component {
 
@@ -178,6 +178,7 @@ class SetupProfile extends React.Component {
           });
       });
   }
+
 
   render() {
     return (

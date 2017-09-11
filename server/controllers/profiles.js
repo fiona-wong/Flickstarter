@@ -11,20 +11,6 @@ module.exports.getAll = (req, res) => {
     });
 };
 
-// module.exports.create = (req, res) => {
-//   models.Profile.forge({ username: req.body.username, password: req.body.password })
-//     .save()
-//     .then(result => {
-//       res.status(201).send(result.omit('password'));
-//     })
-//     .catch(err => {
-//       if (err.constraint === 'users_username_unique') {
-//         return res.status(403);
-//       }
-//       res.status(500).send(err);
-//     });
-// };
-
 module.exports.getOne = (req, res) => {
   models.Profile.where({ id: req.params.id }).fetch()
     .then(profile => {
@@ -41,22 +27,22 @@ module.exports.getOne = (req, res) => {
     });
 };
 
-module.exports.update = (req, res) => {
-  models.Profile.where({ id: req.params.id }).fetch()
-    .then(profile => {
-      if (!profile) {
-        throw profile;
-      }
-      return profile.save(req.body, { method: 'update' });
+module.exports.getOwn = (req, res) => {
+  let fullProfile = {};
+  models.Profile.where({id: req.user.id}).fetch()
+    .then((profile) => {
+      profile = profile.toJSON();
+      fullProfile.profile = profile;
+      models.Youtube.where({user_id: req.user.id}).fetchAll({columns: ['link']})
+        .then(youtubes => {
+          youtubes = youtubes.toJSON();
+          fullProfile.youtubes = youtubes;
+          res.status(200).send(fullProfile);
+        });
+
     })
-    .then(() => {
-      res.sendStatus(201);
-    })
-    .error(err => {
-      res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
+    .catch(()=> {
+      res.status(500).send('Could not retrieve data');
     });
 };
 
