@@ -13,7 +13,7 @@ exports.seed = function (knex, Promise) {
     upvote_count: 87,
     raised_amount: 3600,
     creator_id: 7,
-    genre: 8
+    genre: 'Action'
   }).save()
   .then(() => {
     models.Project.forge({
@@ -28,7 +28,7 @@ exports.seed = function (knex, Promise) {
       raised_amount: 500,
       creator_id: 1,
       upvote_count: 3,
-      genre: 2
+      genre: 'Adventure'
     }).save()
     .then(() => {
       models.Project.forge({
@@ -43,7 +43,7 @@ exports.seed = function (knex, Promise) {
         upvote_count: 6,
         raised_amount: 1000,
         creator_id: 2,
-        genre: 3
+        genre: 'Animated'
       }).save()
     .then(() => {
       models.Project.forge({
@@ -58,7 +58,7 @@ exports.seed = function (knex, Promise) {
         upvote_count: 7,
         raised_amount: 1500,
         creator_id: 3,
-        genre: 4
+        genre: 'Comedy'
       }).save()
     .then(() => {
       models.Project.forge({
@@ -73,7 +73,7 @@ exports.seed = function (knex, Promise) {
         upvote_count: 2,
         raised_amount: 2300,
         creator_id: 4,
-        genre: 5
+        genre: 'Crime'
       }).save()
     .then(() => {
       models.Project.forge({
@@ -88,7 +88,7 @@ exports.seed = function (knex, Promise) {
         upvote_count: 56,
         raised_amount: 1000,
         creator_id: 5,
-        genre: 6
+        genre: 'Documentary'
       }).save()
     .then(() => {
       models.Project.forge({
@@ -103,7 +103,7 @@ exports.seed = function (knex, Promise) {
         upvote_count: 23,
         raised_amount: 3400,
         creator_id: 6,
-        genre: 7
+        genre: 'Drama'
       }).save()
     .then(() => {
       models.Project.forge({
@@ -118,7 +118,7 @@ exports.seed = function (knex, Promise) {
         raised_amount: 0,
         creator_id: 1,
         upvote_count: 1,
-        genre: 1
+        genre: 'Musical'
       }).save();
     });
     });

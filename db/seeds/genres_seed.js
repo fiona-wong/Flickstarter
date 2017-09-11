@@ -2,7 +2,7 @@ const models = require('../models');
 
 exports.seed = function (knex, Promise) {
 
-  return models.Genre.where({ genre: 'documentary' }).fetch()
+  return models.Genre.where({ genre: 'ter' }).fetch()
     .then((genre) => {
       if (genre) {
         throw genre;
