@@ -73,7 +73,7 @@ class Home extends React.Component {
             <FeaturedProject />
           </Grid>
         </Segment>
-
+        Search projects:
         <SearchInput className="search-input" onChange={this.searchUpdated.bind(this)} />
 
         <Segment>
