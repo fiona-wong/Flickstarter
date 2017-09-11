@@ -61,19 +61,17 @@ const tagOptions = [
   }
 ];
 
-// Action, Adventure, Animated, Comedy, Crime, Documentary, Drama, Musical, Science Fiction, War, Western
+const getSelected = (e, {value }) => {
+  console.log('all elements', e, 'selected valllllll', value);
+};
 
 const Filter = () => (
-    <Dropdown text='Filter Posts' icon='filter' floating labeled button className='icon'>
-    <Dropdown.Menu>
-      <Input icon='search' iconPosition='left' className='search' />
-      <Dropdown.Divider />
-      <Dropdown.Header icon='tags' content='Tag Label' />
-      <Dropdown.Menu scrolling>
-        {tagOptions.map(option => <Dropdown.Item key={option.value} {...option} />)}
-      </Dropdown.Menu>
-    </Dropdown.Menu>
-  </Dropdown>
+          <Dropdown
+          onChange={getSelected}
+          options={tagOptions}
+          selection
+          text='Filter Posts' icon='filter' floating labeled button className='icon'
+        />
   );
 
 export default Filter;
