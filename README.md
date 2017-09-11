@@ -6,7 +6,7 @@ Crowdfunding platform for film creators
 
 - Pavan Sethi
 - Miles Sorce
-- Fiona Wang
+- Fiona Wong
 
 ## Roadmap
 
@@ -102,4 +102,3 @@ To run server: `yarn run start`
 To run tests: `yarn run test`
 
 To run your redis server for the session store `redis-server`
-
