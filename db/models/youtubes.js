@@ -3,7 +3,7 @@ const db = require('../');
 const Youtube = db.Model.extend({
   tableName: 'youtubes',
   profile: function() {
-    return this.belongsTo('Profile');
+    return this.belongsToMany('Profile');
   }
 });
 

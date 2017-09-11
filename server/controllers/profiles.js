@@ -1,5 +1,4 @@
 const models = require('../../db/models');
-const knex = require('knex')(require('../../knexfile'));
 
 module.exports.getAll = (req, res) => {
   models.Profile.fetchAll()
@@ -29,36 +28,24 @@ module.exports.getOne = (req, res) => {
 };
 
 module.exports.getOwn = (req, res) => {
-  const wholeProfile = {};
-  models.Profile.query().innerJoin('youtubes', 'profile.id', 'youtubes.user_id')
-  // models.Youtube.query().where({user_id: req.user.id}).select("link").innerJoin('profiles', 'user_id', '')
-    .then(youtubes => {
-      if (!youtubes) {
-        throw youtubes;
-      }
-      res.send(youtubes);
-      wholeProfile.youtube = youtubes;
-    })
+  let fullProfile = {};
+  models.Profile.where({id: req.user.id}).fetch()
     .then((profile) => {
-      models.Profile.where({id: req.user.id}).fetch()
-        .then(() => {
-          if (!profile) {
-            throw profile;
-          }
-          wholeProfile.profile = profile;
+      profile = profile.toJSON();
+      fullProfile.profile = profile;
+      models.Youtube.where({user_id: req.user.id}).fetchAll({columns: ['link']})
+        .then(youtubes => {
+          youtubes = youtubes.toJSON();
+          fullProfile.youtubes = youtubes;
+          res.status(200).send(fullProfile);
         });
-    })
-    .then(() => {
-      res.status(200).send(wholeProfile);
+
     })
     .catch(()=> {
       res.status(500).send('Could not retrieve data');
     });
-
 };
 
-module.exports.getYoutube = (req, res) => {
-};
 module.exports.updateTotalContributions = (req, res) => {
   models.Profile.where({ id: req.params.id }).fetch()
     .then(profile => {

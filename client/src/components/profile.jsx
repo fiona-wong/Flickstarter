@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import ShowYoutube from './showYoutube.jsx';
+import Youtube from 'react-youtube';
 import { Grid, Header, Container, Divider, Icon, Image } from 'semantic-ui-react';
 
 class Profile extends React.Component {
@@ -23,20 +23,31 @@ class Profile extends React.Component {
 
   componentDidMount() {
     $.get('/profiles/myprofile', data => {
-      console.log(data);
-      // this.setState({
-      //   username: data.username,
-      //   first: data.first,
-      //   last: data.last,
-      //   location: data.location,
-      //   about: data.about,
-      //   linkedin: data.linkedin,
-      //   personalsite: data.personalsite,
-      //   photo: data.photo,
-      //   youtube: data.youtube
-      // })
+      const getVideoId = (url) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        if (match && match[2].length === 11) {
+          return match[2];
+        } else {
+          return 'error';
+        }
+      };
+
+      this.setState({
+        username: data.profile.username,
+        first: data.profile.first,
+        last: data.profile.last,
+        location: data.profile.location,
+        about: data.profile.about,
+        linkedin: data.profile.linkedin,
+        personalsite: data.profile.personalsite,
+        photo: data.profile.photo,
+        youtube: getVideoId(data.youtubes[0].link)
+      });
     });
   }
+
+
 
 
   render() {
@@ -68,7 +79,9 @@ class Profile extends React.Component {
               Projects go here
             </Grid.Column>
             <Grid.Column>
-
+              <Youtube
+                videoId={this.state.youtube}
+              />
             </Grid.Column>
           </Grid.Row>
         </Grid>

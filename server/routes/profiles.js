@@ -13,6 +13,5 @@ const ProfileController = require('../controllers/profiles');
 //   .put(ProfileController.update);
 //   // .delete(ProfileController.deleteOne)
 router.get('/myprofile', ProfileController.getOwn);
-router.get('/youtube', ProfileController.getYoutube);
 
 module.exports = router;
