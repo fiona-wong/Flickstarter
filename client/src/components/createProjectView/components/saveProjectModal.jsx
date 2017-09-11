@@ -56,11 +56,9 @@ class SaveProjectModal extends React.Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Link to={'/viewprojects'} >
-              <Button color='blue' basic>
-                <Icon name='home' /> Home
-              </Button>
-            </Link>
+            <Button as={Link} to={'/'} color='blue' basic>
+              <Icon name='home' /> Home
+            </Button>
             <Button color='blue' basic>
               <Icon name='film' /> View Project
             </Button>

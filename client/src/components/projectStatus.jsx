@@ -46,22 +46,3 @@ class ProjectStatus extends React.Component {
   }
 }
 export default ProjectStatus;
-
-          // <Statistic.Group size='mini' style={{marginBottom: '-3%'}}>
-          //   <Statistic>
-          //     <Statistic.Value>{this.props.funded}%</Statistic.Value>
-          //     <Statistic.Label>funded</Statistic.Label>
-          //   </Statistic>
-          //   <Statistic>
-          //     <Statistic.Value>${this.commafy(this.props.contributed)}</Statistic.Value>
-          //     <Statistic.Label>contributed</Statistic.Label>
-          //   </Statistic>
-          //   <Statistic>
-          //     <Statistic.Value>{this.props.contributed / 50}</Statistic.Value>
-          //     <Statistic.Label>backers</Statistic.Label>
-          //   </Statistic>
-          //   <Statistic>
-          //     <Statistic.Value>{this.props.daysRemaining}</Statistic.Value>
-          //     <Statistic.Label>days remaining</Statistic.Label>
-          //   </Statistic>
-          // </Statistic.Group>

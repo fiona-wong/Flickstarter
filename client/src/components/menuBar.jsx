@@ -57,10 +57,3 @@ class MenuBar extends React.Component {
   }
 }
 export default MenuBar;
-
-// {<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: '100%'}}>
-//             <div style={{width: '40%'}}>
-//               <Image fluid src='http://i.imgur.com/hIjqiJ0.png' />
-//             </div>
-//           </div>
-// }
