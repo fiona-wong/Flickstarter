@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, browserHistory } from 'react-router-dom';
 import { Menu, Search, Segment, Dropdown, Image } from 'semantic-ui-react';
 import CreateProject from './createProjectView/createProject.jsx';
-import ViewProjects from './viewProjects.jsx';
+import ExploreProjects from './exploreProjects.jsx';
 import Profile from './profile.jsx';
 import Messages from './messages.jsx';
 import SearchBar from './searchBar.jsx';
 import SetupProfile from './createProfileView/setupProfile.jsx';
+import Home from './home.jsx';
 
 class MenuBar extends React.Component {
   constructor(props) {
@@ -26,14 +27,15 @@ class MenuBar extends React.Component {
   render() {
     const {activeItem} = this.state;
     return (
-      <div id='body-container'>
-        <Menu id='menu-container' pointing secondary fluid fixed='top'>
+      <div style={{width: '92%', marginLeft: '4%', marginRight: '4%', marginBottom: '5%'}}>
+        <Menu pointing secondary fluid fixed='top' style={{backgroundColor: 'white', opacity: '.93'}}>
           <Menu.Item as={Link} to={'/createproject'} name='Create Project' active={activeItem === 'Create Project'} onClick={this.handleItemClick} style={{marginLeft: '3%'}}/>
-          <Menu.Item as={Link} to={'/'} name='View Projects' active={activeItem === 'View Projects'} onClick={this.handleItemClick} />
-          <div className='basic-flex-centered-row'>
+          <Menu.Item as={Link} to={'/exploreprojects'} name='Explore Projects' active={activeItem === 'Explore Projects'} onClick={this.handleItemClick} />
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: '100%'}}>
             <Image height='40' src='http://i.imgur.com/hIjqiJ0.png' />
           </div>
           <Menu.Menu position='right' />
+          <Menu.Item as={Link} to={'/'} name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} style={{marginLeft: '4%'}}/>
           <Menu.Item as={Link} to={'/messages'} name='Messages' active={activeItem === 'Messages'} onClick={this.handleItemClick} style={{marginLeft: '4%'}}/>
           <Menu.Item active={activeItem === 'Profile'} style={{marginRight: '3%'}}>
             <Dropdown pointing text='Profile'>
@@ -46,7 +48,7 @@ class MenuBar extends React.Component {
           </Menu.Item>
         </Menu>
         <Route path='/createproject' component={CreateProject} />
-        <Route path='/viewprojects' component={ViewProjects} />
+        <Route path='/exploreprojects' component={ExploreProjects} />
         <Route path='/messages' component={Messages} />
         <Route path='/profile' component={Profile} />
         <Route path='/setupprofile' component={SetupProfile} />

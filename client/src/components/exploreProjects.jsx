@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import { Grid, Segment, Header, Dropdown } from 'semantic-ui-react';
-import SearchInput, { createFilter } from 'react-search-input';
 
+import { Grid, Segment, Header, Dropdown } from 'semantic-ui-react';
 import FeaturedProject from './featuredProject.jsx';
 import ProjectPreview from './projectPreview.jsx';
 import Filter from './filter.jsx';
-import Footer from './footer.jsx';
-import Welcome from './welcome.jsx';
+
+import SearchInput, { createFilter } from 'react-search-input';
 
 const KEYS_TO_FILTERS = ['name'];
+
 const colors = ['yellow', 'red', 'blue', 'green', 'black', 'pink', 'grey', 'purple', 'teal', 'orange', 'brown'];
 
 
-class Home extends React.Component {
+class ExploreProjects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,6 +39,10 @@ class Home extends React.Component {
     });
   }
 
+  searchUpdated (term) {
+    this.setState({searchTerm: term});
+  }
+
   getSelected(e, {value}) {
     this.setState({filterTerm: value});
   }
@@ -55,37 +59,35 @@ class Home extends React.Component {
     let filteredMovies = this.state.projects.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
     filteredMovies = this.state.filterTerm ? this.state.projects.filter(project => project.genre === this.state.filterTerm) : filteredMovies;
 
+
     return (
-      <div id='home-body-container'>
-        <Welcome />
-        <Segment>
-          <Header id='featured-project-header'> Featured Project </Header>
-          <Grid columns={1} padded>
-            <FeaturedProject />
-          </Grid>
-        </Segment>
+      <div style={{ width: '94%', margin: '2% 0% 0% 3%', paddingTop: '55px' }}>
+
+        Search projects:
+        <SearchInput className="search-input" onChange={this.searchUpdated.bind(this)} />
 
         <Segment>
-          <div id='trending-projects-header-container'>
-            <div className='basic-flex-centered-column'>
-              <h3> Trending Projects </h3>
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginLeft: '2%', marginRight: '2%' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <h3> Explore Projects </h3>
             </div>
             <div>
-              <Dropdown
-                onChange={this.getSelected.bind(this)}
-                options={tagOptions}
-                selection
-                text='Filter Posts' icon='filter' floating labeled button className='icon'
-              />
+
+        <Dropdown
+          onChange={this.getSelected.bind(this)}
+          options={tagOptions}
+          selection
+          text='Filter Posts' icon='filter' floating labeled button className='icon'
+        />
+
             </div>
           </div>
           <ProjectPreview projects={filteredMovies} />
         </Segment>
-
-        <Footer />
       </div>
     );
   }
 }
 
-export default Home;
+
+export default ExploreProjects;
