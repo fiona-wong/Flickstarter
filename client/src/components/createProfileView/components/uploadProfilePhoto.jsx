@@ -9,7 +9,7 @@ const UploadPhoto = (props) => (
   <Grid columns={2}>
 
     <Grid.Column width={5}>
-      <Step active={props.photoActive} completed={props.photoComplete}>
+      <Step onClick={props.handleOnPhotoClick} active={props.photoActive} completed={props.photoComplete}>
         <Step.Content>
           <Step.Title>Upload Photo</Step.Title>
           Now vogue

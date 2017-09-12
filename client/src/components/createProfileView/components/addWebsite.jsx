@@ -7,7 +7,7 @@ const AddWebsites = (props) => (
   <Grid columns={2}>
 
     <Grid.Column width={5}>
-      <Step active={props.webActive} completed={props.webComplete}>
+      <Step onClick={props.handleOnWebsiteClick} active={props.webActive} completed={props.webComplete}>
         <Step.Content>
           <Step.Title>LinkedIn/Personal Website</Step.Title>
           Let's connect!
@@ -20,10 +20,10 @@ const AddWebsites = (props) => (
         <Container>
           <Form onSubmit={props.handleWebsite}>
             <Form.Field>
-              <input name='linkedin' onChange={props.handleChange} placeholder='LinkedIn' />
+              <input name='linkedin' value={props.linkedin} onChange={props.handleChange} placeholder='LinkedIn' />
             </Form.Field>
             <Form.Field>
-              <input name='personalsite' onChange={props.handleChange} placeholder='Personal Website' />
+              <input name='personalsite' value={props.personal} onChange={props.handleChange} placeholder='Personal Website' />
             </Form.Field>
             <Button floated="right">Next</Button>
           </Form>

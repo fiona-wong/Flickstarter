@@ -7,7 +7,7 @@ const AddLocation = (props) => (
   <Grid columns={2}>
 
     <Grid.Column width={5}>
-      <Step active={props.locationActive} completed={props.locationComplete}>
+      <Step onClick={props.handleOnLocationClick} active={props.locationActive} completed={props.locationComplete}>
         <Step.Content>
           <Step.Title>Location</Step.Title>
           Where are you located?
@@ -20,7 +20,7 @@ const AddLocation = (props) => (
         <Container>
           <Form onSubmit={props.handleLocation}>
             <Form.Field>
-              <input required={true} name='location' onChange={props.handleChange} placeholder='e.g. San Francisco, CA' />
+              <input required={true} name='location' value={props.location} onChange={props.handleChange} placeholder='e.g. San Francisco, CA' />
             </Form.Field>
             <Button floated="right">Next</Button>
           </Form>

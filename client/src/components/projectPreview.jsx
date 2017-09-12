@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ProjectStatus from './projectStatus.jsx';
 import moment from 'moment';
+import ProjectCard from './projectCard.jsx';
 
 import { Card, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 
@@ -24,6 +25,7 @@ class ProjectPreview extends React.Component {
         <Grid columns={2} padded>
           {this.props.projects.map((project, index) =>
 
+<<<<<<< HEAD
           <Grid.Column key={index}>
 
             <Card fluid raised>
@@ -62,6 +64,15 @@ class ProjectPreview extends React.Component {
             </Card>
           </Grid.Column>
         )}
+=======
+            <Grid.Column raised key={index}>
+              <ProjectCard
+                project={project}
+                daysRemaining={this.daysRemaining}
+              />
+            </Grid.Column>
+          )}
+>>>>>>> added to profile page
         </Grid>
       </div>
     );
