@@ -64,7 +64,6 @@ class Home extends React.Component {
             <FeaturedProject />
           </Grid>
         </Segment>
-
         <Segment>
           <div id='trending-projects-header-container'>
             <div className='basic-flex-centered-column'>
@@ -81,7 +80,6 @@ class Home extends React.Component {
           </div>
           <ProjectPreview projects={filteredMovies} />
         </Segment>
-
         <Footer />
       </div>
     );

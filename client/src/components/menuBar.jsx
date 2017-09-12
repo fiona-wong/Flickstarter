@@ -27,11 +27,11 @@ class MenuBar extends React.Component {
   render() {
     const {activeItem} = this.state;
     return (
-      <div style={{width: '92%', marginLeft: '4%', marginRight: '4%', marginBottom: '5%'}}>
-        <Menu pointing secondary fluid fixed='top' style={{backgroundColor: 'white', opacity: '.93'}}>
+      <div id='body-container'>
+        <Menu id='menu-container' pointing secondary fluid fixed='top'>
           <Menu.Item as={Link} to={'/createproject'} name='Create Project' active={activeItem === 'Create Project'} onClick={this.handleItemClick} style={{marginLeft: '3%'}}/>
-          <Menu.Item as={Link} to={'/exploreprojects'} name='Explore Projects' active={activeItem === 'Explore Projects'} onClick={this.handleItemClick} />
-          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: '100%'}}>
+          <Menu.Item as={Link} to={'/'} name='View Projects' active={activeItem === 'View Projects'} onClick={this.handleItemClick} />
+          <div className='basic-flex-centered-row'>
             <Image height='40' src='http://i.imgur.com/hIjqiJ0.png' />
           </div>
           <Menu.Menu position='right' />

@@ -162,7 +162,7 @@
   padding-left: 15px;
 }
 
-#project-status-container {
+.project-status-container {
   width: 70%;
   height: 15%;
   display: flex;
