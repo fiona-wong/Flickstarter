@@ -3,11 +3,11 @@ import {Header, Image} from 'semantic-ui-react';
 import ImageUploader from '../../imageUploader.jsx';
 
 const ProjectImage = (props) => (
-  <div style={{width: '98%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'left', backgroundColor:'#F8F9FD', marginBottom: '15px', paddingTop: '15px', marginLeft: '1%'}}>
-    <div style={{width: '24%', height: '100%', textAlign: 'left', paddingLeft: '15px'}}>
+  <div className='project-detail-item-container'>
+    <div className='project-detail-item-header-container'>
       <Header as='h4'>Project image</Header>
     </div>
-    <div style={{width: '76%', textAlign: 'left', marginBottom: '15px', paddingRight: '15px'}}>
+    <div className='project-detail-item-content-container'>
       <div>
         <Image src={props.projectImage} size='medium' shape='rounded'/>
       </div>

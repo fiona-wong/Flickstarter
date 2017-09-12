@@ -52,7 +52,7 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div style={{paddingTop: '55px'}}>
+      <div className='page-header-padding'>
         <Grid centered columns={2}>
           <Grid.Row>
             <Grid.Column width={4}>

@@ -2,11 +2,11 @@ import React from 'react';
 import {TextArea, Header, Form} from 'semantic-ui-react';
 
 const ProjectDescription = (props) => (
-  <div style={{width: '98%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'left', backgroundColor:'#F8F9FD', marginBottom: '15px', paddingTop: '15px', marginLeft: '1%'}}>
-    <div style={{width: '24%', height: '100%', textAlign: 'left', paddingLeft: '15px'}}>
+  <div className='project-detail-item-container'>
+    <div className='project-detail-item-header-container'>
       <Header as='h4'>Full description</Header>
     </div>
-    <div style={{width: '76%', textAlign: 'left', marginBottom: '15px', paddingRight: '15px'}}>
+    <div className='project-detail-item-content-container'>
       <Form>
         <TextArea autoHeight 
           placeholder='Add your description here...' 

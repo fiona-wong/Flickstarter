@@ -5,12 +5,12 @@ import LandingTitle from './components/LandingTitle.jsx';
 import LandingLocation from './components/LandingLocation.jsx';
 
 const LandingPage = (props) => (
-  <div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', backgroundColor: '#FFFFFF'}}>
-    <div style={{textAlign: 'center', paddingTop: '20px', paddingBottom: '15px', marginTop: '55px'}}>
+  <div id='landing-flex-centered-column'>
+    <div id='landing-header'>
       <Header as='h1'>Create a project</Header>
     </div>
-    <Segment raised style={{textAlign: 'center', width: '80%'}}> 
-      <Container style={{width: '50%', paddingBottom: '30px', marginTop: '3%', marginBottom: '3%'}}>
+    <Segment raised id='landing-segment'> 
+      <Container id='landing-container'>
         <LandingGenre handleGenreSelection={props.handleGenreSelection}/>
         <LandingTitle handleProjectTitleInput={props.handleInputChange}/>
         <LandingLocation handleProjectLocationInput={props.handleInputChange}/>

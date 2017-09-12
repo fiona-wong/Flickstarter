@@ -182,7 +182,7 @@ class SetupProfile extends React.Component {
 
   render() {
     return (
-      <div style={{paddingTop: '55px'}}>
+      <div className='page-header-padding'>
         <Step.Group ordered vertical>
           <EditName
             nameActive={this.state.nameActive}

@@ -5,9 +5,9 @@ const ImageUploader = (props) => {
   return (
     <div className="main" >
       <div className="upload" >
-          <Button onClick={props.getUploadWidget} >
-              Add Image
-          </Button>
+        <Button onClick={props.getUploadWidget} >
+          Add Image
+        </Button>
       </div>
     </div>
   );

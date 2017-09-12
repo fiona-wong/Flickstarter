@@ -66,12 +66,12 @@ const getSelected = (e, {value }) => {
 };
 
 const Filter = () => (
-          <Dropdown
-          onChange={getSelected}
-          options={tagOptions}
-          selection
-          text='Filter Posts' icon='filter' floating labeled button className='icon'
-        />
-  );
+  <Dropdown
+    onChange={getSelected}
+    options={tagOptions}
+    selection
+    text='Filter Posts' icon='filter' floating labeled button className='icon'
+  />
+);
 
 export default Filter;

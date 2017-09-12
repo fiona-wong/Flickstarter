@@ -5,9 +5,9 @@ import { Grid, Segment, Header, Dropdown } from 'semantic-ui-react';
 import FeaturedProject from './featuredProject.jsx';
 import ProjectPreview from './projectPreview.jsx';
 import Filter from './filter.jsx';
-
 import SearchInput, { createFilter } from 'react-search-input';
 //import movies from '../../../algolia/records.json';
+
 const KEYS_TO_FILTERS = ['name'];
 
 const colors = ['yellow', 'red', 'blue', 'green', 'black', 'pink', 'grey', 'purple', 'teal', 'orange', 'brown'];
@@ -57,39 +57,32 @@ class Home extends React.Component {
       };
     });
 
-    console.log('before filterrrrrr', this.state.filterTerm);
-
     let filteredMovies = this.state.projects.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
     filteredMovies = this.state.filterTerm ? this.state.projects.filter(project => project.genre === this.state.filterTerm) : filteredMovies;
 
-    console.log('after filterrrrrr', filteredMovies);
-
     return (
-      <div style={{ width: '94%', margin: '2% 0% 0% 3%', paddingTop: '55px' }}>
-
+      <div id='home-body-container'>
         <Segment>
-          <Header style={{ marginLeft: '2%', marginBottom: '-1%' }}> Featured Project </Header>
+          <Header id='featured-project-header'> Featured Project </Header>
           <Grid columns={1} padded>
             <FeaturedProject />
           </Grid>
         </Segment>
         Search projects:
         <SearchInput className="search-input" onChange={this.searchUpdated.bind(this)} />
-
         <Segment>
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginLeft: '2%', marginRight: '2%' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div id='trending-projects-header-container'>
+            <div className='basic-flex-centered-column'>
               <h3> Trending Projects </h3>
             </div>
             <div>
-
-                        <Dropdown
-          onChange={this.getSelected.bind(this)}
-          options={tagOptions}
-          selection
-          text='Filter Posts' icon='filter' floating labeled button className='icon'
-        />
-
+              <Dropdown
+                onChange={this.getSelected.bind(this)}
+                options={tagOptions}
+                selection
+                className='icon'
+                text='Filter Posts' icon='filter' floating labeled button
+              />
             </div>
           </div>
           <ProjectPreview projects={filteredMovies} />

@@ -107,7 +107,7 @@ class CreateProject extends React.Component {
 
   getWarningMessage() {
     return (
-      <div id="saveAlert" style={{paddingTop: '5px'}}>
+      <div id="saveProjectWarningAlert">
         <Message color='red' negative>
           <Message.Header>You must complete each field to continue. </Message.Header>
         </Message>
@@ -127,7 +127,7 @@ class CreateProject extends React.Component {
 
     componentDidUpdate() {
     if (this.state.incompleteField === true) {
-      var element = document.getElementById("saveAlert");
+      let element = document.getElementById("saveProjectWarningAlert");
       element.scrollIntoView();
     }
   }
@@ -143,7 +143,7 @@ class CreateProject extends React.Component {
         incompleteField={this.state.incompleteField}
       />
       :
-      <div style={{width: '100%', height: '98%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', marginTop: '55px'}}>
+      <div id='create-project-detail-body'>
         {
           this.state.showSaveModal ? 
           <SaveProjectModal 
@@ -157,11 +157,11 @@ class CreateProject extends React.Component {
             projectGenre={this.state.projectGenre} 
           /> : null
         }
-        <div style={{textAlign: 'center', paddingTop: '20px', paddingBottom: '22px', backgroundColor: '#FFFFFF'}}>
+        <div id='create-project-detail-header'>
           <Header as='h1'>Let's get into the details</Header>
         </div>
-        <Segment raised style={{width: '100%', textAlign: 'center'}}>
-          <div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', paddingBottom: '30px', marginTop: '7px'}}>
+        <Segment raised id='create-project-detail-segment'>
+          <div id='create-project-detail-container'>
             <ProjectImage 
               getUploadWidget={this.getUploadWidget} 
               projectImage={this.state.projectImage}

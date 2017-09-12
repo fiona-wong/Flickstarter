@@ -14,11 +14,13 @@ class ProjectStatus extends React.Component {
   render() {
     return (
       <div>
-        <div style={{width: '70%', height: '15%', display: 'flex', flexDirection: 'column', justifyContent: 'left', marginLeft: '15%'}}>
-          <Progress size='small' percent={this.props.funded} indicating style={{marginBottom: '10px'}}/>
+        <div className='project-status-container'>
+          <Progress indicating
+            size='small' 
+            percent={this.props.funded}
+          />
         </div>
-
-        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', textAlign: 'center', color: 'black'}}>
+        <div id='project-statistics-container'>
           <div>
             {this.props.funded}%
             <br />
@@ -39,7 +41,6 @@ class ProjectStatus extends React.Component {
             <br />
             days remaining
           </div>
-
         </div>
       </div>
     );

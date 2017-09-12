@@ -5,12 +5,13 @@ class FeaturedProjectStatus extends React.Component {
   constructor(props) {
     super(props);
   }
+  
   render() {
     return (
-      <div style={{width: '70%', height: '15%', display: 'flex', flexDirection: 'column', justifyContent: 'left', marginLeft: '15%'}}>
-        <Progress size='medium' percent='88' indicating style={{marginBottom: '10px'}}/>
-        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', paddingRight: '2%'}}>
-          <Statistic.Group size='mini' style={{marginBottom: '-3%'}}>
+      <div className='project-status-container'>
+        <Progress id='featured-project-status-bar' size='medium' percent='88' indicating />
+        <div id='featured-project-statistics-container'>
+          <Statistic.Group size='mini'>
             <Statistic>
               <Statistic.Value>88%</Statistic.Value>
               <Statistic.Label>funded</Statistic.Label>
@@ -29,11 +30,12 @@ class FeaturedProjectStatus extends React.Component {
             </Statistic>
           </Statistic.Group>
         </div>
-        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
+        <div id='featured-project-contribute-button-container'>
          <a className="coinbase-button" data-code="2b30a03995ec62f15bdc54e8428caa87" href="https://www.coinbase.com/checkouts/2b30a03995ec62f15bdc54e8428caa87">Donate Bitcoin!</a>
         </div>
       </div>
     );
   }
 }
+
 export default FeaturedProjectStatus;
