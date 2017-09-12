@@ -1,7 +1,9 @@
 import React from 'react';
 import $ from 'jquery';
 import Youtube from 'react-youtube';
-import { Grid, Header, Container, Divider, Icon, Image } from 'semantic-ui-react';
+import { Embed, Label, Grid, Header, Container, Divider, Icon, Image } from 'semantic-ui-react';
+import ProjectCard from './projectCard.jsx';
+import moment from 'moment';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -15,23 +17,17 @@ class Profile extends React.Component {
       about: '',
       linkedin: '',
       personalsite: '',
-      youtube: [],
+      youtubes: [],
       photo: '',
-      totalContributions: null
+      totalContributions: null,
+      projects: []
     };
+    this.daysRemaining = this.daysRemaining.bind(this);
+    this.getVideoId = this.getVideoId.bind(this);
   }
 
   componentDidMount() {
     $.get('/profiles/myprofile', data => {
-      const getVideoId = (url) => {
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        const match = url.match(regExp);
-        if (match && match[2].length === 11) {
-          return match[2];
-        } else {
-          return 'error';
-        }
-      };
 
       this.setState({
         username: data.profile.username,
@@ -42,17 +38,32 @@ class Profile extends React.Component {
         linkedin: data.profile.linkedin,
         personalsite: data.profile.personalsite,
         photo: data.profile.photo,
-        youtube: getVideoId(data.youtubes[0].link)
+        youtubes: data.youtubes,
+        projects: data.projects
       });
     });
   }
 
-
+  getVideoId (url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    if (match && match[2].length === 11) {
+      return match[2];
+    } else {
+      return 'error';
+    }
+  }
+  daysRemaining(project) {
+    let formattedDate = project.goal_deadline.slice(6) + project.goal_deadline.slice(0, 2) + project.goal_deadline.slice(3, 5);
+    let eventDate = moment(formattedDate);
+    let todaysDate = moment();
+    return eventDate.diff(todaysDate, 'days');
+  }
 
 
   render() {
     return (
-      <div className='page-header-padding'>
+      <div className="page-header-padding">
         <Grid centered columns={2}>
           <Grid.Row>
             <Grid.Column width={4}>
@@ -76,12 +87,28 @@ class Profile extends React.Component {
           <Divider/>
           <Grid.Row>
             <Grid.Column>
-              Projects go here
+              <Label as='a' color='teal' ribbon='left'>Projects Created</Label>
+              <Container>
+                {this.state.projects.map((project, index) =>
+                  <ProjectCard
+                    key={index}
+                    project={project}
+                    daysRemaining={this.daysRemaining}
+                  />
+                )}
+              </Container>
             </Grid.Column>
             <Grid.Column>
-              <Youtube
-                videoId={this.state.youtube}
-              />
+              <Label as='a' color='teal' ribbon='right'>Past Work</Label>
+              <Container>
+                {this.state.youtubes.map((youtube, index) =>
+                  <Youtube
+                    key={index}
+                    videoId={this.getVideoId(youtube.link)}
+                    opts={{width: '100%'}}
+                  />
+                )}
+              </Container>
             </Grid.Column>
           </Grid.Row>
         </Grid>

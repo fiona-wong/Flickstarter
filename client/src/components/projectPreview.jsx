@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ProjectStatus from './projectStatus.jsx';
 import moment from 'moment';
+import ProjectCard from './projectCard.jsx';
 
 import { Card, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 
@@ -22,46 +23,15 @@ class ProjectPreview extends React.Component {
     return (
       <div>
         <Grid columns={2} padded>
+
           {this.props.projects.map((project, index) =>
-
-          <Grid.Column key={index}>
-
-            <Card fluid raised>
-
-              <Image src={project.photo_url} />
-
-              <Card.Content >
-
-                <Card.Header>
-                  {project.name}
-                </Card.Header>
-
-                <Card.Meta>
-                  {project.short_description}
-                </Card.Meta>
-
-                <Card.Description>
-                 {project.long_description}
-                </Card.Description>
-
-              </Card.Content>
-
-              <Card.Content extra>
-
-                <ProjectStatus 
-                  name={project.name} 
-                  contributed={project.raised_amount} 
-                  funded={(100 * (project.raised_amount / project.goal_amount)).toString().slice(0, 2)} 
-                  daysRemaining={this.daysRemaining(project)}
-                />
-
-                <a className="coinbase-button" data-code="2b30a03995ec62f15bdc54e8428caa87" href="https://www.coinbase.com/checkouts/2b30a03995ec62f15bdc54e8428caa87">Donate Bitcoin!</a>
-
-              </Card.Content>
-
-            </Card>
-          </Grid.Column>
-        )}
+            <Grid.Column raised key={index}>
+              <ProjectCard
+                project={project}
+                daysRemaining={this.daysRemaining}
+              />
+            </Grid.Column>
+          )}
         </Grid>
       </div>
     );

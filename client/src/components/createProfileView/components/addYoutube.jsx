@@ -7,7 +7,7 @@ const AddYoutube = (props) => (
   <Grid columns={4}>
 
     <Grid.Column width={5}>
-      <Step active={props.youtubeActive} completed={props.youtubeComplete}>
+      <Step onClick={props.handleOnYoutubeClick} active={props.youtubeActive} completed={props.youtubeComplete}>
         <Step.Content>
           <Step.Title>Youtube</Step.Title>
           Show off your past work

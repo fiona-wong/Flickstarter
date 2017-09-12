@@ -8,6 +8,8 @@ import AddDescription from './components/addDescription.jsx';
 import AddWebsites from './components/addWebsite.jsx';
 import AddYoutube from './components/addYoutube.jsx';
 import UploadPhoto from './components/uploadProfilePhoto.jsx';
+import { BrowserRouter as Router, Link, Route, browserHistory } from 'react-router-dom';
+import Profile from '../profile.jsx';
 
 class SetupProfile extends React.Component {
 
@@ -27,6 +29,7 @@ class SetupProfile extends React.Component {
       currentYoutube: '',
       photo: '',
       nameActive: true,
+      nameComplete: false,
       roleActive: false,
       roleComplete: false,
       locationActive: false,
@@ -37,6 +40,7 @@ class SetupProfile extends React.Component {
       webComplete: false,
       youtubeActive: false,
       youtubeComplete: false,
+      photoActive: false,
       readySubmit: false
     };
     this.handleNameSubmit = this.handleNameSubmit.bind(this);
@@ -49,6 +53,13 @@ class SetupProfile extends React.Component {
     this.handleYoutubeSubmit = this.handleYoutubeSubmit.bind(this);
     this.youtubeAdd = this.youtubeAdd.bind(this);
     this.getUploadWidget = this.getUploadWidget.bind(this);
+    this.handleOnLocationClick = this.handleOnLocationClick.bind(this);
+    this.handleOnNameClick = this.handleOnNameClick.bind(this);
+    this.handleOnRoleClick = this.handleOnRoleClick.bind(this);
+    this.handleOnDescriptionClick = this.handleOnDescriptionClick.bind(this);
+    this.handleOnWebsiteClick = this.handleOnWebsiteClick.bind(this);
+    this.handleOnYoutubeClick = this.handleOnYoutubeClick.bind(this);
+    this.handleOnPhotoClick = this.handleOnPhotoClick.bind(this);
   }
 
   componentDidMount () {
@@ -59,6 +70,20 @@ class SetupProfile extends React.Component {
       });
       this.setState({
         roles: options
+      });
+      $.get('/profiles/myprofile', data => {
+        this.setState({
+          username: data.profile.username,
+          first: data.profile.first,
+          last: data.profile.last,
+          location: data.profile.location,
+          about: data.profile.about,
+          linkedin: data.profile.linkedin,
+          personalsite: data.profile.personalsite,
+          photo: data.profile.photo,
+          youtubes: data.youtubes,
+          projects: data.projects
+        });
       });
     });
   }
@@ -73,6 +98,7 @@ class SetupProfile extends React.Component {
       (data) => {
         this.setState({
           nameActive: false,
+          nameComplete: true,
           roleActive: true
         });
       });
@@ -107,6 +133,89 @@ class SetupProfile extends React.Component {
           descriptionActive: true
         });
       });
+  }
+  handleOnLocationClick() {
+    this.setState({
+      locationActive: true,
+      nameActive: false,
+      roleActive: false,
+      descriptionActive: false,
+      webActive: false,
+      photoActive: false,
+      youtubeActive: false
+    });
+  }
+
+  handleOnNameClick() {
+    this.setState({
+      locationActive: false,
+      nameActive: true,
+      roleActive: false,
+      descriptionActive: false,
+      webActive: false,
+      photoActive: false,
+      youtubeActive: false
+    });
+  }
+  handleOnRoleClick() {
+    this.setState({
+      locationActive: false,
+      nameActive: false,
+      roleActive: true,
+      descriptionActive: false,
+      webActive: false,
+      photoActive: false,
+      youtubeActive: false
+    });
+  }
+
+  handleOnDescriptionClick() {
+    this.setState({
+      locationActive: false,
+      nameActive: false,
+      roleActive: false,
+      descriptionActive: true,
+      webActive: false,
+      photoActive: false,
+      youtubeActive: false
+    });
+  }
+
+  handleOnWebsiteClick() {
+    this.setState({
+      locationActive: false,
+      nameActive: false,
+      roleActive: false,
+      descriptionActive: false,
+      webActive: true,
+      photoActive: false,
+      youtubeActive: false
+    });
+  }
+
+  handleOnYoutubeClick() {
+    this.setState({
+      locationActive: false,
+      nameActive: false,
+      roleActive: false,
+      descriptionActive: false,
+      webActive: false,
+      youtubeActive: true,
+      photoActive: false
+    });
+  }
+
+  handleOnPhotoClick() {
+    this.setState({
+      locationActive: false,
+      nameActive: false,
+      roleActive: false,
+      descriptionActive: false,
+      webActive: false,
+      youtubeActive: false,
+      photoActive: true,
+      readySubmit: true
+    });
   }
 
   handleDescription() {
@@ -185,10 +294,14 @@ class SetupProfile extends React.Component {
       <div className='page-header-padding'>
         <Step.Group ordered vertical>
           <EditName
+            first={this.state.first}
+            last={this.state.last}
+            username={this.state.username}
             nameActive={this.state.nameActive}
             roleActive={this.state.roleActive}
             handleNameSubmit={this.handleNameSubmit}
             handleChange={this.handleChange}
+            handleOnNameClick={this.handleOnNameClick}
           />
           <PickRole
             roleComplete={this.state.roleComplete}
@@ -197,41 +310,54 @@ class SetupProfile extends React.Component {
             handleRoleSelect={this.handleRoleSelect}
             saveRoles={this.saveRoles}
             roleComplete={this.state.roleComplete}
+            handleOnRoleClick={this.handleOnRoleClick}
           />
 
           <AddLocation
+            location={this.state.location}
             locationActive={this.state.locationActive}
             handleLocation={this.handleLocation}
             handleChange={this.handleChange}
             locationComplete={this.state.locationComplete}
+            handleOnLocationClick={this.handleOnLocationClick}
           />
 
           <AddDescription
+            about={this.state.about}
             descriptionActive={this.state.descriptionActive}
             handleDescription={this.handleDescription}
             handleChange={this.handleChange}
             descriptionComplete={this.state.descriptionComplete}
+            handleOnDescriptionClick={this.handleOnDescriptionClick}
           />
 
           <AddWebsites
+            linkedin={this.state.linkedin}
+            personal={this.state.personalsite}
             webActive={this.state.webActive}
             handleWebsite={this.handleWebsite}
             handleChange={this.handleChange}
             webComplete={this.state.webComplete}
+            handleOnWebsiteClick={this.handleOnWebsiteClick}
           />
           <AddYoutube
+            youtubes={this.state.youtubes}
             handleChange={this.handleChange}
             handleYoutubeSubmit={this.handleYoutubeSubmit}
             youtubeAdd={this.youtubeAdd}
             youtubeActive={this.state.youtubeActive}
             youtubeComplete={this.state.youtubeComplete}
+            handleOnYoutubeClick={this.handleOnYoutubeClick}
           />
           <UploadPhoto
             photo={this.state.photo}
             photoActive={this.state.photoActive}
             getUploadWidget={this.getUploadWidget}
             readySubmit={this.state.readySubmit}
+            handleOnPhotoClick={this.handleOnPhotoClick}
           />
+          <Button as={Link} to={'/profile'}>Submit</Button>
+          <Route path='/profile' component={Profile} />
         </Step.Group>
       </div>
     );

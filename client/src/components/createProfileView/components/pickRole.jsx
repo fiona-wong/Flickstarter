@@ -5,7 +5,7 @@ import { Container, Grid, Step, Dropdown, Button } from 'semantic-ui-react';
 const PickRole = (props) => (
   <Grid columns={2}>
     <Grid.Column width={5}>
-      <Step active={props.roleActive} completed={props.roleComplete}>
+      <Step onClick={props.handleOnRoleClick} active={props.roleActive} completed={props.roleComplete}>
         <Step.Content>
           <Step.Title>Role</Step.Title>
         What do you do?
