@@ -8,6 +8,8 @@ import AddDescription from './components/addDescription.jsx';
 import AddWebsites from './components/addWebsite.jsx';
 import AddYoutube from './components/addYoutube.jsx';
 import UploadPhoto from './components/uploadProfilePhoto.jsx';
+import { BrowserRouter as Router, Link, Route, browserHistory } from 'react-router-dom';
+import Profile from '../profile.jsx';
 
 class SetupProfile extends React.Component {
 
@@ -354,6 +356,8 @@ class SetupProfile extends React.Component {
             readySubmit={this.state.readySubmit}
             handleOnPhotoClick={this.handleOnPhotoClick}
           />
+          <Button as={Link} to={'/profile'}>Submit</Button>
+          <Route path='/profile' component={Profile} />
         </Step.Group>
       </div>
     );

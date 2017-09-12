@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Youtube from 'react-youtube';
-import { Label, Grid, Header, Container, Divider, Icon, Image } from 'semantic-ui-react';
+import { Embed, Label, Grid, Header, Container, Divider, Icon, Image } from 'semantic-ui-react';
 import ProjectCard from './projectCard.jsx';
 import moment from 'moment';
 
@@ -28,6 +28,7 @@ class Profile extends React.Component {
 
   componentDidMount() {
     $.get('/profiles/myprofile', data => {
+
       this.setState({
         username: data.profile.username,
         first: data.profile.first,
@@ -62,7 +63,7 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div className='page-header-padding'>
+      <div style={{paddingTop: '55px'}}>
         <Grid centered columns={2}>
           <Grid.Row>
             <Grid.Column width={4}>
@@ -101,10 +102,13 @@ class Profile extends React.Component {
               <Label as='a' color='teal' ribbon='right'>Past Work</Label>
               <Container>
                 {this.state.youtubes.map((youtube, index) =>
+
                   <Youtube
                     key={index}
                     videoId={this.getVideoId(youtube.link)}
+                    opts={{width: '100%'}}
                   />
+
                 )}
               </Container>
             </Grid.Column>
