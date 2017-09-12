@@ -9,7 +9,7 @@ class ProjectPreview extends React.Component {
   constructor(props) {
     super(props);
     this.daysRemaining = this.daysRemaining.bind(this);
-  };
+  }
 
   daysRemaining(project) {
     let formattedDate = project.goal_deadline.slice(6) + project.goal_deadline.slice(0, 2) + project.goal_deadline.slice(3, 5);
@@ -56,7 +56,7 @@ class ProjectPreview extends React.Component {
                 />
 
                 <a className="coinbase-button" data-code="2b30a03995ec62f15bdc54e8428caa87" href="https://www.coinbase.com/checkouts/2b30a03995ec62f15bdc54e8428caa87">Donate Bitcoin!</a>
-                
+
               </Card.Content>
 
             </Card>

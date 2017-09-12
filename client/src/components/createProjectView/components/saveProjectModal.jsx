@@ -1,5 +1,5 @@
 import React from 'react';
-import ViewProjects from '../../viewProjects.jsx';
+import Home from '../../home.jsx';
 import { Button, Header, Icon, Modal, Image, List } from 'semantic-ui-react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
@@ -7,10 +7,10 @@ class SaveProjectModal extends React.Component {
   constructor(props) {
     super(props);
     this.commafy = this.commafy.bind(this);
-  };
+  }
 
   commafy(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   render() {
@@ -67,7 +67,7 @@ class SaveProjectModal extends React.Component {
             </Button>
           </Modal.Actions>
         </Modal>
-        <Route path='/viewprojects' component={ViewProjects} />
+        <Route path='/' component={Home} />
       </div>
     );
   }

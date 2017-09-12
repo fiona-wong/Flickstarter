@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+
 import { Grid, Segment, Header, Dropdown } from 'semantic-ui-react';
 import FeaturedProject from './featuredProject.jsx';
 import ProjectPreview from './projectPreview.jsx';
 import Filter from './filter.jsx';
 import SearchInput, { createFilter } from 'react-search-input';
-//import movies from '../../../algolia/records.json';
 
 const KEYS_TO_FILTERS = ['name'];
-
 const colors = ['yellow', 'red', 'blue', 'green', 'black', 'pink', 'grey', 'purple', 'teal', 'orange', 'brown'];
 
 
@@ -28,7 +27,6 @@ class Home extends React.Component {
       method: 'GET',
       url: '/api/projects',
       success: (projectData) => {
-        console.log('ajax DATA', projectData);
         this.setState({
           projects: projectData
         });
@@ -44,7 +42,6 @@ class Home extends React.Component {
   }
 
   getSelected(e, {value}) {
-    console.log('all elements', e, 'selected valllllll', value);
     this.setState({filterTerm: value});
   }
 
@@ -80,8 +77,7 @@ class Home extends React.Component {
                 onChange={this.getSelected.bind(this)}
                 options={tagOptions}
                 selection
-                className='icon'
-                text='Filter Posts' icon='filter' floating labeled button
+                text='Filter Posts' icon='filter' floating labeled button className='icon'
               />
             </div>
           </div>
