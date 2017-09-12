@@ -3,7 +3,11 @@ config/development.json
 config/staging.json
 config/test.json
 config/custom-environment-variables.json
-.idea
+.idea/Flickstarter.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
 
 # OS X
 .DS_Store
