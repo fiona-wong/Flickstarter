@@ -13,7 +13,7 @@ class App extends React.Component {
 
           <div>
 
-            <MenuBar />
+            <MenuBar url={window.location}/>
 
             <Route exact={true} path='/' component={Home} />
 

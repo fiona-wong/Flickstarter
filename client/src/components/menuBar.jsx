@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, Route, browserHistory } from 'react-router-dom';
-import { Dropdown, Image, Menu } from 'semantic-ui-react';
-
+import { Dropdown, Image, Menu, Icon } from 'semantic-ui-react';
 import CreateProject from './createProjectView/createProject.jsx';
 import ExploreProjects from './exploreProjects.jsx';
 import Profile from './profile.jsx';
@@ -14,31 +13,32 @@ class MenuBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeItem: ''
+      activePath: ''
     };
-    this.handleItemClick = this.handleItemClick.bind(this);
   }
 
-  handleItemClick (e, {name}) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      activeItem: name
-    });
+      activePath: nextProps.url.pathname
+    })
   }
 
   render() {
-    const {activeItem} = this.state;
+    const {activePath} = this.state;
     return (
       <div id='body-container'>
         <Menu id='menu-container' pointing secondary fluid fixed='top'>
-          <Menu.Item as={Link} to={'/createproject'} name='Create Project' active={activeItem === 'Create Project'} onClick={this.handleItemClick} style={{marginLeft: '3%'}}/>
-          <Menu.Item as={Link} to={'/exploreprojects'} name='Explore Projects' active={activeItem === 'Explore Projects'} onClick={this.handleItemClick} />
+          <Menu.Item as={Link} to={'/'} className='menu-icon-container' active={activePath === '/'} style={{marginLeft: '3%'}}>
+            <Icon name='home' size='big' />
+          </Menu.Item>
+          <Menu.Item as={Link} to={'/createproject'} name='Create Project' active={activePath === '/createproject'  || activePath.includes('/editproject')} />
+          <Menu.Item as={Link} to={'/exploreprojects'} name='Explore Projects' active={activePath === '/exploreprojects'} />
           <div className='basic-flex-centered-row'>
             <Image height='40' src='http://i.imgur.com/hIjqiJ0.png' />
           </div>
           <Menu.Menu position='right' />
-          <Menu.Item as={Link} to={'/'} name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} style={{marginLeft: '4%'}}/>
-          <Menu.Item as={Link} to={'/messages'} name='Messages' active={activeItem === 'Messages'} onClick={this.handleItemClick} style={{marginLeft: '4%'}}/>
-          <Menu.Item active={activeItem === 'Profile'} style={{marginRight: '3%'}}>
+          <Menu.Item as={Link} to={'/messages'} name='Messages' active={activePath === '/messages'} style={{marginLeft: '7%'}} />
+          <Menu.Item active={activePath === '/profile' || activePath === '/setupprofile'} style={{marginRight: '3%'}}>
             <Dropdown pointing text='Profile'>
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to={'/profile'} name='Profile' onClick={this.handleItemClick}>View Profile</Dropdown.Item>

@@ -94,7 +94,6 @@
 #home-body-container {
   width: 94%;
   margin: 2% 0% 0% 3%;
-  padding-top: 55px;
 }
 
 #landing-flex-centered-column {
@@ -131,6 +130,11 @@
 #menu-container {
   background-color: white;
   opacity: .93;
+}
+
+.menu-icon-container {
+  height: 40px;
+  width: 50px;
 }
 
 .page-header-padding {

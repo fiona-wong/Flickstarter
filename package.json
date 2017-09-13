@@ -7,6 +7,7 @@
     "test": "NODE_ENV=test grunt test",
     "build": "webpack --watch",
     "postinstall": "knex migrate:latest & knex seed:run"
+
   },
   "author": "Hack Reactor",
   "license": "MIT",
