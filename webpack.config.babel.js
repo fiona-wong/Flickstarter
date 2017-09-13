@@ -21,7 +21,7 @@ const config = {
         ]
       },
       {test: /\.css$/,
-        use: 'style-loader!css-loader',
+        use: 'style-loader',
         exclude: ['node_modules']
       },
       {test: /\.(eot|woff|woff2|svg|ttf|png)$/,
