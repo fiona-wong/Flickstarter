@@ -28,6 +28,7 @@ module.exports.getOne = (req, res) => {
 };
 
 module.exports.getOwn = (req, res) => {
+  console.log(req);
   let fullProfile = {};
   models.Profile.where({id: req.user.id}).fetch()
     .then((profile) => {

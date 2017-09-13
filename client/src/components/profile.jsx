@@ -1,9 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
 import Youtube from 'react-youtube';
-import { Label, Grid, Header, Container, Divider, Icon, Image } from 'semantic-ui-react';
+import { Form, TextArea, Modal, Embed, Label, Grid, Header, Container, Divider, Icon, Image, Button } from 'semantic-ui-react';
 import ProjectCard from './projectCard.jsx';
 import moment from 'moment';
+import SendMessage from './sendMessage.jsx';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -20,10 +21,13 @@ class Profile extends React.Component {
       youtubes: [],
       photo: '',
       totalContributions: null,
-      projects: []
+      projects: [],
+      message: ''
     };
     this.daysRemaining = this.daysRemaining.bind(this);
     this.getVideoId = this.getVideoId.bind(this);
+    this.submitMessage = this.submitMessage.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +64,22 @@ class Profile extends React.Component {
     return eventDate.diff(todaysDate, 'days');
   }
 
+  submitMessage(event) {
+    $.post('/api/messages/send',
+      {receiver: this.state.username,
+        message: this.state.message},
+      data => {
+        console.log('success');
+      }
+    );
+  }
+
+  handleChange(event) {
+    event.preventDefault();
+    this.setState({
+      message: event.target.value
+    });
+  }
 
   render() {
     return (
@@ -68,6 +88,11 @@ class Profile extends React.Component {
           <Grid.Row>
             <Grid.Column width={4}>
               <Image shape="circular" size='medium' src={this.state.photo}/>
+              <SendMessage
+                username={this.state.username}
+                submitMessage={this.submitMessage}
+                handleChange={this.handleChange}
+              />
             </Grid.Column>
             <Grid.Column width={12}>
               <Container>
