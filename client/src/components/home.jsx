@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+
 import $ from 'jquery';
 import { Grid, Segment, Header, Dropdown } from 'semantic-ui-react';
 import SearchInput, { createFilter } from 'react-search-input';
 
 import FeaturedProject from './featuredProject.jsx';
 import ProjectPreview from './projectPreview.jsx';
-import Filter from './filter.jsx';
 import Footer from './footer.jsx';
 import Welcome from './welcome.jsx';
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import { Container, Grid, Header, List, Segment } from 'semantic-ui-react';
 

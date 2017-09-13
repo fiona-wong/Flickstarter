@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Card, Image } from 'semantic-ui-react';
+
 import ProjectStatus from './projectStatus.jsx';
-import moment from 'moment';
-import { Card, Grid, Icon, Image, Segment } from 'semantic-ui-react';
+
 
 const ProjectCard = (props) => (
   <Card fluid>

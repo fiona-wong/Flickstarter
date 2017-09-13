@@ -8,5 +8,6 @@ module.exports = {
   messages: require('./messages'),
   userProjectContributions: require('./userProjectContributions'),
   youtubes: require('./youtubes'),
-  editprofile: require('./editprofile')
+  editprofile: require('./editprofile'),
+  allOtherRoutes: require('./routes')
 };

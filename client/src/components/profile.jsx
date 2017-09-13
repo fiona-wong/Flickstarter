@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Youtube from 'react-youtube';
-import { Embed, Label, Grid, Header, Container, Divider, Icon, Image } from 'semantic-ui-react';
+import { Label, Grid, Header, Container, Divider, Icon, Image } from 'semantic-ui-react';
 import ProjectCard from './projectCard.jsx';
 import moment from 'moment';
 

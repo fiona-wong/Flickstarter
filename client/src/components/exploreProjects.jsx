@@ -1,12 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
-
 import { Grid, Segment, Header, Dropdown } from 'semantic-ui-react';
-import FeaturedProject from './featuredProject.jsx';
-import ProjectPreview from './projectPreview.jsx';
-import Filter from './filter.jsx';
 
+import ProjectPreview from './projectPreview.jsx';
 import SearchInput, { createFilter } from 'react-search-input';
 
 const KEYS_TO_FILTERS = ['name'];

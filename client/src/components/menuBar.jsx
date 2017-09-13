@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route, browserHistory } from 'react-router-dom';
-import { Menu, Search, Segment, Dropdown, Image } from 'semantic-ui-react';
+import React from 'react';
+import { Link, Route, browserHistory } from 'react-router-dom';
+import { Dropdown, Image, Menu } from 'semantic-ui-react';
+
 import CreateProject from './createProjectView/createProject.jsx';
 import ExploreProjects from './exploreProjects.jsx';
 import Profile from './profile.jsx';
 import Messages from './messages.jsx';
-import SearchBar from './searchBar.jsx';
 import SetupProfile from './createProfileView/setupProfile.jsx';
 import Home from './home.jsx';
 
@@ -30,7 +30,7 @@ class MenuBar extends React.Component {
       <div id='body-container'>
         <Menu id='menu-container' pointing secondary fluid fixed='top'>
           <Menu.Item as={Link} to={'/createproject'} name='Create Project' active={activeItem === 'Create Project'} onClick={this.handleItemClick} style={{marginLeft: '3%'}}/>
-          <Menu.Item as={Link} to={'/'} name='View Projects' active={activeItem === 'View Projects'} onClick={this.handleItemClick} />
+          <Menu.Item as={Link} to={'/exploreprojects'} name='Explore Projects' active={activeItem === 'Explore Projects'} onClick={this.handleItemClick} />
           <div className='basic-flex-centered-row'>
             <Image height='40' src='http://i.imgur.com/hIjqiJ0.png' />
           </div>
