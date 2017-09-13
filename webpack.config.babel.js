@@ -21,12 +21,13 @@ const config = {
         ]
       },
       {test: /\.css$/,
-        use: 'css-loader',
+        use: 'style-loader!css-loader',
         exclude: ['node_modules']
       },
       {test: /\.(eot|woff|woff2|svg|ttf|png)$/,
         use: 'file-loader',
-        exclude: ['node_modules']}
+        exclude: ['node_modules']
+      }
     ]
   }
 };
