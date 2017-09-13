@@ -8,6 +8,7 @@ import FeaturedProject from './featuredProject.jsx';
 import ProjectPreview from './projectPreview.jsx';
 import Footer from './footer.jsx';
 import Welcome from './welcome.jsx';
+import OverallStats from './overallStats.jsx';
 
 const KEYS_TO_FILTERS = ['name'];
 const colors = ['yellow', 'red', 'blue', 'green', 'black', 'pink', 'grey', 'purple', 'teal', 'orange', 'brown'];
@@ -58,6 +59,8 @@ class Home extends React.Component {
     return (
       <div id='home-body-container'>
         <Welcome />
+        <br/>
+        <OverallStats />
         <Segment>
           <Header id='featured-project-header'> Featured Project </Header>
           <Grid columns={1} padded>
