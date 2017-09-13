@@ -12,6 +12,7 @@ const ProjectDescription = (props) => (
           placeholder='Add your description here...' 
           name='projectDescription'
           onChange={props.handleDescriptionInput}
+          value={props.projectDescription}
         />
       </Form>
       <p> Share your detailed plans with the world. It's up to you to make the case for your project. </p>

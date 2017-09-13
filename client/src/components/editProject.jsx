@@ -2,41 +2,40 @@ import React from 'react';
 import { Header, Button, Segment, Message } from 'semantic-ui-react';
 import $ from 'jquery';
 import moment from 'moment';
-import LandingPage from './components/landingView/landingPage.jsx';
-import ProjectImage from './components/projectImage.jsx';
-import ProjectTitle from './components/projectTitle.jsx';
-import ProjectBlurb from './components/projectBlurb.jsx';
-import ProjectDescription from './components/projectDescription.jsx';
-import ProjectGenre from './components/projectGenre.jsx';
-import ProjectLocation from './components/projectLocation.jsx';
-import ProjectDuration from './components/projectDuration.jsx';
-import ProjectFundingGoal from './components/projectFundingGoal.jsx';
-import SaveProjectModal from './components/saveProjectModal.jsx';
+import LandingPage from './createProjectView/components/landingView/landingPage.jsx';
+import ProjectImage from './createProjectView/components/projectImage.jsx';
+import ProjectTitle from './createProjectView/components/projectTitle.jsx';
+import ProjectBlurb from './createProjectView/components/projectBlurb.jsx';
+import ProjectDescription from './createProjectView/components/projectDescription.jsx';
+import ProjectGenre from './createProjectView/components/projectGenre.jsx';
+import ProjectLocation from './createProjectView/components/projectLocation.jsx';
+import ProjectDeadline from './createProjectView/components/projectDeadline.jsx';
+import ProjectFundingGoal from './createProjectView/components/projectFundingGoal.jsx';
+import SaveProjectModal from './createProjectView/components/saveProjectModal.jsx';
 
-class CreateProject extends React.Component {
+class EditProject extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       projectGenre: '',
       projectTitle: '',
       projectLocation: '',
-      projectDuration: '',
+      projectDeadline: '',
       projectBlurb: '',
       projectDescription: '',
       projectFundingGoal: '',
       projectImage: '',
-      projectId: '',
-      currentPage: 'start',
       incompleteField: false,
       saving: false,
       showSaveModal: false
     };
+    
     this.handleGenreSelection = this.handleGenreSelection.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleContinueClick = this.handleContinueClick.bind(this);
     this.getWarningMessage = this.getWarningMessage.bind(this);
     this.getUploadWidget = this.getUploadWidget.bind(this);
     this.handleSaveClick = this.handleSaveClick.bind(this);
+    this.handleEditProjectClick = this.handleEditProjectClick.bind(this);
   };
 
   handleGenreSelection(event, data) {
@@ -54,42 +53,32 @@ class CreateProject extends React.Component {
     });
   }
 
-  handleContinueClick(event) {
-    event.preventDefault();
-    if (this.state.projectGenre !== '' && this.state.projectTitle !== '' && this.state.projectLocation) {
-      this.setState({
-        currentPage: 'details',
-        incompleteField: false
-      });
-    } else {
-      this.setState({
-        incompleteField: true
-      });
-    }
+  handleEditProjectClick() {
+    this.setState({
+      showSaveModal: false
+    });
   }
 
   handleSaveClick(event) {
     event.preventDefault();
     let _this = this;
-    if (this.state.projectGenre !== '' && this.state.projectTitle !== '' && this.state.projectLocation !== '' && this.state.projectDuration !== '' && this.state.projectBlurb !== '' && this.state.projectDescription !== '' && this.state.projectFundingGoal !== '' && this.state.projectImage !== '') {
+    if (this.state.projectGenre !== '' && this.state.projectTitle !== '' && this.state.projectLocation !== '' && this.state.projectBlurb !== '' && this.state.projectDescription !== '' && this.state.projectFundingGoal !== '' && this.state.projectImage !== '') {
       $.ajax({
-        url: '/projects/new',
-        type: 'POST',
+        url: `/projects/update/${this.props.match.params.id}`,
+        type: 'PUT',
         data: {
           name: this.state.projectTitle, 
-          shortDescription: this.state.projectBlurb,
-          longDescription: this.state.projectDescription,
+          short_description: this.state.projectBlurb,
+          long_description: this.state.projectDescription,
           location: this.state.projectLocation,
-          photoUrl: this.state.projectImage,
-          goalAmount: this.state.projectFundingGoal,
-          goalDeadline: moment().add(this.state.projectDuration, 'days').calendar(),
+          photo_url: this.state.projectImage,
+          goal_amount: this.state.projectFundingGoal,
           genre: this.state.projectGenre
         },
-        success: (data) => {
+        success: () => {
           _this.setState({
             saving: false,
-            showSaveModal: true,
-            projectId: data.id
+            showSaveModal: true
           });
         },
         error: (err) => {
@@ -127,41 +116,56 @@ class CreateProject extends React.Component {
       });
   }
 
-    componentDidUpdate() {
+  componentDidUpdate() {
     if (this.state.incompleteField === true) {
       let element = document.getElementById("saveProjectWarningAlert");
       element.scrollIntoView();
     }
   }
 
+  componentWillMount() {
+    let _this = this;
+    $.ajax({
+      url: `/projects/${_this.props.match.params.id}`,
+      type: 'GET',
+      success: (data) => {
+        _this.setState({
+          projectGenre: data.genre,
+          projectTitle: data.name,
+          projectLocation: data.location,
+          projectDeadline: data.goal_deadline,
+          projectBlurb: data.short_description,
+          projectDescription: data.long_description,
+          projectFundingGoal: data.goal_amount,
+          projectImage: data.photo_url
+        });
+      },
+      error: (err) => {
+        console.log(err.statusText, err);
+      }
+    });
+  }
+
   render() {
     return (
-      this.state.currentPage === 'start' ?
-      <LandingPage 
-        handleGenreSelection={this.handleGenreSelection}
-        handleInputChange={this.handleInputChange}
-        getWarningMessage={this.getWarningMessage}
-        handleContinueClick={this.handleContinueClick}
-        incompleteField={this.state.incompleteField}
-      />
-      :
       <div id='create-project-detail-body'>
         {
           this.state.showSaveModal ? 
           <SaveProjectModal 
+            handleEditProjectClick={this.handleEditProjectClick}
             projectImage={this.state.projectImage} 
             projectTitle={this.state.projectTitle} 
             projectFundingGoal={this.state.projectFundingGoal} 
             projectDescription={this.state.projectDescription} 
             projectBlurb={this.state.projectBlurb} 
-            projectDeadline={moment().add(this.state.projectDuration, 'days').calendar()} 
+            projectDeadline={this.state.projectDeadline} 
             projectLocation={this.state.projectLocation} 
             projectGenre={this.state.projectGenre} 
-            projectId={this.state.projectId}
+            projectId={this.props.match.params.id}
           /> : null
         }
         <div id='create-project-detail-header'>
-          <Header as='h1'>Let's get into the details</Header>
+          <Header as='h1'>Edit your project</Header>
         </div>
         <Segment raised id='create-project-detail-segment'>
           <div id='create-project-detail-container'>
@@ -173,8 +177,14 @@ class CreateProject extends React.Component {
               handleProjectTitleInput={this.handleInputChange} 
               projectTitle={this.state.projectTitle}
             />
-            <ProjectBlurb handleBlurbInput={this.handleInputChange}/>
-            <ProjectDescription handleDescriptionInput={this.handleInputChange}/>
+            <ProjectBlurb 
+              handleBlurbInput={this.handleInputChange}
+              projectBlurb={this.state.projectBlurb}
+            />
+            <ProjectDescription 
+              handleDescriptionInput={this.handleInputChange}
+              projectDescription={this.state.projectDescription}
+            />
             <ProjectGenre 
               handleGenreSelection={this.handleGenreSelection} 
               projectGenre={this.state.projectGenre}
@@ -183,8 +193,13 @@ class CreateProject extends React.Component {
               handleProjectLocationInput={this.handleInputChange} 
               projectLocation={this.state.projectLocation}
             />
-            <ProjectDuration handleProjectDurationInput={this.handleInputChange}/>
-            <ProjectFundingGoal handleFundingGoalInput={this.handleInputChange}/>
+            <ProjectDeadline 
+              projectDeadline={this.state.projectDeadline}
+            />
+            <ProjectFundingGoal 
+              handleFundingGoalInput={this.handleInputChange}
+              projectFundingGoal={this.state.projectFundingGoal}
+            />
           </div>
           {this.state.saving ? <Button loading primary onClick={this.handleSaveClick}>Save</Button> : <Button primary onClick={this.handleSaveClick}>Save</Button>}
           {this.state.incompleteField ? this.getWarningMessage() : null}
@@ -194,4 +209,4 @@ class CreateProject extends React.Component {
   }
 }
 
-export default CreateProject;
+export default EditProject;

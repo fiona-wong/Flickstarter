@@ -1,5 +1,6 @@
 import React from 'react';
 import Home from '../../home.jsx';
+import EditProject from '../../editProject.jsx';
 import { Button, Header, Icon, Modal, Image, List } from 'semantic-ui-react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
@@ -22,7 +23,7 @@ class SaveProjectModal extends React.Component {
             <Image wrapped size='medium' shape='rounded' src={this.props.projectImage}/>
             <Modal.Description>
               <Header>You've created a Flickstarter project. Crowdfunding for {this.props.projectTitle} starts now!</Header>
-              <h5>You can edit your project any time during crowdfunding by navigating to My Projects.</h5>
+              <h5>You can edit your project any time during crowdfunding by navigating to your profile.</h5>
               <List divided relaxed>
                 <List.Item>
                   <List.Header>Title</List.Header>
@@ -45,8 +46,8 @@ class SaveProjectModal extends React.Component {
                   {this.props.projectLocation}
                 </List.Item>
                 <List.Item>
-                  <List.Header>Duration</List.Header>
-                  {this.props.projectDuration} days
+                  <List.Header>Campaign End Date</List.Header>
+                  {this.props.projectDeadline}
                 </List.Item>
                 <List.Item>
                   <List.Header>Funding goal</List.Header>
@@ -59,12 +60,13 @@ class SaveProjectModal extends React.Component {
             <Button as={Link} to={'/'} color='blue' basic>
               <Icon name='home' /> Home
             </Button>
-            <Button color='blue' basic>
-              <Icon name='film' /> View Project
-            </Button>
-            <Button color='blue' basic>
-              <Icon name='edit' /> Edit Project
-            </Button>
+            <Link to={`/editproject/${this.props.projectId}`}>
+              <Button color='blue' basic
+                onClick={this.props.handleEditProjectClick}
+              >
+                <Icon name='edit' /> Edit Project
+              </Button>
+            </Link>
           </Modal.Actions>
         </Modal>
         <Route path='/' component={Home} />

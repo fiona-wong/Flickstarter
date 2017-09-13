@@ -13,6 +13,7 @@ const ProjectFundingGoal = (props) => (
         onChange={props.handleFundingGoalInput}
         label={{ basic: true, content: '$' }}
         labelPosition='left'
+        value={props.projectFundingGoal}
       />
       <p> Funding on Flickstarter is all-or-nothing. If your goal isn’t met, no money will be collected. Your goal should reflect the minimum amount of funds you need to complete your project. </p>
     </div>

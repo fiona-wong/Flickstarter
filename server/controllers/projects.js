@@ -1,4 +1,5 @@
 const models = require('../../db/models');
+
 module.exports.getAll = (req, res) => {
   models.Project.fetchAll()
     .then(projects => {
@@ -11,6 +12,7 @@ module.exports.getAll = (req, res) => {
       res.status(503).send(err);
     });
 };
+
 module.exports.getOne = (req, res) => {
   models.Project.where({id: req.params.id}).fetch()
     .then(project => {
@@ -26,8 +28,8 @@ module.exports.getOne = (req, res) => {
       res.sendStatus(404);
     });
 };
+
 module.exports.create = (req, res) => {
-  console.log(req.body);
   models.Project.forge({
     name: req.body.name,
     short_description: req.body.shortDescription,
@@ -49,24 +51,18 @@ module.exports.create = (req, res) => {
       res.status(500).send(err);
     });
 };
+
 module.exports.update = (req, res) => {
-  models.Project.where({id: req.params.id}).fetch()
-    .then(project => {
-      if (!project) {
-        throw project;
-      }
-      return project.save(req.body, {method: 'update'});
-    })
+  console.log(req.body);
+  models.Project.where({id: req.params.id}).save(req.body, {method: 'update'})
     .then(() => {
-      res.sendStatus(201);
+      res.sendStatus(200).send('project has been updated');
     })
     .error(err => {
       res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
     });
 };
+
 module.exports.deleteOne = (req, res) => {
   models.Project.where({id: req.params.id}).fetch()
     .then(project => {
@@ -85,6 +81,7 @@ module.exports.deleteOne = (req, res) => {
       res.sendStatus(404);
     });
 };
+
 module.exports.upvote = (req, res) => {
   models.Project.where({id: req.body.id}).fetch()
     .then(project => {
@@ -103,6 +100,7 @@ module.exports.upvote = (req, res) => {
       res.sendStatus(404);
     });
 };
+
 module.exports.decrementVoteCount = (req, res) => {
   models.Project.where({id: req.body.id}).fetch()
     .then(project => {

@@ -87,13 +87,17 @@ class Profile extends React.Component {
           <Divider/>
           <Grid.Row>
             <Grid.Column>
-              <Label as='a' color='teal' ribbon='left'>Projects Created</Label>
+              <Label as='a' color='teal' ribbon>Projects Created</Label>
               <Container>
                 {this.state.projects.map((project, index) =>
                   <ProjectCard
                     key={index}
                     project={project}
                     daysRemaining={this.daysRemaining}
+                    profilePage={this.state.first}
+                    creatorName={this.state.first + ' ' + this.state.last}
+                    photo={this.state.photo}
+                    id={project.id}
                   />
                 )}
               </Container>

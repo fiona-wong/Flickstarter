@@ -10,6 +10,7 @@ const ProjectBlurb = (props) => (
       <Input name="projectBlurb" fluid
         onChange={props.handleBlurbInput}
         placeholder='Add your blurb here...'
+        value={props.projectBlurb}
       />
       <p> Give people a sense of what you’re doing. Skip “Help me” and focus on what you’re making. </p>
     </div>

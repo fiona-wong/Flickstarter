@@ -25,7 +25,7 @@ class ProjectPreview extends React.Component {
         <Grid columns={2} padded>
 
           {this.props.projects.map((project, index) =>
-            <Grid.Column raised key={index}>
+            <Grid.Column key={index}>
               <ProjectCard
                 project={project}
                 daysRemaining={this.daysRemaining}

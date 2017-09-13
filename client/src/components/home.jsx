@@ -26,7 +26,7 @@ class Home extends React.Component {
   componentWillMount() {
     $.ajax({
       method: 'GET',
-      url: '/api/projects',
+      url: '/projects',
       success: (projectData) => {
         this.setState({
           projects: projectData

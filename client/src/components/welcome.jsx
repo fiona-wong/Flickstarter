@@ -23,7 +23,7 @@ class Welcome extends React.Component {
             <Container text>
               <Header
                 as='h1'
-                content='FlickStarter'
+                content='Flickstarter'
                 inverted
                 style={{ fontSize: '4em', fontWeight: 'normal', marginBottom: 0, marginTop: 'em' }}
               />

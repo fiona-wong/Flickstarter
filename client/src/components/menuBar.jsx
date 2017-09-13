@@ -8,6 +8,7 @@ import Profile from './profile.jsx';
 import Messages from './messages.jsx';
 import SetupProfile from './createProfileView/setupProfile.jsx';
 import Home from './home.jsx';
+import EditProject from './editProject.jsx';
 
 class MenuBar extends React.Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class MenuBar extends React.Component {
         <Route path='/messages' component={Messages} />
         <Route path='/profile' component={Profile} />
         <Route path='/setupprofile' component={SetupProfile} />
+        <Route path='/editproject/:id' component={EditProject} />
       </div>
     );
   }
