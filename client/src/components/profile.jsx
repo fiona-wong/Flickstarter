@@ -22,7 +22,9 @@ class Profile extends React.Component {
       photo: '',
       totalContributions: null,
       projects: [],
-      message: ''
+      message: '',
+      subject: '',
+      project: ''
     };
     this.daysRemaining = this.daysRemaining.bind(this);
     this.getVideoId = this.getVideoId.bind(this);
@@ -31,8 +33,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    $.get('/profiles/myprofile', data => {
-
+    $.get('/profiles', data => {
       this.setState({
         username: data.profile.username,
         first: data.profile.first,
@@ -65,19 +66,23 @@ class Profile extends React.Component {
   }
 
   submitMessage(event) {
-    $.post('/api/messages/send',
+    console.log(event);
+    $.post('/messages/send',
       {receiver: this.state.username,
-        message: this.state.message},
+        message: this.state.message,
+        subject: this.state.subject,
+        project: this.state.project
+      },
       data => {
         console.log('success');
       }
     );
   }
 
-  handleChange(event) {
+  handleChange(event, data) {
     event.preventDefault();
     this.setState({
-      message: event.target.value
+      [data.name]: data.value
     });
   }
 
@@ -89,6 +94,7 @@ class Profile extends React.Component {
             <Grid.Column width={4}>
               <Image shape="circular" size='medium' src={this.state.photo}/>
               <SendMessage
+                projects={this.state.projects}
                 username={this.state.username}
                 submitMessage={this.submitMessage}
                 handleChange={this.handleChange}

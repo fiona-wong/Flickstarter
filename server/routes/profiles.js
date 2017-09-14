@@ -12,6 +12,6 @@ const ProfileController = require('../controllers/profiles');
 //   .get(ProfileController.getOne)
 //   .put(ProfileController.update);
 //   // .delete(ProfileController.deleteOne)
-router.get('/myprofile', ProfileController.getOwn);
+router.get('/', ProfileController.getOne);
 
 module.exports = router;
