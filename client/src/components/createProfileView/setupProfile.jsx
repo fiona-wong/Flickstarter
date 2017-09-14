@@ -71,7 +71,7 @@ class SetupProfile extends React.Component {
       this.setState({
         roles: options
       });
-      $.get('/profiles/myprofile', data => {
+      $.get('/profiles', data => {
         this.setState({
           username: data.profile.username,
           first: data.profile.first,

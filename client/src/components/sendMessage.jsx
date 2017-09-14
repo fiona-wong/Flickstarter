@@ -13,7 +13,6 @@ const SendMessage = (props) => {
       <Modal.Content>
         <Form onSubmit={props.submitMessage}>
           <Grid columns={2}>
-
             <Grid.Row>
               <Grid.Column>
                 <Input fluid name="subject" onChange={props.handleChange} placeholder="Subject" />
