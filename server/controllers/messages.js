@@ -1,21 +1,31 @@
 const models = require('../../db/models');
 
 module.exports.save = (req, res) => {
-  console.log(req);
-  // models.Message.forge({
-  //   project_id: req.body.projectId,
-  //   sender_id: req.body.senderId,
-  //   receiver_id: req.body.receiverId,
-  //   text: req.body.text,
-  //   viewed: false
-  // })
-  //   .save()
-  //   .then(result => {
-  //     res.status(201).send(result);
-  //   })
-  //   .catch(err => {
-  //     res.status(500).send(err);
-  //   });
+  models.Profile.where({username: req.body.receiver}).fetch({columns: ['id']})
+    .then(profile => {
+      if (!profile) {
+        throw profile;
+      }
+      profile = profile.toJSON();
+      models.Project.where({creator_id: profile.id, name: req.body.project}).fetch({columns: ['id']})
+        .then(project => {
+          project = project.toJSON();
+          models.Message.forge({
+            project_id: project.id,
+            receiver_id: profile.id,
+            sender_id: req.user.id,
+            text: req.body.message,
+            subject: req.body.subject,
+            viewed: false
+          }).save();
+        });
+    })
+    .then(() => {
+      res.status(200).end();
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    });
 };
 
 module.exports.view = (req, res) => {

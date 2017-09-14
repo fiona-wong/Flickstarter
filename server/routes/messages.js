@@ -10,4 +10,7 @@ const MessageController = require('../controllers').Messages;
 //   .get(MessageController.get)
 //   .post(MessageController.view);
 
-router.post('/send', MessageController.save);
+router.route('/send')
+  .post(MessageController.save);
+
+module.exports = router;

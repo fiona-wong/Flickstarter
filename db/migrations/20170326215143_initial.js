@@ -68,6 +68,7 @@ exports.up = function (knex, Promise) {
       table.integer('sender_id').references('profiles.id').onDelete('CASCADE');
       table.integer('receiver_id').references('profiles.id').onDelete('CASCADE');
       table.text('text').notNullable();
+      table.string('subject');
       table.boolean('viewed').notNullable();
       table.timestamp('created_at', true);
     }),
