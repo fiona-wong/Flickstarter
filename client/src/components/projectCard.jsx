@@ -1,11 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Card, Grid, Icon, Image, Segment, Popup, Label } from 'semantic-ui-react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { Card, Icon, Image, Popup } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 import ProjectStatus from './projectStatus.jsx';
-import EditProject from './editProject.jsx';
-import PaymentModal from './paymentModal.jsx';
 import SupportModal from './supportModal.jsx';
 
 
@@ -55,7 +52,7 @@ const ProjectCard = (props) => (
         daysRemaining={props.daysRemaining(props.project)}
       />
 
-      <PaymentModal />
+      <SupportModal />
 
     </Card.Content>
 
