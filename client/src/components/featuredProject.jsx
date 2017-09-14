@@ -12,7 +12,7 @@ class FeaturedProject extends React.Component {
   render() {
     return (
       <Segment raised id='featured-project-segment'>
-        <div id='featured-project-flex-container'>
+        <div className='basic-flex-row'>
           <div id='featured-project-image-container'>
             <Image shape='rounded' src='http://res.cloudinary.com/dyrrwpemp/image/upload/v1504929225/pxmzjibkdn56bcgfmdt9.jpg' size='medium' />
             <div id='featured-project-location-container'>

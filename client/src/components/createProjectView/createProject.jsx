@@ -4,6 +4,7 @@ import $ from 'jquery';
 import moment from 'moment';
 import LandingPage from './components/landingView/landingPage.jsx';
 import ProjectImage from './components/projectImage.jsx';
+import ProjectVideo from './components/projectVideo.jsx';
 import ProjectTitle from './components/projectTitle.jsx';
 import ProjectBlurb from './components/projectBlurb.jsx';
 import ProjectDescription from './components/projectDescription.jsx';
@@ -25,6 +26,7 @@ class CreateProject extends React.Component {
       projectDescription: '',
       projectFundingGoal: '',
       projectImage: '',
+      projectVideo: '',
       projectId: '',
       currentPage: 'start',
       incompleteField: false,
@@ -81,6 +83,7 @@ class CreateProject extends React.Component {
           longDescription: this.state.projectDescription,
           location: this.state.projectLocation,
           photoUrl: this.state.projectImage,
+          videoUrl: this.state.projectVideo,
           goalAmount: this.state.projectFundingGoal,
           goalDeadline: moment().add(this.state.projectDuration, 'days').calendar(),
           genre: this.state.projectGenre
@@ -109,7 +112,7 @@ class CreateProject extends React.Component {
 
   getWarningMessage() {
     return (
-      <div id="saveProjectWarningAlert">
+      <div id="save-project-warning-alert">
         <Message color='red' negative>
           <Message.Header>You must complete each field to continue. </Message.Header>
         </Message>
@@ -129,7 +132,7 @@ class CreateProject extends React.Component {
 
     componentDidUpdate() {
     if (this.state.incompleteField === true) {
-      let element = document.getElementById("saveProjectWarningAlert");
+      let element = document.getElementById("save-project-warning-alert");
       element.scrollIntoView();
     }
   }
@@ -149,7 +152,8 @@ class CreateProject extends React.Component {
         {
           this.state.showSaveModal ? 
           <SaveProjectModal 
-            projectImage={this.state.projectImage} 
+            projectImage={this.state.projectImage}
+            projectVideo={this.state.projectVideo} 
             projectTitle={this.state.projectTitle} 
             projectFundingGoal={this.state.projectFundingGoal} 
             projectDescription={this.state.projectDescription} 
@@ -168,6 +172,10 @@ class CreateProject extends React.Component {
             <ProjectImage 
               getUploadWidget={this.getUploadWidget} 
               projectImage={this.state.projectImage}
+            />
+            <ProjectVideo 
+              handleProjectVideoInput={this.handleInputChange} 
+              projectVideo={this.state.projectVideo}
             />
             <ProjectTitle 
               handleProjectTitleInput={this.handleInputChange} 
