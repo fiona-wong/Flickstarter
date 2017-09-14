@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProjectStatus from './projectStatus.jsx';
-import EditProject from './editProject.jsx';
 import { Card, Grid, Icon, Image, Segment, Popup, Label } from 'semantic-ui-react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+
+import ProjectStatus from './projectStatus.jsx';
+import EditProject from './editProject.jsx';
+import PaymentModal from './paymentModal.jsx';
+import SupportModal from './supportModal.jsx';
+
 
 
 const ProjectCard = (props) => (
@@ -44,14 +48,14 @@ const ProjectCard = (props) => (
 
     <Card.Content extra>
 
-      <ProjectStatus 
-        name={props.project.name} 
-        contributed={props.project.raised_amount} 
-        funded={Math.round(100 * (props.project.raised_amount / props.project.goal_amount)).toString()} 
+      <ProjectStatus
+        name={props.project.name}
+        contributed={props.project.raised_amount}
+        funded={Math.round(100 * (props.project.raised_amount / props.project.goal_amount)).toString()}
         daysRemaining={props.daysRemaining(props.project)}
       />
 
-      <a className="coinbase-button" data-code="2b30a03995ec62f15bdc54e8428caa87" href="https://www.coinbase.com/checkouts/2b30a03995ec62f15bdc54e8428caa87">Donate Bitcoin!</a>
+      <PaymentModal />
 
     </Card.Content>
 
