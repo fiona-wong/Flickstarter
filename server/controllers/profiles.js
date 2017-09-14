@@ -11,23 +11,24 @@ module.exports.getAll = (req, res) => {
     });
 };
 
-module.exports.getOne = (req, res) => {
-  models.Profile.where({ id: req.params.id }).fetch()
-    .then(profile => {
-      if (!profile) {
-        throw profile;
-      }
-      res.status(200).send(profile);
-    })
-    .error(err => {
-      res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
-    });
-};
+// module.exports.getOne = (req, res) => {
+//   models.Profile.where({ id: req.params.id }).fetch()
+//     .then(profile => {
+//       if (!profile) {
+//         throw profile;
+//       }
+//       res.status(200).send(profile);
+//     })
+//     .error(err => {
+//       res.status(500).send(err);
+//     })
+//     .catch(() => {
+//       res.sendStatus(404);
+//     });
+// };
 
-module.exports.getOwn = (req, res) => {
+module.exports.getOne = (req, res) => {
+
   let fullProfile = {};
   models.Profile.where({id: req.user.id}).fetch()
     .then((profile) => {

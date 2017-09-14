@@ -69,12 +69,12 @@ class ExploreProjects extends React.Component {
             </div>
             <div>
 
-        <Dropdown
-          onChange={this.getSelected.bind(this)}
-          options={tagOptions}
-          selection
-          text='Filter Posts' icon='filter' floating labeled button className='icon'
-        />
+              <Dropdown
+                onChange={this.getSelected.bind(this)}
+                options={tagOptions}
+                selection
+                text='Filter Posts' icon='filter' floating labeled button className='icon'
+              />
 
             </div>
           </div>

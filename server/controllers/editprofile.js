@@ -2,7 +2,6 @@ const model = require('../../db/models');
 
 
 module.exports.updateProfile = (req, res) => {
-  console.log(req.body);
   model.Profile.where({id: req.user.id}).save(req.body, {method: 'update'})
     .then((data) => {
       res.status(200).send('profile has been updated');

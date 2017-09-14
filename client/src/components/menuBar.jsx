@@ -20,7 +20,7 @@ class MenuBar extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       activePath: nextProps.url.pathname
-    })
+    });
   }
 
   render() {
@@ -31,7 +31,7 @@ class MenuBar extends React.Component {
           <Menu.Item as={Link} to={'/'} className='menu-icon-container' active={activePath === '/'} style={{marginLeft: '3%'}}>
             <Icon name='home' size='big' />
           </Menu.Item>
-          <Menu.Item as={Link} to={'/createproject'} name='Create Project' active={activePath === '/createproject'  || activePath.includes('/editproject')} />
+          <Menu.Item as={Link} to={'/createproject'} name='Create Project' active={activePath === '/createproject' || activePath.includes('/editproject')} />
           <Menu.Item as={Link} to={'/exploreprojects'} name='Explore Projects' active={activePath === '/exploreprojects'} />
           <div className='basic-flex-centered-row'>
             <Image height='40' src='http://i.imgur.com/hIjqiJ0.png' />
@@ -43,7 +43,7 @@ class MenuBar extends React.Component {
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to={'/profile'} name='Profile' onClick={this.handleItemClick}>View Profile</Dropdown.Item>
                 <Dropdown.Item as={Link} to={'/setupprofile'} name='Profile' onClick={this.handleItemClick}>Edit Profile</Dropdown.Item>
-                <Dropdown.Item as={Link} to={'/profile'}>Log Out</Dropdown.Item>
+                <Dropdown.Item as={Link} to={'/logout'}>Log Out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>

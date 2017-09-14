@@ -1,9 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
 import Youtube from 'react-youtube';
-import { Label, Grid, Header, Container, Divider, Icon, Image } from 'semantic-ui-react';
+import { Form, TextArea, Modal, Embed, Label, Grid, Header, Container, Divider, Icon, Image, Button } from 'semantic-ui-react';
 import ProjectCard from './projectCard.jsx';
 import moment from 'moment';
+import SendMessage from './sendMessage.jsx';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -20,15 +21,19 @@ class Profile extends React.Component {
       youtubes: [],
       photo: '',
       totalContributions: null,
-      projects: []
+      projects: [],
+      message: '',
+      subject: '',
+      project: ''
     };
     this.daysRemaining = this.daysRemaining.bind(this);
     this.getVideoId = this.getVideoId.bind(this);
+    this.submitMessage = this.submitMessage.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    $.get('/profiles/myprofile', data => {
-
+    $.get('/profiles', data => {
       this.setState({
         username: data.profile.username,
         first: data.profile.first,
@@ -60,6 +65,26 @@ class Profile extends React.Component {
     return eventDate.diff(todaysDate, 'days');
   }
 
+  submitMessage(event) {
+    console.log(event);
+    $.post('/messages/send',
+      {receiver: this.state.username,
+        message: this.state.message,
+        subject: this.state.subject,
+        project: this.state.project
+      },
+      data => {
+        console.log('success');
+      }
+    );
+  }
+
+  handleChange(event, data) {
+    event.preventDefault();
+    this.setState({
+      [data.name]: data.value
+    });
+  }
 
   render() {
     return (
@@ -68,6 +93,12 @@ class Profile extends React.Component {
           <Grid.Row>
             <Grid.Column width={4}>
               <Image shape="circular" size='medium' src={this.state.photo}/>
+              <SendMessage
+                projects={this.state.projects}
+                username={this.state.username}
+                submitMessage={this.submitMessage}
+                handleChange={this.handleChange}
+              />
             </Grid.Column>
             <Grid.Column width={12}>
               <Container>
