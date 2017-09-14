@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Card, Icon, Image, Popup } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 

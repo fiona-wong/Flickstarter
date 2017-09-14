@@ -20,7 +20,7 @@ const SupportModal = () => (
     </Modal>
 
     <Modal dimmer='blurring' trigger={<Button color='blue'>Support</Button>}>
-      <Modal.Header>Select a Photo</Modal.Header>
+      <Modal.Header>Support Project</Modal.Header>
       <Modal.Content>
         <Popup
           trigger={<Button color='red' content='Contact Creator' />}

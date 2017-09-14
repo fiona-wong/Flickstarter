@@ -1,8 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {Image, Segment, Icon, Header} from 'semantic-ui-react';
-
 import FeaturedProjectStatus from './featuredProjectStatus.jsx';
-
 
 class FeaturedProject extends React.Component {
   constructor(props) {

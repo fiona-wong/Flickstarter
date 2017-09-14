@@ -12,10 +12,10 @@ class OverallStats extends React.Component {
       <div>
         <div className='project-status-container'>
           <Segment inverted>
-            <Statistic inverted color='red' value='$75487' label='total dollars raised' />
+            <Statistic inverted color='red' value='$7487' label='total dollars raised' />
             <Statistic inverted color='yellow' value='3095' label='total BTC raised' />
-            <Statistic inverted color='green' value='15623' label='backers' />
-            <Statistic inverted color='teal' value='63404' label='projects' />
+            <Statistic inverted color='green' value='6523' label='backers' />
+            <Statistic inverted color='teal' value='1304' label='projects' />
           </Segment>
         </div>
       </div>
