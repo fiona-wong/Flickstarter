@@ -1,45 +1,36 @@
 import React from 'react';
-import { Button, Container, Header, Icon, Segment, Visibility } from 'semantic-ui-react';
+
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/main.css'
+import 'react-responsive-carousel/lib/styles/carousel.css'
 
 
 class Welcome extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
   }
 
   render() {
     return (
       <div>
-        <Visibility>
-          <Segment
-            inverted
-            textAlign='center'
-            style={{ minHeight: 400, padding: '1em 1em' }}
-            vertical
-          >
-            <Container text>
-              <Header
-                as='h1'
-                content='Flickstarter'
-                inverted
-                style={{ fontSize: '4em', fontWeight: 'normal', marginBottom: 0, marginTop: 'em' }}
-              />
-              <Header
-                as='h2'
-                content='Connecting independent filmmakers with funding & talent.'
-                inverted
-                style={{ fontSize: '1.7em', fontWeight: 'normal' }}
-              />
-              <Button primary size='huge'>
-                Get Started
-                <Icon name='right arrow' />
-              </Button>
-            </Container>
-          </Segment>
-        </Visibility>
+        <Carousel axis="horizontal" showArrows={true} dynamicHeight emulateTouch>
+          <div>
+            <img src="https://news.thefilmlocations.com/wp-content/uploads/2014/10/Director_of_Photography_for_IMAX%C2%AE_3D_movie_Hidden_Universe_Malcolm_Ludgate_filming.jpg" />
+            <p className="legend">Legend 1</p>
+          </div>
+          <div>
+            <img src="http://www2.pictures.zimbio.com/fp/Natasha+Henstridge+Shooting+Movie+Scene+Beach+8t0d0Kagdc6x.jpg" />
+            <p className="legend">Legend 2</p>
+          </div>
+          <div>
+            <img src="http://www.osoyoostimes.com/wp-content/uploads/2014/07/movie_w.jpg" />
+            <p className="legend">Legend 3</p>
+          </div>
+          <div>
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/07/1b/68/37/set-in-paris-movie-tours.jpg" />
+            <p className="legend">Legend 4</p>
+          </div>
+        </Carousel>
       </div>
     );
   }

@@ -1,10 +1,8 @@
 import webpack from 'webpack';
 import path from 'path';
 const cssLoader = require('css-loader');
-<<<<<<< HEAD
 const styleLoader = require('style-loader');
-=======
->>>>>>> Configures style and css loaders in webpack config
+
 
 const config = {
   entry: './client/src/index',
@@ -26,12 +24,7 @@ const config = {
         ]
       },
       {test: /\.css$/,
-<<<<<<< HEAD
-        loaders: ['style-loader', 'css-loader']
-=======
         loaders: ['style-loader', 'css-loader'],
-        exclude: ['node_modules']
->>>>>>> Configures style and css loaders in webpack config
       },
       {test: /\.(eot|woff|woff2|svg|ttf|png)$/,
         use: 'file-loader',
