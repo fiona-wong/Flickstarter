@@ -104,7 +104,7 @@ class Profile extends React.Component {
                   <Header as="h2" textAlign="left" >{this.state.first + ' ' + this.state.last}</Header>
                   <Icon name="marker"/>{this.state.location}
                   <br/>
-                  <a href={this.state.linkedin}>LinkedIn</a> | <a href={this.state.personalsite}>Personal Website</a>
+                  <a target="_blank" href={this.state.linkedin}>LinkedIn</a> | <a target="_blank" href={this.state.personalsite}>Personal Website</a>
                   <br/><br/>
                 </Container>
                 <Container>
