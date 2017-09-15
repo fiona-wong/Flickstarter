@@ -6,6 +6,7 @@ import ProjectCard from './projectCard.jsx';
 import moment from 'moment';
 import SendMessage from './sendMessage.jsx';
 
+
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +25,8 @@ class Profile extends React.Component {
       projects: [],
       message: '',
       subject: '',
-      project: ''
+      project: '',
+      fullProfile: {}
     };
     this.getVideoId = this.getVideoId.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
@@ -32,7 +34,9 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    $.get('/profiles', data => {
+    // if (this.props.match.params.id !== undefined) {
+    $.get('/profile', data => {
+      console.log(data);
       this.setState({
         username: data.profile.username,
         first: data.profile.first,
@@ -43,10 +47,14 @@ class Profile extends React.Component {
         personalsite: data.profile.personalsite,
         photo: data.profile.photo,
         youtubes: data.youtubes,
-        projects: data.projects
+        projects: data.projects,
+        fullProfile: data.profile
       });
     });
   }
+
+
+
 
   getVideoId (url) {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -59,7 +67,6 @@ class Profile extends React.Component {
   }
 
   submitMessage(event) {
-    console.log(event);
     $.post('/messages/send',
       {receiver: this.state.username,
         message: this.state.message,
@@ -120,7 +127,6 @@ class Profile extends React.Component {
                     profilePage={this.state.first}
                     creatorName={this.state.first + ' ' + this.state.last}
                     photo={this.state.photo}
-                    id={project.id}
                   />
                 )}
               </Container>

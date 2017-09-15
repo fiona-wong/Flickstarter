@@ -28,7 +28,31 @@ module.exports.getAll = (req, res) => {
 // };
 
 module.exports.getOne = (req, res) => {
+  let fullProfile = {};
+  console.log(req);
+  models.Profile.where({id: req.params.id}).fetch()
+    .then((profile) => {
+      profile = profile.toJSON();
+      fullProfile.profile = profile;
+      models.Youtube.where({user_id: req.params.id}).fetchAll({columns: ['link']})
+        .then(youtubes => {
+          youtubes = youtubes.toJSON();
+          fullProfile.youtubes = youtubes;
+          models.Project.where({creator_id: req.params.id}).fetchAll()
+            .then(projects => {
+              projects = projects.toJSON();
+              fullProfile.projects = projects;
+              res.status(200).send(fullProfile);
+            });
+        });
+    })
+    .catch(()=> {
+      res.status(500).send('Could not retrieve data');
+    });
+};
 
+
+module.exports.getOwn = (req, res) => {
   let fullProfile = {};
   models.Profile.where({id: req.user.id}).fetch()
     .then((profile) => {

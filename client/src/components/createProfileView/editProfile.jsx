@@ -11,7 +11,7 @@ import UploadPhoto from './components/uploadProfilePhoto.jsx';
 import { BrowserRouter as Router, Link, Route, browserHistory } from 'react-router-dom';
 import Profile from '../profile.jsx';
 
-class SetupProfile extends React.Component {
+class EditProfile extends React.Component {
 
   constructor(props) {
     super(props);
@@ -71,7 +71,7 @@ class SetupProfile extends React.Component {
       this.setState({
         roles: options
       });
-      $.get('/profiles', data => {
+      $.get('/profile', data => {
         this.setState({
           username: data.profile.username,
           first: data.profile.first,
@@ -371,4 +371,4 @@ class SetupProfile extends React.Component {
   }
 }
 
-export default SetupProfile;
+export default EditProfile;
