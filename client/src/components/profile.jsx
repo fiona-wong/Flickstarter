@@ -34,8 +34,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    // if (this.props.match.params.id !== undefined) {
-    $.get('/profile', data => {
+    $.get(this.props.location.pathname, data => {
       console.log(data);
       this.setState({
         username: data.profile.username,

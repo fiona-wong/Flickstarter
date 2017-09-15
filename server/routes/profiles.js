@@ -8,8 +8,8 @@ const ProfileController = require('../controllers/profiles');
 //   // .post(ProfileController.create)
 //
 //
-// router.route('/:id')
-//   .get(ProfileController.getOne)
+
+router.get('/:id', ProfileController.getOne);
 //   .put(ProfileController.update);
 //   // .delete(ProfileController.deleteOne)
 router.get('/', ProfileController.getOwn);

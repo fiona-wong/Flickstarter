@@ -39,11 +39,9 @@ const ProjectCard = (props) => (
 
       <Card.Meta>
         <div style={{display: 'flex', justifyContent: 'left', color: 'black'}}>
-
-          <Image src={props.photo ? (
-            props.photo
-          ) : (props.project.profile.photo)} size="tiny" avatar /><span>By {props.creatorName ? (
-            props.creatorName) : (props.project.profile.display)}</span>
+          <Link to={`/profile/${props.project.profile.id}`}>
+            <Image src={props.project.profile.photo} size="tiny" avatar /><span>By {props.project.profile.display}</span>
+          </Link>
         </div>
       </Card.Meta>
 

@@ -11,25 +11,8 @@ module.exports.getAll = (req, res) => {
     });
 };
 
-// module.exports.getOne = (req, res) => {
-//   models.Profile.where({ id: req.params.id }).fetch()
-//     .then(profile => {
-//       if (!profile) {
-//         throw profile;
-//       }
-//       res.status(200).send(profile);
-//     })
-//     .error(err => {
-//       res.status(500).send(err);
-//     })
-//     .catch(() => {
-//       res.sendStatus(404);
-//     });
-// };
-
 module.exports.getOne = (req, res) => {
   let fullProfile = {};
-  console.log(req);
   models.Profile.where({id: req.params.id}).fetch()
     .then((profile) => {
       profile = profile.toJSON();
@@ -53,6 +36,7 @@ module.exports.getOne = (req, res) => {
 
 
 module.exports.getOwn = (req, res) => {
+  console.log('get own');
   let fullProfile = {};
   models.Profile.where({id: req.user.id}).fetch()
     .then((profile) => {
