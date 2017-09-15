@@ -14,9 +14,21 @@
   display: flex;
 }
 
+.basic-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 #body-container {
   width: 92%;
   margin: 0% 5% 4% 4%;
+}
+
+.card-genre-upvotes {
+  display: flex;
+  justify-content: space-between;;
+  margin-bottom: 20px;
+  color: #626369;
 }
 
 #create-project-detail-body {
@@ -47,15 +59,34 @@
   text-align: center;
 }
 
+.featured-project-container {
+  margin-top: -32px;
+  width: 50%;
+  position: relative;
+}
+
 #featured-project-content-container {
-  margin: 2% 2% 2% 0%;
-  width: 70%;
+  margin: 2% 2% 4% 0%;
+  padding-bottom: 25px;
 }
 
 #featured-project-contribute-button-container {
   display: flex;
-  justify-content: space-evenly; 
-  align-items: center;
+  justify-content: center; 
+  bottom: .8rem;
+  width: 100%;
+  position: absolute;
+}
+
+#featured-project-extras-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8%;
+  margin-right: 2%;
+  margin-bottom: 3%;
+  font-size: 90%;
+  font-weight: bold;
+  width: 100%;
 }
 
 #featured-project-header {
@@ -64,21 +95,23 @@
 }
 
 #featured-project-image-container {
-  width: 30%;
-  margin: 2%;
+  margin: 2% 4% 2% 2%;
 }
 
-#featured-project-location-container {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 1%;
-  margin-right: 2%;
+
+#featured-project-label {
+  z-index: 1;
+  font-size: 1.2rem;
 }
 
 #featured-project-segment {
   height: 96%;
   width: 96%;
   margin: 2%;
+}
+
+.featured-project-stat {
+  margin-right: 4%;
 }
 
 #featured-project-status-bar {
@@ -88,8 +121,15 @@
 #featured-project-statistics-container {
   display: flex; 
   justify-content: space-evenly; 
-  padding-right: 2%;
+  margin-top: 1%;
+  text-align: center;
+  padding-bottom: 20px;
 }
+
+#featured-project-statistics-container h5{
+  margin-bottom: 0%;
+}
+
 
 #home-body-container {
   width: 94%;
@@ -142,6 +182,17 @@
   padding-top: 55px;
 }
 
+.progress-bar-container {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+#project-card-content-container {
+  display: flex;
+  justify-content: space-between;
+  margin: -2px -9px -3% 0%;
+}
+
 .project-detail-item-container {
   width: 98%;
   display: flex;
@@ -168,12 +219,10 @@
 }
 
 .project-status-container {
-  width: 70%;
   height: 15%;
   display: flex;
   flex-direction: column;
   justify-content: left;
-  margin-left: 15%;
 }
 
 #project-statistics-container {
@@ -181,7 +230,8 @@
   justify-content: space-evenly;
   text-align: center;
   color: black;
-  margin-top: -14px;
+  margin-top: -10px;
+  padding-bottom: 10px;
 }
 
 #save-modal-description-container {
@@ -205,6 +255,15 @@
   justify-content: space-between;
   margin-left: 2%;
   margin-right: 2%;
+}
+
+#upvote-button {
+  z-index: 1;
+  position: absolute;
+  right: .4rem;
+  top: .65rem;
+  opacity: 1;
+  color: black;
 }
 
 #video-preview-container {

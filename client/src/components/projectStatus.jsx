@@ -15,30 +15,28 @@ class ProjectStatus extends React.Component {
     return (
       <div>
         <div className='project-status-container'>
-          <Progress indicating
-            size='small' 
-            percent={this.props.funded}
-          />
+          <div className='progress-bar-container'>
+            <Progress indicating
+              size='tiny' 
+              percent={this.props.funded}
+            />
+          </div>
         </div>
         <div id='project-statistics-container'>
           <div>
-            {this.props.funded}%
-            <br />
+            <h5>{this.props.funded}%</h5>
             funded
           </div>
           <div>
-            ${this.commafy(this.props.contributed)}
-            <br />
+            <h5>${this.commafy(this.props.contributed)}</h5>
             contributed
           </div>
           <div>
-            {this.props.contributed / 50}
-            <br />
+            <h5>{this.props.contributed / 50}</h5>
             backers
           </div>
           <div>
-            {this.props.daysRemaining}
-            <br />
+            <h5>{this.props.daysRemaining}</h5>
             days remaining
           </div>
         </div>

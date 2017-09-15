@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Image, Segment, Icon, Header} from 'semantic-ui-react';
+import {Image, Segment, Icon, Header, Label} from 'semantic-ui-react';
 import FeaturedProjectStatus from './featuredProjectStatus.jsx';
+import SupportModal from './supportModal.jsx';
 
 class FeaturedProject extends React.Component {
   constructor(props) {
@@ -11,28 +12,47 @@ class FeaturedProject extends React.Component {
   render() {
     return (
       <Segment raised id='featured-project-segment'>
-        <div className='basic-flex-row'>
-          <div id='featured-project-image-container'>
-            <Image shape='rounded' src='http://res.cloudinary.com/dyrrwpemp/image/upload/v1504929225/pxmzjibkdn56bcgfmdt9.jpg' size='medium' />
-            <div id='featured-project-location-container'>
-              <Header as='h4'>
-              <Icon name="marker" size='mini'/>
-                <Header.Content>
-                  Los Angeles, CA
-                </Header.Content>
-              </Header>
+        <Label 
+          color='teal' 
+          ribbon size='large'
+          id='featured-project-label'
+        >Featured</Label>
+        <div className='basic-flex-centered-row'>
+          <div className='basic-flex-column featured-project-container'>
+            <div id='featured-project-image-container'>
+              <Image fluid
+                shape='rounded' 
+                src='http://freewallpapersstock.com/download/171750/640x480/80235_terminator_arnold_schwarzenegger_gun_3546_2560x1600-640x480-c.jpg' 
+              />
             </div>
           </div>
-          <div id='featured-project-content-container'>
-            <Header as='h2'>Terminator 9: A Love Story
-              <Header.Subheader>
-                Arnold's back... again
-              </Header.Subheader>
-            </Header>
-            <p>After the termination of the Terminator franchise, most people thought they would never again experience the thrill that is Terminator. Worry not - we are bringing it back! Terminator 9 is a classic love story: Cyborg meets lady, romance ensues. We know the world wants - nay - NEEDS this film, and we are fully prepared to create it.</p>
+          <div className='basic-flex-column featured-project-container'>
+            <div id='featured-project-content-container'>
+              <Header as='h2'>Terminator 9: A Love Story
+                <Header.Subheader>
+                  By Abhi Bala
+                </Header.Subheader>
+              </Header>
+              <p>After the termination of the Terminator franchise, most people thought they would never again experience the thrill that is Terminator. Worry not - we are bringing it back! Terminator 9 is a classic love story: Cyborg meets lady, romance ensues. We know the world wants - nay - NEEDS this film, and we are fully prepared to create it.</p>
+              <div id='featured-project-extras-container'>
+                <div className='basic-flex-row'>
+                  <div style={{paddingRight: '20px'}}>
+                    <Icon name="marker" />
+                    Los Angeles, CA
+                  </div>
+                  <div>
+                    <Icon name="tag" />
+                    Romance
+                  </div>
+                </div>
+              </div>
+              <FeaturedProjectStatus />
+            </div>
+            <div id='featured-project-contribute-button-container'>
+              <SupportModal/>
+            </div>
           </div>
         </div>
-        <FeaturedProjectStatus />
       </Segment>
     );
   }

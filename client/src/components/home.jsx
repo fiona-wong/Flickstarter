@@ -1,7 +1,7 @@
 import React from 'react';
 
 import $ from 'jquery';
-import { Grid, Segment, Header, Dropdown } from 'semantic-ui-react';
+import { Grid, Segment, Header, Dropdown, Label } from 'semantic-ui-react';
 import SearchInput, { createFilter } from 'react-search-input';
 
 import FeaturedProject from './featuredProject.jsx';
@@ -47,6 +47,7 @@ class Home extends React.Component {
   render() {
     const tagOptions = this.state.projects.concat({genre: null}).map(project => {
       return {
+        key: Math.random() * 99999,
         text: project.genre,
         value: project.genre,
         label: { color: colors[Math.floor(Math.random() * colors.length)], empty: true, circular: true }
@@ -61,8 +62,7 @@ class Home extends React.Component {
         <Welcome />
         <br/>
         <OverallStats />
-        <Segment>
-          <Header id='featured-project-header'> Featured Project </Header>
+        <Segment style={{paddingTop: '-2%'}}>
           <Grid columns={1} padded>
             <FeaturedProject />
           </Grid>

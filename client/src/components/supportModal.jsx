@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Popup, Button, Container, Header } from 'semantic-ui-react';
 
 const SupportModal = () => (
-  <div>
+  <div className='basic-flex-centered-row'>
     <Modal dimmer='blurring' trigger={<Button color='green'>Donate</Button>}>
       <Modal.Header>Donation Methods</Modal.Header>
       <Modal.Content>
