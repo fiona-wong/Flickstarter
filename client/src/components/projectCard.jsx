@@ -58,7 +58,7 @@ const ProjectCard = (props) => (
 
       <Card.Meta>
         <div style={{display: 'flex', justifyContent: 'left', color: 'black'}}>
-        By {props.creatorName}
+        By <Image src={props.project.profile.photo} size="tiny" avatar /><span>{props.project.profile.display}</span>
         </div>
       </Card.Meta>
 
