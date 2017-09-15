@@ -35,7 +35,6 @@ class Profile extends React.Component {
 
   componentDidMount() {
     $.get(this.props.location.pathname, data => {
-      console.log(data);
       this.setState({
         username: data.profile.username,
         first: data.profile.first,
@@ -126,6 +125,7 @@ class Profile extends React.Component {
                     profilePage={this.state.first}
                     creatorName={this.state.first + ' ' + this.state.last}
                     photo={this.state.photo}
+                    profile={this.state.fullProfile}
                   />
                 )}
               </Container>

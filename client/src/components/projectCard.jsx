@@ -39,9 +39,15 @@ const ProjectCard = (props) => (
 
       <Card.Meta>
         <div style={{display: 'flex', justifyContent: 'left', color: 'black'}}>
-          <Link to={`/profile/${props.project.profile.id}`}>
-            <Image src={props.project.profile.photo} size="tiny" avatar /><span>By {props.project.profile.display}</span>
-          </Link>
+          {props.profilePage ?
+            <div>
+              <Image src={props.photo} size="tiny" avatar /><span>By {props.creatorName}</span>
+            </div> :
+            <div>
+              <Link to={`/profile/${props.project.profile.id}`}>
+                <Image src={props.project.profile.photo} size="tiny" avatar /><span>By {props.project.profile.display}</span>
+              </Link>
+            </div>}
         </div>
       </Card.Meta>
 
