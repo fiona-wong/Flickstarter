@@ -1,7 +1,7 @@
 const models = require('../../db/models');
 
 module.exports.getAll = (req, res) => {
-  models.Project.fetchAll({withRelated:['profile']})
+  models.Project.fetchAll({withRelated: ['profile']})
     .then(projects => {
       if (!projects) {
         throw projects;
