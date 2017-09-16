@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ProjectStatus from './projectStatus.jsx';
 import EditProject from './editProject.jsx';
-import { Container, Card, Grid, Icon, Image, Segment, Popup, Label } from 'semantic-ui-react';
+import { Button, Container, Card, Grid, Icon, Image, Segment, Popup, Label } from 'semantic-ui-react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { getDaysRemaining } from '../helpers.js';
 import Profile from './profile.jsx';
@@ -10,15 +10,37 @@ import Profile from './profile.jsx';
 
 const ProjectCard = (props) => (
   <Card fluid raised>
-
-    <Image src={props.project.photo_url}/>
+    <div>
+      <Popup
+        trigger={
+          <Button circular
+            icon='thumbs outline up'
+            id='upvote-button'
+          />
+        }
+        content='Upvote project'
+        position='left center'
+      />
+      <Image fluid src={props.project.photo_url}/>
+    </div>
 
     <Card.Content >
+      <div className='card-genre-upvotes'>
+        <div>
+          {props.project.genre}
+        </div>
+        <div>
+          <Icon name='thumbs up' /> {props.project.upvote_count}
+        </div>
+      </div>
+
 
       <Card.Header>
         {props.profilePage ?
           <div id='project-card-content-container'>
-            {props.project.name}
+            <Link to={`/project/${props.id}`}>
+              {props.project.name}
+            </Link>
             <Popup
               trigger={
                 <div className='card-title'>
