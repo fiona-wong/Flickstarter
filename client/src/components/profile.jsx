@@ -34,7 +34,8 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    $.get(this.props.location.pathname, data => {
+    $.get(`${this.props.location.pathname}/u`, data => {
+
       this.setState({
         username: data.profile.username,
         first: data.profile.first,
@@ -50,9 +51,6 @@ class Profile extends React.Component {
       });
     });
   }
-
-
-
 
   getVideoId (url) {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;

@@ -71,7 +71,7 @@ class EditProfile extends React.Component {
       this.setState({
         roles: options
       });
-      $.get('/profile', data => {
+      $.get('/profile/u', data => {
         this.setState({
           username: data.profile.username,
           first: data.profile.first,

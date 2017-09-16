@@ -9,9 +9,9 @@ const ProfileController = require('../controllers/profiles');
 //
 //
 
-router.get('/:id', ProfileController.getOne);
+router.get(':id/u', ProfileController.getOne);
 //   .put(ProfileController.update);
 //   // .delete(ProfileController.deleteOne)
-router.get('/', ProfileController.getOwn);
+router.get('/u', ProfileController.getOwn);
 
 module.exports = router;

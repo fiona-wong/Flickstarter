@@ -35,8 +35,7 @@ module.exports.getOne = (req, res) => {
 };
 
 
-module.exports.getOwn = (req, res) => {
-  console.log('get own');
+module.exports.getOwn = (req, res, next) => {
   let fullProfile = {};
   models.Profile.where({id: req.user.id}).fetch()
     .then((profile) => {
