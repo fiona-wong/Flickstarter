@@ -3,6 +3,7 @@ import path from 'path';
 const cssLoader = require('css-loader');
 const styleLoader = require('style-loader');
 
+
 const config = {
   entry: './client/src/index',
   output: {
@@ -23,7 +24,7 @@ const config = {
         ]
       },
       {test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
+        loaders: ['style-loader', 'css-loader'],
       },
       {test: /\.(eot|woff|woff2|svg|ttf|png)$/,
         use: 'file-loader',

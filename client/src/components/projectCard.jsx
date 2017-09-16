@@ -87,7 +87,7 @@ const ProjectCard = (props) => (
         funded={Math.round(100 * (props.project.raised_amount / props.project.goal_amount)).toString()}
         daysRemaining={getDaysRemaining(props.project)}
       />
-      <SupportModal />
+
     </Card.Content>
 
   </Card>

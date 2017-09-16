@@ -1,5 +1,13 @@
 const models = require('../models');
 
+// to import via CSV
+// const Papa = require('papaparse');
+// const { readFileSync } = require('fs');
+// const usersData = Papa.parse(readFileSync('./users.csv');
+// exports.seed = function (knex, Promise) {
+//   return knex('profiles').insert(usersData);
+// }
+
 exports.seed = function (knex, Promise) {
   return knex('profiles').insert([
     {first: 'Easak',
