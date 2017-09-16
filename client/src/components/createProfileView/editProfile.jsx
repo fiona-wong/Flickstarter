@@ -272,27 +272,27 @@ class EditProfile extends React.Component {
   }
   getUploadWidget() {
     let _this = this;
-    cloudinary.openUploadWidget({ 
-      cloud_name: 'dyrrwpemp', 
+    cloudinary.openUploadWidget({
+      cloud_name: 'dyrrwpemp',
       upload_preset: 'us2utltx',
       multiple: false,
       gravity: 'custom',
       cropping: 'server',
       cropping_show_back_button: true,
       cropping_aspect_ratio: 1},
-      function(error, result) {
-        _this.setState({
-          photo: result[0].url
-        });
-        $.post('/editprofile/updateprofile',
-          {photo: _this.state.photo},
-          (data) => {
-            _this.setState({
-              photoActive: false,
-              readySubmit: true
-            });
-          });
+    function(error, result) {
+      _this.setState({
+        photo: result[0].url
       });
+      $.post('/editprofile/updateprofile',
+        {photo: _this.state.photo},
+        (data) => {
+          _this.setState({
+            photoActive: false,
+            readySubmit: true
+          });
+        });
+    });
   }
 
 

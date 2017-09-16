@@ -35,7 +35,6 @@ class Profile extends React.Component {
 
   componentDidMount() {
     $.get(`${this.props.location.pathname}/u`, data => {
-
       this.setState({
         username: data.profile.username,
         first: data.profile.first,
@@ -47,9 +46,32 @@ class Profile extends React.Component {
         photo: data.profile.photo,
         youtubes: data.youtubes,
         projects: data.projects,
-        fullProfile: data.profile
+        fullProfile: data.profile,
+        roles: data.profile.roles
       });
     });
+  }
+
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      $.get(`${this.props.location.pathname}/u`, data => {
+        this.setState({
+          username: data.profile.username,
+          first: data.profile.first,
+          last: data.profile.last,
+          location: data.profile.location,
+          about: data.profile.about,
+          linkedin: data.profile.linkedin,
+          personalsite: data.profile.personalsite,
+          photo: data.profile.photo,
+          youtubes: data.youtubes,
+          projects: data.projects,
+          fullProfile: data.profile,
+          roles: data.profile.roles
+        });
+      });
+    }
   }
 
   getVideoId (url) {
@@ -85,6 +107,7 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="page-header-padding">
+
         <Grid centered columns={2}>
           <Grid.Row>
             <Grid.Column width={4}>
@@ -101,6 +124,10 @@ class Profile extends React.Component {
                 <Container>
                   <Header as="h2" textAlign="left" >{this.state.first + ' ' + this.state.last}</Header>
                   <Icon name="marker"/>{this.state.location}
+                  <br/>
+                  {this.state.roles.map((role, index) => (
+                    <Label key={index}>{role.position}</Label>
+                  ))}
                   <br/>
                   <a target="_blank" href={this.state.linkedin}>LinkedIn</a> | <a target="_blank" href={this.state.personalsite}>Personal Website</a>
                   <br/><br/>

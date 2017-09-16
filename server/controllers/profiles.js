@@ -13,7 +13,7 @@ module.exports.getAll = (req, res) => {
 
 module.exports.getOne = (req, res) => {
   let fullProfile = {};
-  models.Profile.where({id: req.params.id}).fetch()
+  models.Profile.where({id: req.params.id}).fetch({withRelated: ['roles']})
     .then((profile) => {
       profile = profile.toJSON();
       fullProfile.profile = profile;
@@ -37,8 +37,9 @@ module.exports.getOne = (req, res) => {
 
 module.exports.getOwn = (req, res, next) => {
   let fullProfile = {};
-  models.Profile.where({id: req.user.id}).fetch()
+  models.Profile.where({id: req.user.id}).fetch({withRelated: ['roles']})
     .then((profile) => {
+      // console.log(profile)
       profile = profile.toJSON();
       fullProfile.profile = profile;
       models.Youtube.where({user_id: req.user.id}).fetchAll({columns: ['link']})
@@ -51,6 +52,7 @@ module.exports.getOwn = (req, res, next) => {
               fullProfile.projects = projects;
               res.status(200).send(fullProfile);
             });
+
         });
     })
     .catch(()=> {

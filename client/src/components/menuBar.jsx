@@ -54,10 +54,10 @@ class MenuBar extends React.Component {
             name='Create Project'
             active={activePath === '/createproject' || activePath.includes('/editproject')}
           />
-          <Menu.Item 
-            as={Link} 
-            to={'/exploreprojects'} 
-            name='Explore Projects' 
+          <Menu.Item
+            as={Link}
+            to={'/exploreprojects'}
+            name='Explore Projects'
             active={activePath.includes('projects')}
           />
           <div className='basic-flex-centered-row'>
@@ -70,24 +70,24 @@ class MenuBar extends React.Component {
             name='Messages'
             active={activePath === '/messages'}
             style={{marginLeft: '7%'}}
-          /> 
-          <Menu.Item 
-            as={Dropdown} 
-            pointing={true} 
-            text='Profile' 
+          />
+          <Menu.Item
+            as={Dropdown}
+            pointing={true}
+            text='Profile'
             style={this.getStyle()}
           >
-          <Dropdown.Menu >
-            <Dropdown.Item as={Link} to={'/profile'} name='Profile'>View Profile</Dropdown.Item>
-            <Dropdown.Item as={Link} to={'/editprofile'} name='Profile'>Edit Profile</Dropdown.Item>
-            <Dropdown.Item as={Link} to={'/logout'}>Log Out</Dropdown.Item>
-          </Dropdown.Menu>
-        </Menu.Item>
+            <Dropdown.Menu >
+              <Dropdown.Item as={Link} to={'/profile'} name='Profile'>View Profile</Dropdown.Item>
+              <Dropdown.Item as={Link} to={'/editprofile'} name='Profile'>Edit Profile</Dropdown.Item>
+              <Dropdown.Item as={Link} to={'/logout'}>Log Out</Dropdown.Item>
+            </Dropdown.Menu>
+          </Menu.Item>
         </Menu>
         <Route path='/createproject' component={CreateProject} />
         <Route path='/exploreprojects' component={ExploreProjects} />
         <Route path='/messages' component={Messages} />
-        <Route path='/profile' component={Profile} />
+        <Route strict path='/profile' component={Profile} />
         <Route path='/editprofile' component={EditProfile} />
         <Route path='/editproject/:id' component={EditProject} />
         <Route path='/projects/:id' component={ProjectDetails} />
