@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ProjectStatus from './projectStatus.jsx';
-import SupportModal from './supportModal.jsx';
 import EditProject from './editProject.jsx';
-import { Card, Grid, Icon, Image, Segment, Popup, Label, Button } from 'semantic-ui-react';
+import { Button, Container, Card, Grid, Icon, Image, Segment, Popup, Label } from 'semantic-ui-react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { getDaysRemaining } from '../helpers.js';
+import Profile from './profile.jsx';
+
 
 const ProjectCard = (props) => (
   <Card fluid raised>
     <div>
-      <Popup 
+      <Popup
         trigger={
-          <Button circular 
-            icon='thumbs outline up' 
+          <Button circular
+            icon='thumbs outline up'
             id='upvote-button'
           />
         }
@@ -32,6 +33,8 @@ const ProjectCard = (props) => (
           <Icon name='thumbs up' /> {props.project.upvote_count}
         </div>
       </div>
+
+
       <Card.Header>
         {props.profilePage ?
           <div id='project-card-content-container'>
@@ -49,7 +52,7 @@ const ProjectCard = (props) => (
               content='Edit your project'
               position='left center'
             />
-          </div> : 
+          </div> :
           <Link to={`/project/${props.project.id}`}>
             {props.project.name}
           </Link>
@@ -58,7 +61,15 @@ const ProjectCard = (props) => (
 
       <Card.Meta>
         <div style={{display: 'flex', justifyContent: 'left', color: 'black'}}>
-        By {props.creatorName}
+          {props.profilePage ?
+            <div>
+              <Image src={props.photo} size="tiny" avatar /><span>By {props.creatorName}</span>
+            </div> :
+            <div>
+              <Link to={`/profile/${props.project.profile.id}`}>
+                <Image src={props.project.profile.photo} size="tiny" avatar /><span>By {props.project.profile.display}</span>
+              </Link>
+            </div>}
         </div>
       </Card.Meta>
 
@@ -76,9 +87,7 @@ const ProjectCard = (props) => (
         funded={Math.round(100 * (props.project.raised_amount / props.project.goal_amount)).toString()}
         daysRemaining={getDaysRemaining(props.project)}
       />
-      
       <SupportModal />
-
     </Card.Content>
 
   </Card>

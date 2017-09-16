@@ -28,7 +28,6 @@ class Home extends React.Component {
       method: 'GET',
       url: '/projects',
       success: (projectData) => {
-        console.log(projectData);
         this.setState({
           projects: projectData
         });

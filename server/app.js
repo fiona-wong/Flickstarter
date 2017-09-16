@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', routes.auth);
 app.use('/api', routes.api);
-app.use('/profiles', routes.profiles);
+app.use('/profile', routes.profiles);
 app.use('/editprofile', routes.editprofile);
 app.use('/projects', routes.projects);
 app.use('/messages', routes.messages);

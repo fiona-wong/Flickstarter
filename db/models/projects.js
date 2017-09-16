@@ -3,7 +3,7 @@ const db = require('../');
 const Project = db.Model.extend({
   tableName: 'projects',
   profile: function() {
-    return this.belongsTo('Profile');
+    return this.belongsTo('Profile', 'creator_id');
   },
   genres: function() {
     return this.hasMany('Genre');

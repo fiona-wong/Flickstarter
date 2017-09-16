@@ -6,6 +6,7 @@ import ProjectCard from './projectCard.jsx';
 import moment from 'moment';
 import SendMessage from './sendMessage.jsx';
 
+
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +25,8 @@ class Profile extends React.Component {
       projects: [],
       message: '',
       subject: '',
-      project: ''
+      project: '',
+      fullProfile: {}
     };
     this.getVideoId = this.getVideoId.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
@@ -32,7 +34,8 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    $.get('/profiles', data => {
+    $.get(`${this.props.location.pathname}/u`, data => {
+
       this.setState({
         username: data.profile.username,
         first: data.profile.first,
@@ -43,7 +46,8 @@ class Profile extends React.Component {
         personalsite: data.profile.personalsite,
         photo: data.profile.photo,
         youtubes: data.youtubes,
-        projects: data.projects
+        projects: data.projects,
+        fullProfile: data.profile
       });
     });
   }
@@ -59,7 +63,6 @@ class Profile extends React.Component {
   }
 
   submitMessage(event) {
-    console.log(event);
     $.post('/messages/send',
       {receiver: this.state.username,
         message: this.state.message,
@@ -99,7 +102,7 @@ class Profile extends React.Component {
                   <Header as="h2" textAlign="left" >{this.state.first + ' ' + this.state.last}</Header>
                   <Icon name="marker"/>{this.state.location}
                   <br/>
-                  <a href={this.state.linkedin}>LinkedIn</a> | <a href={this.state.personalsite}>Personal Website</a>
+                  <a target="_blank" href={this.state.linkedin}>LinkedIn</a> | <a target="_blank" href={this.state.personalsite}>Personal Website</a>
                   <br/><br/>
                 </Container>
                 <Container>
@@ -120,7 +123,7 @@ class Profile extends React.Component {
                     profilePage={this.state.first}
                     creatorName={this.state.first + ' ' + this.state.last}
                     photo={this.state.photo}
-                    id={project.id}
+                    profile={this.state.fullProfile}
                   />
                 )}
               </Container>

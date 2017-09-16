@@ -1,5 +1,6 @@
 const models = require('../models');
 
+
 exports.seed = function (knex, Promise) {
   return models.Message.where({ sender_id: 1, project_id: 1, receiver_id: 2 }).fetch()
     .then((sender_id) => {
