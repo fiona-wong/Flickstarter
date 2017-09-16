@@ -87,9 +87,7 @@ const ProjectCard = (props) => (
         funded={Math.round(100 * (props.project.raised_amount / props.project.goal_amount)).toString()}
         daysRemaining={getDaysRemaining(props.project)}
       />
-
-      <a className="coinbase-button" data-code="2b30a03995ec62f15bdc54e8428caa87" href="https://www.coinbase.com/checkouts/2b30a03995ec62f15bdc54e8428caa87">Donate Bitcoin!</a>
-
+      <SupportModal />
     </Card.Content>
 
   </Card>
