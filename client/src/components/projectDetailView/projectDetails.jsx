@@ -7,7 +7,7 @@ import {commafy, getDaysRemaining} from '../../helpers.js';
 import ProjectDetailHeader from './components/projectDetailHeader.jsx';
 import ProjectDetailVideo from './components/projectDetailVideo.jsx';
 import ProjectDetailStatus from './components/projectDetailStatus.jsx';
-import SupportModal from '../supportModal.jsx'
+import SupportModal from '../supportModal.jsx';
 
 
 class ProjectDetails extends React.Component {
@@ -73,16 +73,15 @@ class ProjectDetails extends React.Component {
               <h2> About this project </h2>
               {this.state.project.long_description}
             </div>
-<<<<<<< HEAD
             <Divider horizontal />
             {this.state.openRoles.length > 0 ?
               <div className='project-detail-about' >
                 <h2> Open roles </h2>
-                {this.state.openRoles.map((role, index) => 
+                {this.state.openRoles.map((role, index) =>
                   <Label key={index}>{role}</Label>
                 )}
                 <br/>
-                Contact 
+                Contact
                 <Link to={`/profile/${this.state.project.profile.id}`}>
                   {' ' + this.state.project.profile.display + ' '}
                 </Link>
@@ -90,9 +89,7 @@ class ProjectDetails extends React.Component {
               </div> : null
             }
             <Divider horizontal />
-=======
             <SupportModal />
->>>>>>> Adds dropdown to payment button for support modal
           </Segment>
         </div>
       </div>
