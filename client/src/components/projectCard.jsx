@@ -36,7 +36,7 @@ const ProjectCard = (props) => (
 
 
       <Card.Header>
-        {props.profilePage ?
+        {props.pathName === '/profile' ?
           <div id='project-card-content-container'>
             <Link to={`/projects/${props.id}`}>
               <p>{props.project.name}</p>

@@ -145,6 +145,7 @@ class Profile extends React.Component {
               <Container>
                 {this.state.projects.map((project, index) =>
                   <ProjectCard
+                    pathName={this.props.location.pathname}
                     key={index}
                     project={project}
                     profilePage={this.state.first}
