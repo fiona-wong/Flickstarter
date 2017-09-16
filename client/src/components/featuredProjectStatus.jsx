@@ -1,6 +1,5 @@
 import React from 'react';
 import {Statistic, Progress} from 'semantic-ui-react';
-import css from '../css/featuredProjectStatus.css'
 
 class FeaturedProjectStatus extends React.Component {
   constructor(props) {

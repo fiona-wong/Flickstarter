@@ -26,7 +26,6 @@ class Profile extends React.Component {
       subject: '',
       project: ''
     };
-    this.daysRemaining = this.daysRemaining.bind(this);
     this.getVideoId = this.getVideoId.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -57,12 +56,6 @@ class Profile extends React.Component {
     } else {
       return 'error';
     }
-  }
-  daysRemaining(project) {
-    let formattedDate = project.goal_deadline.slice(6) + project.goal_deadline.slice(0, 2) + project.goal_deadline.slice(3, 5);
-    let eventDate = moment(formattedDate);
-    let todaysDate = moment();
-    return eventDate.diff(todaysDate, 'days');
   }
 
   submitMessage(event) {
@@ -124,7 +117,6 @@ class Profile extends React.Component {
                   <ProjectCard
                     key={index}
                     project={project}
-                    daysRemaining={this.daysRemaining}
                     profilePage={this.state.first}
                     creatorName={this.state.first + ' ' + this.state.last}
                     photo={this.state.photo}

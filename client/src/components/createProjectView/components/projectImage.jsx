@@ -12,7 +12,7 @@ const ProjectImage = (props) => (
         <Image src={props.projectImage} size='medium' shape='rounded'/>
       </div>
       <ImageUploader getUploadWidget={props.getUploadWidget}/>
-      <p> This is the first thing that people will see when they come across your project. Choose an image that’s crisp and text-free. </p>
+      <p> This is the first thing that people will see when they come across your project. Choose an image that’s crisp and text-free. Images must have dimensions of 8 x 6. Ideal image size is 640 x 480 pixels. </p>
     </div>
   </div>
 );

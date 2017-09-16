@@ -3,7 +3,6 @@ import React from 'react';
 import $ from 'jquery';
 import { Grid, Segment, Header, Dropdown, Label } from 'semantic-ui-react';
 import SearchInput, { createFilter } from 'react-search-input';
-
 import FeaturedProject from './featuredProject.jsx';
 import ProjectPreview from './projectPreview.jsx';
 import Footer from './footer.jsx';

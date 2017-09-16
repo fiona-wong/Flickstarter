@@ -5,7 +5,7 @@ import SupportModal from './supportModal.jsx';
 import EditProject from './editProject.jsx';
 import { Card, Grid, Icon, Image, Segment, Popup, Label, Button } from 'semantic-ui-react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-
+import { getDaysRemaining } from '../helpers.js';
 
 const ProjectCard = (props) => (
   <Card fluid raised>
@@ -35,17 +35,24 @@ const ProjectCard = (props) => (
       <Card.Header>
         {props.profilePage ?
           <div id='project-card-content-container'>
-            {props.project.name}
+            <Link to={`/project/${props.id}`}>
+              {props.project.name}
+            </Link>
             <Popup
               trigger={
-                <Link to={`/editproject/${props.id}`}>
-                  <Icon name='edit' circular inverted color='teal'/>
-                </Link>
+                <div className='card-title'>
+                  <Link to={`/editproject/${props.id}`}>
+                    <Icon name='edit' circular inverted color='teal'/>
+                  </Link>
+                </div>
               }
               content='Edit your project'
               position='left center'
             />
-          </div> : props.project.name
+          </div> : 
+          <Link to={`/project/${props.project.id}`}>
+            {props.project.name}
+          </Link>
         }
       </Card.Header>
 
@@ -67,7 +74,7 @@ const ProjectCard = (props) => (
         name={props.project.name}
         contributed={props.project.raised_amount}
         funded={Math.round(100 * (props.project.raised_amount / props.project.goal_amount)).toString()}
-        daysRemaining={props.daysRemaining(props.project)}
+        daysRemaining={getDaysRemaining(props.project)}
       />
       
       <SupportModal />

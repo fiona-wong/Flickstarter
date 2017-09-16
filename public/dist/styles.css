@@ -19,7 +19,7 @@
   flex-direction: column;
 }
 
-#body-container {
+.body-container {
   width: 92%;
   margin: 0% 5% 4% 4%;
 }
@@ -29,6 +29,10 @@
   justify-content: space-between;;
   margin-bottom: 20px;
   color: #626369;
+}
+
+.card-title a{
+  color: #353535;
 }
 
 #create-project-detail-body {
@@ -137,6 +141,11 @@
   padding-top: 10px;
 }
 
+.iFrame {
+  width: 100%;
+  height: 100%;
+}
+
 #landing-flex-centered-column {
   display: flex;
   flex-direction: column;
@@ -170,7 +179,6 @@
 
 #menu-container {
   background-color: white;
-  opacity: .93;
 }
 
 .menu-icon-container {

@@ -8,6 +8,7 @@ import Messages from './messages.jsx';
 import SetupProfile from './createProfileView/setupProfile.jsx';
 import Home from './home.jsx';
 import EditProject from './editProject.jsx';
+import ProjectDetails from './projectDetailView/projectDetails.jsx';
 
 class MenuBar extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class MenuBar extends React.Component {
   render() {
     const {activePath} = this.state;
     return (
-      <div id='body-container'>
+      <div className='body-container'>
         <Menu id='menu-container' pointing secondary fluid fixed='top'>
           <Menu.Item 
             as={Link} 
@@ -106,6 +107,7 @@ class MenuBar extends React.Component {
         <Route path='/profile' component={Profile} />
         <Route path='/setupprofile' component={SetupProfile} />
         <Route path='/editproject/:id' component={EditProject} />
+        <Route path='/project/:id' component={ProjectDetails} />
       </div>
     );
   }

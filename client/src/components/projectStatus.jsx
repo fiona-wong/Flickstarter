@@ -1,14 +1,10 @@
 import React from 'react';
 import {Statistic, Progress} from 'semantic-ui-react';
+import {commafy} from '../helpers.js';
 
 class ProjectStatus extends React.Component {
   constructor(props) {
     super(props);
-    this.commafy = this.commafy.bind(this);
-  }
-
-  commafy(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   render() {
@@ -28,7 +24,7 @@ class ProjectStatus extends React.Component {
             funded
           </div>
           <div>
-            <h5>${this.commafy(this.props.contributed)}</h5>
+            <h5>${commafy(this.props.contributed)}</h5>
             contributed
           </div>
           <div>

@@ -9,7 +9,7 @@ import MenuBar from './components/menuBar.jsx';
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div >
         <Router>
 
           <div>
