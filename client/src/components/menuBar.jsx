@@ -18,27 +18,14 @@ class MenuBar extends React.Component {
       profileClicked: false
     };
     this.getStyle = this.getStyle.bind(this);
-    this.handleActiveMenuItemStyle = this.handleActiveMenuItemStyle.bind(this);
   }
 
   getStyle() {
     return {
-      borderColor: this.state.profileClicked ? 'black' : null,
-      fontWeight: this.state.profileClicked ? '700' : null,
+      borderColor: this.state.activePath.includes('profile') ? 'black' : null,
+      fontWeight: this.state.activePath.includes('profile') ? '700' : null,
       marginRight: '3%'
     };
-  }
-
-  handleActiveMenuItemStyle(event) {
-    if (event.target.name === 'Profile') {
-      this.setState({
-        profileClicked: true
-      });
-    } else {
-      this.setState({
-        profileClicked: false
-      });
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,7 +45,6 @@ class MenuBar extends React.Component {
             className='menu-icon-container'
             active={activePath === '/'}
             style={{marginLeft: '3%'}}
-            onClick={this.handleActiveMenuItemStyle}
           >
             <Icon name='home' size='big' />
           </Menu.Item>
@@ -67,14 +53,12 @@ class MenuBar extends React.Component {
             to={'/createproject'}
             name='Create Project'
             active={activePath === '/createproject' || activePath.includes('/editproject')}
-            onClick={this.handleActiveMenuItemStyle}
           />
-          <Menu.Item
-            as={Link}
-            to={'/exploreprojects'}
-            name='Explore Projects'
-            active={activePath === '/exploreprojects'}
-            onClick={this.handleActiveMenuItemStyle}
+          <Menu.Item 
+            as={Link} 
+            to={'/exploreprojects'} 
+            name='Explore Projects' 
+            active={activePath.includes('projects')}
           />
           <div className='basic-flex-centered-row'>
             <Image height='40' src='http://i.imgur.com/hIjqiJ0.png' />
@@ -86,20 +70,19 @@ class MenuBar extends React.Component {
             name='Messages'
             active={activePath === '/messages'}
             style={{marginLeft: '7%'}}
-            onClick={this.handleActiveMenuItemStyle}
-          />
-          <Menu.Item
-            as={Dropdown}
-            pointing={true}
-            text='Profile'
+          /> 
+          <Menu.Item 
+            as={Dropdown} 
+            pointing={true} 
+            text='Profile' 
             style={this.getStyle()}
           >
-            <Dropdown.Menu >
-              <Dropdown.Item as={Link} to={'/profile'} name='Profile' onClick={this.handleActiveMenuItemStyle}>View Profile</Dropdown.Item>
-              <Dropdown.Item as={Link} to={'/editprofile'} name='Profile' onClick={this.handleActiveMenuItemStyle}>Edit Profile</Dropdown.Item>
-              <Dropdown.Item as={Link} to={'/logout'}>Log Out</Dropdown.Item>
-            </Dropdown.Menu>
-          </Menu.Item>
+          <Dropdown.Menu >
+            <Dropdown.Item as={Link} to={'/profile'} name='Profile'>View Profile</Dropdown.Item>
+            <Dropdown.Item as={Link} to={'/editprofile'} name='Profile'>Edit Profile</Dropdown.Item>
+            <Dropdown.Item as={Link} to={'/logout'}>Log Out</Dropdown.Item>
+          </Dropdown.Menu>
+        </Menu.Item>
         </Menu>
         <Route path='/createproject' component={CreateProject} />
         <Route path='/exploreprojects' component={ExploreProjects} />
@@ -107,7 +90,7 @@ class MenuBar extends React.Component {
         <Route path='/profile' component={Profile} />
         <Route path='/editprofile' component={EditProfile} />
         <Route path='/editproject/:id' component={EditProject} />
-        <Route path='/project/:id' component={ProjectDetails} />
+        <Route path='/projects/:id' component={ProjectDetails} />
       </div>
     );
   }

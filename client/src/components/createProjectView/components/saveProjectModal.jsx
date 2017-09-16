@@ -33,7 +33,7 @@ class SaveProjectModal extends React.Component {
             <Modal.Content>
               <div className='basic-flex-row' >
                 <div id='save-modal-media-container'>
-                  <Image fluid wrapped 
+                  <Image fluid
                     size='medium' 
                     shape='rounded' 
                     src={this.props.projectImage} 

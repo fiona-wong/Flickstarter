@@ -38,7 +38,7 @@ const ProjectCard = (props) => (
       <Card.Header>
         {props.profilePage ?
           <div id='project-card-content-container'>
-            <Link to={`/project/${props.id}`}>
+            <Link to={`/projects/${props.id}`}>
               {props.project.name}
             </Link>
             <Popup
@@ -52,8 +52,8 @@ const ProjectCard = (props) => (
               content='Edit your project'
               position='left center'
             />
-          </div> :
-          <Link to={`/project/${props.project.id}`}>
+          </div> : 
+          <Link to={`/projects/${props.project.id}`}>
             {props.project.name}
           </Link>
         }
@@ -62,8 +62,9 @@ const ProjectCard = (props) => (
       <Card.Meta>
         <div style={{display: 'flex', justifyContent: 'left', color: 'black'}}>
           {props.profilePage ?
-            <div>
-              <Image src={props.photo} size="tiny" avatar /><span>By {props.creatorName}</span>
+            <div style={{paddingTop: '.5rem'}}>
+              <Image src={props.photo} size="tiny" avatar />
+              <span>By {props.creatorName}</span>
             </div> :
             <div>
               <Link to={`/profile/${props.project.profile.id}`}>

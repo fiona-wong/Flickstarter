@@ -124,6 +124,7 @@ class Profile extends React.Component {
                     creatorName={this.state.first + ' ' + this.state.last}
                     photo={this.state.photo}
                     profile={this.state.fullProfile}
+                    id={project.id}
                   />
                 )}
               </Container>

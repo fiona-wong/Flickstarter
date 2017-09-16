@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Segment, Embed, Progress} from 'semantic-ui-react';
-import Youtube from 'react-youtube';
+import {Segment, Progress, Icon, Divider} from 'semantic-ui-react';
 import $ from 'jquery';
-import {commafy, getDaysRemaining} from '../../helpers.js'; 
+import {commafy, getDaysRemaining} from '../../helpers.js';
+import ProjectDetailHeader from './components/projectDetailHeader.jsx';
+import ProjectDetailVideo from './components/projectDetailVideo.jsx';
+import ProjectDetailStatus from './components/projectDetailStatus.jsx';
 
 class ProjectDetails extends React.Component {
   constructor(props) {
@@ -43,58 +45,27 @@ class ProjectDetails extends React.Component {
     return (
       <div className="page-header-padding">
         <div className='body-container'>
-          <Segment raised>
+          <Segment raised padded>
+            <ProjectDetailHeader 
+              project={this.state.project}
+            />
             <div className='basic-flex-row'>
-              <h1>
-                {this.state.project.name}
-              </h1>
-              <h3>
-                
-              </h3>
+              <ProjectDetailVideo 
+                videoType={this.state.videoType}
+                videoId={this.state.videoId}
+                project={this.state.project}
+              />
+              <ProjectDetailStatus 
+                project={this.state.project}
+                raisedAmount={this.state.raisedAmount}
+                goalAmount={this.state.goalAmount}
+                daysRemaining={this.state.daysRemaining}
+              />
             </div>
-            <div className='basic-flex-row'>
-              <div className='basic-flex-column' style={{width: '65%'}}>
-                {
-                  this.state.videoType === 'vimeo' ?
-                  <Embed
-                    autoplay={false}
-                    brandedUI={true}
-                    color='white'
-                    hd={true}
-                    id={this.state.videoId}
-                    defaultActive={true}
-                    iframe={{
-                      allowFullScreen: true,
-                      style: {
-                        width: '100%',
-                        height: '100%'
-                      },
-                    }}
-                    source='vimeo'
-                  />
-
-                   :
-                  <Youtube
-                    videoId={this.state.videoUrl}
-                    opts={{width: '100%'}}
-                  />                      
-               }
-                
-              </div>
-              <div className='basic-flex-column' style={{width: '35%', paddingLeft: '2%'}}>
-                Project stats go here
-                <Progress id='featured-project-status-bar' size='small' percent={(this.state.project.raised_amount / this.state.project.goal_amount) * 100} indicating />
-                <div>
-                  ${this.state.raisedAmount}
-                  <br /> contributed of ${this.state.goalAmount} goal
-                </div>
-                <div>
-                  20 contributors
-                </div>
-                <div>
-                  {this.state.daysRemaining} days remaining
-                </div>
-              </div>
+            <Divider horizontal />
+            <div className='project-detail-about'>
+              <h2> About this project </h2>
+              {this.state.project.long_description}
             </div>
           </Segment>
         </div>
