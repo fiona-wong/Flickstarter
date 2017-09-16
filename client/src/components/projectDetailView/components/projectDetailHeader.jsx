@@ -1,17 +1,26 @@
 import React from 'react';
 import {Image} from 'semantic-ui-react';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 
 const ProjectDetailHeader = (props) => {
   return (
     <div className='basic-flex-row' style={{marginBottom: '1.4rem'}}>
       <div className='project-detail-creator-container'>
-        <Image shape="circular" size='tiny' src='http://www.iconsdb.com/icons/preview/red/square-xxl.png'/>
+        {props.project.profile ? 
+          <Link to={`/profile/${props.project.profile.id}`}>
+            <Image shape="circular" size='tiny' src={props.project.profile.photo}/> 
+          </Link> : null
+        }
         <div className='project-detail-name-container'> 
           <div className='basic-flex-column' style={{paddingRight: '4px'}}>
             By
           </div>
           <div className='basic-flex-column'>
-            <p style={{fontWeight: 'bold'}}>Creator Name</p>
+          {props.project.profile ? 
+            <Link to={`/profile/${props.project.profile.id}`}>
+              <p>{props.project.profile.display}</p>
+            </Link> : null
+          }
           </div>
         </div>
       </div>
@@ -26,7 +35,7 @@ const ProjectDetailHeader = (props) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default ProjectDetailHeader;

@@ -15,7 +15,7 @@ module.exports.getAll = (req, res) => {
 };
 
 module.exports.getOne = (req, res) => {
-  models.Project.where({id: req.params.id}).fetch()
+  models.Project.where({id: req.params.id}).fetch({withRelated: ['profile']})
     .then(project => {
       if (!project) {
         throw project;

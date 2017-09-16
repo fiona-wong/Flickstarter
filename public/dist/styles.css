@@ -21,7 +21,7 @@
 
 .body-container {
   width: 96%;
-  margin: 0% 2% 4% 2%;
+  margin: 0% 2% 0% 2%;
 }
 
 .card-genre-upvotes {
@@ -205,7 +205,16 @@ h2 {
 #project-card-content-container {
   display: flex;
   justify-content: space-between;
-  margin: -2px -9px -3% 0%;
+  margin: -2px -9px 0 0;
+}
+
+#project-card-content-container p {
+  color: black;
+  font-weight: 500;
+}
+
+#project-card-content-container p :hover {
+  color: #353535;
 }
 
 .project-detail-about h2{
@@ -217,7 +226,7 @@ h2 {
   display: flex;
   flex-direction: column;
   width: 15%;
-  padding-right: 4%;
+  padding-right: 2%;
 }
 
 .project-detail-header {
@@ -252,16 +261,32 @@ h2 {
   padding-left: 15px;
 }
 
+.project-card-name-container {
+  display: flex;
+  justify-content: left;
+  padding-top: 1rem;
+}
+
+.project-card-name-container p {
+  color: black;
+  padding-left: 4px;
+}
+
 .project-detail-name-container {
   display: flex;
   padding-top: 8px;
+}
+
+.project-detail-name-container p {
+  color: black;
+  font-weight: bold;
 }
 
 .project-detail-stats {
   padding-top: 8px;
 }
 
-.project-detail-stats h2{
+.project-detail-stats h2 {
   margin-bottom: 0;
 }
 

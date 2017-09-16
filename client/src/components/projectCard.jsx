@@ -39,7 +39,7 @@ const ProjectCard = (props) => (
         {props.profilePage ?
           <div id='project-card-content-container'>
             <Link to={`/projects/${props.id}`}>
-              {props.project.name}
+              <p>{props.project.name}</p>
             </Link>
             <Popup
               trigger={
@@ -53,34 +53,45 @@ const ProjectCard = (props) => (
               position='left center'
             />
           </div> : 
-          <Link to={`/projects/${props.project.id}`}>
-            {props.project.name}
-          </Link>
+          <div id='project-card-content-container'>
+            <Link to={`/projects/${props.project.id}`}>
+              <p>{props.project.name}</p>
+            </Link>
+          </div>
         }
       </Card.Header>
 
-      <Card.Meta>
-        <div style={{display: 'flex', justifyContent: 'left', color: 'black'}}>
-          {props.profilePage ?
-            <div style={{paddingTop: '.5rem'}}>
-              <Image src={props.photo} size="tiny" avatar />
-              <span>By {props.creatorName}</span>
-            </div> :
-            <div>
-              <Link to={`/profile/${props.project.profile.id}`}>
-                <Image src={props.project.profile.photo} size="tiny" avatar /><span>By {props.project.profile.display}</span>
-              </Link>
-            </div>}
-        </div>
-      </Card.Meta>
-
-      <Card.Description>
+      <Card.Description style={{margin: '0'}}>
         {props.project.short_description}
       </Card.Description>
 
+      <Card.Meta>
+        <div className='project-card-name-container'>
+          {props.profilePage ?
+            <div>
+              <div className='basic-flex-row'>
+                <Image src={props.photo} size="tiny" avatar />
+                By <p>{props.creatorName}</p>
+              </div>
+            </div> :
+            <div className='basic-flex-row'>
+              <Image src={props.project.profile.photo} size="tiny" avatar />
+              <div className='basic-flex-column' style={{margin: '0'}}>
+                By
+              </div>
+              <div className='basic-flex-column'>
+                <Link to={`/profile/${props.project.profile.id}`}>
+                  <p>{props.project.profile.display}</p>
+                </Link>
+              </div>
+            </div>
+          }
+        </div>
+      </Card.Meta>
+
     </Card.Content>
 
-    <Card.Content extra>
+    <Card.Content extra style={{paddingTop: '.5em'}}>
 
       <ProjectStatus
         name={props.project.name}

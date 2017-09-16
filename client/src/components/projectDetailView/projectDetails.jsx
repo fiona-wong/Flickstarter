@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Segment, Progress, Icon, Divider} from 'semantic-ui-react';
 import $ from 'jquery';
 import {commafy, getDaysRemaining} from '../../helpers.js';
