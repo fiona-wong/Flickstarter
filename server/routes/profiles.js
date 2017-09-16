@@ -9,7 +9,7 @@ const ProfileController = require('../controllers/profiles');
 //
 //
 
-router.get(':id/u', ProfileController.getOne);
+router.get('/:id/u', ProfileController.getOne);
 //   .put(ProfileController.update);
 //   // .delete(ProfileController.deleteOne)
 router.get('/u', ProfileController.getOwn);
