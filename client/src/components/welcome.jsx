@@ -16,17 +16,28 @@ class Welcome extends React.Component {
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Carousel axis="horizontal" width='100%' showArrows showThumbs={false} infiniteLoop autoPlay dynamicHeight emulateTouch>
             <div>
-              <Image fluid src="" />
-              <p className="legend">New York City</p>
+              <Image fluid src="http://res.cloudinary.com/dyrrwpemp/image/upload/v1505518690/3_hw6t8f.jpg" />
+              <p className="legend">Albuquerque, New Mexico</p>
             </div>
             <div>
-              <img src="" />
+              <img src="http://res.cloudinary.com/dyrrwpemp/image/upload/v1505518689/5_mk5tbm.jpg" />
               <p className="legend">Los Angeles, California</p>
             </div>
             <div>
-              <img src="" />
-              <p className="legend">Bay Area, California</p>
+              <img src="http://res.cloudinary.com/dyrrwpemp/image/upload/v1505518689/1_jo9krg.jpg" />
+              <p className="legend">New York City</p>
             </div>
+            <div>
+              <img src="http://res.cloudinary.com/dyrrwpemp/image/upload/v1505518689/2_uiv5dv.jpg" />
+              <p className="legend">San Francisco, California</p>
+            </div>
+            <div>
+              <img src="http://res.cloudinary.com/dyrrwpemp/image/upload/v1505518690/4_zgji69.jpg" />
+              <p className="legend">Austin, Texas</p>
+            </div>
+
+
+
           </Carousel>
         </div>
     );
