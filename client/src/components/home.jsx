@@ -56,8 +56,9 @@ class Home extends React.Component {
     filteredMovies = this.state.filterTerm ? this.state.projects.filter(project => project.genre === this.state.filterTerm) : filteredMovies;
 
     return (
+      <div>
+      <div><Welcome /> </div>
       <div id='home-body-container'>
-        <Welcome />
         <OverallStats />
         <Segment style={{paddingTop: '-2%'}}>
           <Grid columns={1} padded>
@@ -82,6 +83,7 @@ class Home extends React.Component {
         </Segment>
         <Footer />
       </div>
+    </div>
     );
   }
 }
