@@ -52,7 +52,7 @@ const ProjectCard = (props) => (
               content='Edit your project'
               position='left center'
             />
-          </div> : 
+          </div> :
           <div id='project-card-content-container'>
             <Link to={`/projects/${props.project.id}`}>
               <p>{props.project.name}</p>
