@@ -3,9 +3,12 @@ import {Segment, Progress, Icon, Divider, Label} from 'semantic-ui-react';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import $ from 'jquery';
 import {commafy, getDaysRemaining} from '../../helpers.js';
+
 import ProjectDetailHeader from './components/projectDetailHeader.jsx';
 import ProjectDetailVideo from './components/projectDetailVideo.jsx';
 import ProjectDetailStatus from './components/projectDetailStatus.jsx';
+import SupportModal from '../supportModal.jsx'
+
 
 class ProjectDetails extends React.Component {
   constructor(props) {
@@ -49,16 +52,16 @@ class ProjectDetails extends React.Component {
       <div className="page-header-padding">
         <div className='body-container'>
           <Segment raised padded>
-            <ProjectDetailHeader 
+            <ProjectDetailHeader
               project={this.state.project}
             />
             <div className='basic-flex-row'>
-              <ProjectDetailVideo 
+              <ProjectDetailVideo
                 videoType={this.state.videoType}
                 videoId={this.state.videoId}
                 project={this.state.project}
               />
-              <ProjectDetailStatus 
+              <ProjectDetailStatus
                 project={this.state.project}
                 raisedAmount={this.state.raisedAmount}
                 goalAmount={this.state.goalAmount}
@@ -70,6 +73,7 @@ class ProjectDetails extends React.Component {
               <h2> About this project </h2>
               {this.state.project.long_description}
             </div>
+<<<<<<< HEAD
             <Divider horizontal />
             {this.state.openRoles.length > 0 ?
               <div className='project-detail-about' >
@@ -86,6 +90,9 @@ class ProjectDetails extends React.Component {
               </div> : null
             }
             <Divider horizontal />
+=======
+            <SupportModal />
+>>>>>>> Adds dropdown to payment button for support modal
           </Segment>
         </div>
       </div>
