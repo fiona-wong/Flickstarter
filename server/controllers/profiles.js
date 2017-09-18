@@ -17,18 +17,26 @@ module.exports.getOne = (req, res) => {
     .then((profile) => {
       profile = profile.toJSON();
       fullProfile.profile = profile;
-      models.Youtube.where({user_id: req.params.id}).fetchAll({columns: ['link']})
+      return models.Youtube.where({user_id: req.params.id}).fetchAll({columns: ['link']})
         .then(youtubes => {
           youtubes = youtubes.toJSON();
           fullProfile.youtubes = youtubes;
-          models.Project.where({creator_id: req.params.id}).fetchAll()
+          return models.Project.where({creator_id: req.params.id}).fetchAll()
             .then(projects => {
               projects = projects.toJSON();
               fullProfile.projects = projects;
-              res.status(200).send(fullProfile);
+              return models.FollowUpvote.where({user_id: req.user.id}).fetchAll()
+            })
+              .then(upvotes => {
+                let upvoteStorage = {};
+                upvotes.forEach(upvote => {
+                  upvoteStorage[upvote.attributes.project_id] = upvote.attributes.project_id;
+                });
+                fullProfile.userUpvotes = upvoteStorage;
+                res.status(200).send(fullProfile);
+              })
             });
-        });
-    })
+        })
     .catch(()=> {
       res.status(500).send('Could not retrieve data');
     });
@@ -50,9 +58,16 @@ module.exports.getOwn = (req, res, next) => {
             .then(projects => {
               projects = projects.toJSON();
               fullProfile.projects = projects;
-              res.status(200).send(fullProfile);
-            });
-
+              return models.FollowUpvote.where({user_id: req.user.id}).fetchAll()
+            })
+              .then(upvotes => {
+                let upvoteStorage = {};
+                upvotes.forEach(upvote => {
+                  upvoteStorage[upvote.attributes.project_id] = upvote.attributes.project_id;
+                });
+                fullProfile.userUpvotes = upvoteStorage;
+                res.status(200).send(fullProfile);
+              })
         });
     })
     .catch(()=> {

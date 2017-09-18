@@ -63,6 +63,14 @@
   text-align: center;
 }
 
+.edit-project-button {
+  z-index: 1;
+  position: absolute;
+  right: .4rem;
+  top: .65rem;
+  opacity: 1;
+}
+
 .featured-project-container {
   margin-top: -32px;
   width: 50%;
@@ -139,9 +147,13 @@ h2 {
 }
 
 #home-body-container {
-  width: 94%;
-  margin: 2% 0% 0% 3%;
+  width: 92%;
+  margin: 2% 0% 0% 4%;
   padding-top: 10px;
+}
+
+i.icon {
+  font-size: 1.3em;
 }
 
 .iFrame {
@@ -213,7 +225,7 @@ h2 {
   font-weight: 500;
 }
 
-#project-card-content-container p :hover {
+#project-card-content-container p:hover {
   color: #353535;
 }
 
@@ -272,6 +284,10 @@ h2 {
   padding-left: 4px;
 }
 
+.project-card-name-container p:hover {
+  color: #353535;
+}
+
 .project-detail-name-container {
   display: flex;
   padding-top: 8px;
@@ -280,6 +296,10 @@ h2 {
 .project-detail-name-container p {
   color: black;
   font-weight: bold;
+}
+
+.project-detail-name-container p:hover {
+  color: #353535;
 }
 
 .project-detail-stats {
@@ -336,12 +356,32 @@ h2 {
 }
 
 #upvote-button {
-  z-index: 1;
-  position: absolute;
-  right: .4rem;
-  top: .65rem;
   opacity: 1;
-  color: black;
+  background: white;
+  margin-top: -19.4%;
+}
+
+#upvote-button:hover{
+  color: #202060;
+}
+
+#upvote-button-clicked {
+  opacity: 1;
+  color: #2185d0;
+  background: white;
+  margin-top: -19.4%;
+}
+
+#upvote-button-clicked:hover {
+  color: #18629a;
+}
+
+#upvote-button.ui.icon.button {
+  padding: .6em .3em .78571429em;
+}
+
+#upvote-button-clicked.ui.icon.button {
+  padding: .6em .3em .78571429em;
 }
 
 #video-preview-container {

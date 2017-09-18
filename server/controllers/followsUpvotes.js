@@ -1,52 +1,39 @@
 const models = require('../../db/models');
+const knex = require('knex')(require('../../knexfile'));
 
 module.exports.upvote = (req, res) => {
-  return models.FollowUpvote.where({
+  models.FollowUpvote.where({
     project_id: req.body.projectId,
-    user_id: req.body.userId,
+    user_id: req.user.id,
     type: 'upvote'
   }).fetch()
     .then(result => {
       if (result) {
         throw result;
       }
-      return models.FollowUpvote.forge({
-        project_id: req.body.projectId,
-        user_id: req.body.userId,
-        type: 'upvote'
+      return knex('projects')
+      .where('id', '=', req.body.projectId)
+      .increment('upvote_count', 1)
+      .then(() => {
+        return models.FollowUpvote.forge({
+          project_id: req.body.projectId,
+          user_id: req.user.id,
+          type: 'upvote'
+        }).save();
       })
-        .save()
-        .then(result => {
-          res.status(201).send(result);
-        })
-        .catch(err => {
-          res.status(500).send(err);
-        });
-    }).end(done);
-};
-
-module.exports.undoUpvote = (req, res) => {
-  models.FollowUpvote.where({
-    project_id: req.body.projectId,
-    user_id: req.body.userId,
-    type: 'upvote'
-  })
-    .fetch()
-    .then(result => {
-      if (!result) {
-        throw result;
-      }
-      return result.destroy();
     })
-    .then(() => {
-      res.sendStatus(200);
-    })
-    .error(err => {
-      res.status(503).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
-    });
+      .then(result => {
+        res.status(201).send(result);
+      })
+      .catch(result => {
+        return result.destroy()
+          .then(() => {
+            return knex('projects')
+            .where('id', '=', req.body.projectId)
+            .decrement('upvote_count', 1)
+            res.sendStatus(200);
+          })
+      });
 };
 
 module.exports.follow = (req, res) => {
@@ -61,30 +48,6 @@ module.exports.follow = (req, res) => {
     })
     .catch(err => {
       res.status(500).send(err);
-    });
-};
-
-module.exports.unfollow = (req, res) => {
-  models.FollowUpvote.where({
-    project_id: req.body.projectId,
-    user_id: req.body.userId,
-    type: 'follow'
-  })
-    .fetch()
-    .then(result => {
-      if (!result) {
-        throw result;
-      }
-      return result.destroy();
-    })
-    .then(() => {
-      res.sendStatus(200);
-    })
-    .error(err => {
-      res.status(503).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
     });
 };
 
@@ -159,7 +122,7 @@ module.exports.getProjectUpvotes = (req, res) => {
 
 module.exports.getUserUpvotes = (req, res) => {
   models.FollowUpvote.where({
-    user_id: req.body.userId,
+    user_id: req.user.id,
     type: 'upvote'
   })
     .fetch()
@@ -171,3 +134,18 @@ module.exports.getUserUpvotes = (req, res) => {
     });
 };
 
+module.exports.userHasUpvoted = (req, res) => {
+  console.log(req.body)
+  models.FollowUpvote.where({
+    user_id: req.user.id,
+    project_id: req.body.id,
+    type: 'upvote'
+  })
+    .fetch()
+    .then(upvotes => {
+      res.status(200).send(upvotes);
+    })
+    .catch(err => {
+      res.status(503).send(err);
+    });
+};

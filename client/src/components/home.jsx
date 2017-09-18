@@ -19,7 +19,8 @@ class Home extends React.Component {
     this.state = {
       projects: [],
       searchTerm: '',
-      filterTerm: null
+      filterTerm: null,
+      userUpvotes: []
     };
   }
 
@@ -28,8 +29,10 @@ class Home extends React.Component {
       method: 'GET',
       url: '/projects',
       success: (projectData) => {
+        console.log(projectData);
         this.setState({
-          projects: projectData
+          projects: projectData.projects,
+          userUpvotes: projectData.userUpvotes
         });
       },
       error: function () {
@@ -79,7 +82,7 @@ class Home extends React.Component {
               />
             </div>
           </div>
-          <ProjectPreview projects={filteredMovies} />
+          <ProjectPreview projects={filteredMovies} userUpvotes={this.state.userUpvotes} />
         </Segment>
         <Footer />
       </div>

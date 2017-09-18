@@ -48,6 +48,7 @@ class Profile extends React.Component {
         projects: data.projects,
         fullProfile: data.profile,
         roles: data.profile.roles
+        userUpvotes: data.userUpvotes
       });
     });
   }
@@ -153,6 +154,7 @@ class Profile extends React.Component {
                     photo={this.state.photo}
                     profile={this.state.fullProfile}
                     id={project.id}
+                    userUpvotes={this.state.userUpvotes}
                   />
                 )}
               </Container>

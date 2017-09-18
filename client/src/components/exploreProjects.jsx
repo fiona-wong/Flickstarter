@@ -16,7 +16,8 @@ class ExploreProjects extends React.Component {
     this.state = {
       projects: [],
       searchTerm: '',
-      filterTerm: null
+      filterTerm: null,
+      userUpvotes: []
     };
   }
 
@@ -26,7 +27,8 @@ class ExploreProjects extends React.Component {
       url: '/projects',
       success: (projectData) => {
         this.setState({
-          projects: projectData
+          projects: projectData.projects,
+          userUpvotes: projectData.userUpvotes
         });
       },
       error: function () {
@@ -78,7 +80,7 @@ class ExploreProjects extends React.Component {
 
             </div>
           </div>
-          <ProjectPreview projects={filteredMovies} />
+          <ProjectPreview projects={filteredMovies} userUpvotes={this.state.userUpvotes}/>
         </Segment>
       </div>
     );

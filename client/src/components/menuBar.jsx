@@ -14,7 +14,7 @@ class MenuBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activePath: '',
+      activePath: '/',
       profileClicked: false
     };
     this.getStyle = this.getStyle.bind(this);

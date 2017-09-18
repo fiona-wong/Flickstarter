@@ -6,7 +6,7 @@ const FollowUpvote = db.Model.extend({
     return this.belongsTo('Project');
   },
   profile: function() {
-    this.belongsTo('Profile');
+    return this.belongsTo('Profile', 'user_id');
   }
 });
 

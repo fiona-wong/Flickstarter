@@ -19,6 +19,7 @@ class ProjectPreview extends React.Component {
             <Grid.Column key={index}>
               <ProjectCard
                 project={project}
+                userUpvotes={this.props.userUpvotes}
               />
             </Grid.Column>
           )}

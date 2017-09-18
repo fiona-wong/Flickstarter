@@ -7,17 +7,9 @@ const ProjectController = require('../controllers').Projects;
 
 router.route('/upvote')
   .post(FollowsUpvotesController.upvote)
-  .put(ProjectController.upvote);
-
-router.route('/undoUpvote')
-  .delete(FollowsUpvotesController.undoUpvote)
-  .put(ProjectController.decrementVoteCount);
 
 router.route('/follow')
   .post(FollowsUpvotesController.follow);
-
-router.route('/unfollow')
-  .delete(FollowsUpvotesController.unfollow);
 
 router.route('/getProjectFollowsUpvotes')
   .get(FollowsUpvotesController.getProjectFollowsUpvotes);
@@ -36,5 +28,8 @@ router.route('/getProjectUpvotes')
 
 router.route('/getUserUpvotes')
   .get(FollowsUpvotesController.getUserUpvotes);
+
+router.route('/userHasUpvoted')
+  .post(FollowsUpvotesController.userHasUpvoted);
 
 module.exports = router;
