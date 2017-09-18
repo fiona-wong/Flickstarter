@@ -26,11 +26,13 @@ class Profile extends React.Component {
       message: '',
       subject: '',
       project: '',
-      fullProfile: {}
+      fullProfile: {},
+      openModal: false
     };
     this.getVideoId = this.getVideoId.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
   }
 
   componentDidMount() {
@@ -94,14 +96,23 @@ class Profile extends React.Component {
       },
       data => {
         console.log('success');
+        this.setState({
+          openModal: false
+        });
       }
     );
   }
+
 
   handleChange(event, data) {
     event.preventDefault();
     this.setState({
       [data.name]: data.value
+    });
+  }
+  handleOpen() {
+    this.setState({
+      openModal: true
     });
   }
 
@@ -114,6 +125,8 @@ class Profile extends React.Component {
             <Grid.Column width={4}>
               <Image shape="circular" size='medium' src={this.state.photo}/>
               <SendMessage
+                handleOpen={this.handleOpen}
+                openModal={this.state.openModal}
                 projects={this.state.projects}
                 username={this.state.username}
                 submitMessage={this.submitMessage}

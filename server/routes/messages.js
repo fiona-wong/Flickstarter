@@ -13,4 +13,7 @@ const MessageController = require('../controllers').Messages;
 router.route('/send')
   .post(MessageController.save);
 
+router.route('/inbox')
+  .get(MessageController.getMessages);
+
 module.exports = router;

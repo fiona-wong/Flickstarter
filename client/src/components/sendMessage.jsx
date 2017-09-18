@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Form, TextArea, Modal, Icon, Button, Dropdown, Grid } from 'semantic-ui-react';
+import { Input, Form, TextArea, Modal, Icon, Button, Dropdown, Grid, Message } from 'semantic-ui-react';
 
 const SendMessage = (props) => {
   let projectOptions = [];
