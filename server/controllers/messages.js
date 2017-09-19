@@ -72,16 +72,11 @@ module.exports.getMessages = (req, res) => {
 
 module.exports.getMessagesFromOne = (req, res) => {
   let allMessages = {};
-  models.Message.where({receiver_id: req.user.id, sender_id: req.body.sender}).orderBy('created_at', 'DESC').fetchAll({withRelated: ['sender', 'project']})
-    .then(received => {
-      received = received.toJSON();
-      allMessages.receivedMessages = received;
-      models.Message.where({sender_id: req.user.id, receiver_id: req.body.sender}).orderBy('created_at', 'DESC').fetchAll({withRelated: ['receiver', 'project']})
-        .then(sent => {
-          sent = sent.toJSON();
-          allMessages.sentMessages = sent;
-          res.status(200).send(allMessages);
-        });
+  models.Message.query({where: {receiver_id: req.user.id, sender_id: req.body.sender}, orWhere: {sender_id: req.user.id, receiver_id: req.body.sender}}).orderBy('id').fetchAll({withRelated: ['sender', 'receiver', 'project']})
+    .then(messages => {
+      messages = messages.toJSON();
+      console.log(messages);
+      res.status(200).send(messages);
     })
     .error(err => {
       res.status(500).send(err);

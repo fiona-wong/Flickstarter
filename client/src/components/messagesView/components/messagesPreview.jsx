@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Image, Modal } from 'semantic-ui-react';
+import MessagesView from './messagesView.jsx';
 
 const MessagesPreview = (props) => (
   <Modal key={props.index} onClose={props.handleMessageClose} onOpen={props.handleMessageClick} trigger={
@@ -20,12 +21,16 @@ const MessagesPreview = (props) => (
   }>
     <Modal.Header>Chat with {props.message.sender.display}</Modal.Header>
     <Modal.Content>
-      {props.targetMessages.map((message, index) => (
-        <Modal.Description key={index}>
+      <Grid>
 
-          {message.text}
-        </Modal.Description>
-      ))}
+        {props.targetMessages.map((message, index) => (
+          <MessagesView
+            key={index}
+            myself={props.myself}
+            message={message}
+          />
+        ))}
+      </Grid>
     </Modal.Content>
   </Modal>
 );
