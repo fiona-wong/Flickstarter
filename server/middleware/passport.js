@@ -8,7 +8,7 @@ const models = require('../../db/models');
 let config;
 try {
   config = require('config')['passport'];
-} catch(e) {
+} catch (e) {
   config = undefined;
 }
 
@@ -67,8 +67,10 @@ passport.use('local-signup', new LocalStrategy({
       .error(error => {
         done(error, null);
       })
-      .catch(() => {
-        done(null, false, req.flash('signupMessage', 'An account with this email address already exists.'));
+      .catch((response) => {
+        done(null, false, req.flash('signupMessage',
+        response.message
+      ));
       });
   }));
 
@@ -101,10 +103,17 @@ passport.use('local-login', new LocalStrategy({
         return profile;
       })
       .then(profile => {
-        // call done with serialized profile to include in session
+        // include in session
+        req.login(profile, function(err) {
+          if (err) {
+            logger.error(err);
+          }
+        });
+        // call done with serialized profile
         done(null, profile.serialize());
       })
       .error(err => {
+        logger.error(err);
         done(err, null);
       })
       .catch(() => {
@@ -133,7 +142,7 @@ passport.use('facebook', new FacebookStrategy({
 passport.use('twitter', new TwitterStrategy({
   consumerKey: process.env.TWITTER_CONSUMER_KEY || config.Twitter.consumerKey,
   consumerSecret: process.env.TWITTER_CONSUMER_SECRET || config.Twitter.consumerSecret,
-  callbackURL: process.env.TWITTER_CALLBACK_URL ||config.Twitter.callbackURL,
+  callbackURL: process.env.TWITTER_CALLBACK_URL || config.Twitter.callbackURL,
   userProfileURL: 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true'
 },
   (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('twitter', profile, done))

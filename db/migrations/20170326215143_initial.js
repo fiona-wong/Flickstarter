@@ -71,8 +71,7 @@ exports.up = function (knex, Promise) {
       table.string('subject');
       table.boolean('viewed').notNullable();
       table.timestamp('created_at').defaultTo(knex.fn.now());
-    })
-    ,
+    }),
     knex.schema.createTableIfNotExists('user_project_contributions', function(table) {
       table.increments('id').unsigned().primary();
       table.integer('project_id').references('projects.id').onDelete('CASCADE');
@@ -97,8 +96,7 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTableIfExists('youtubes'),
     knex.schema.dropTableIfExists('open_roles'),
     knex.schema.dropTableIfExists('follows_upvotes'),
-    knex.schema.dropTableIfExists('messages')
-    ,
+    knex.schema.dropTableIfExists('messages'),
     knex.schema.dropTableIfExists('user_project_contributions'),
     knex.schema.dropTableIfExists('genres'),
     knex.schema.dropTableIfExists('projects'),

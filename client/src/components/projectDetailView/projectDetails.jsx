@@ -22,9 +22,16 @@ class ProjectDetails extends React.Component {
       goalAmount: '',
       openRoles: []
     };
+
+    this.informer = this.informer.bind(this);
   }
 
-  componentDidMount() {
+  informer(e) {
+    let _this = this;
+    _this.updateComponent();
+  }
+
+  updateComponent() {
     let _this = this;
     $.ajax({
       url: `/projects/${this.props.match.params.id}`,
@@ -47,6 +54,11 @@ class ProjectDetails extends React.Component {
     });
   }
 
+  componentWillMount() {
+    let _this = this;
+    _this.updateComponent();
+  }
+
   render() {
     return (
       <div className="page-header-padding">
@@ -62,13 +74,14 @@ class ProjectDetails extends React.Component {
                 project={this.state.project}
               />
               <ProjectDetailStatus
+                informer={this.informer}
                 project={this.state.project}
                 raisedAmount={this.state.raisedAmount}
                 goalAmount={this.state.goalAmount}
                 daysRemaining={this.state.daysRemaining}
               />
             </div>
-            <Divider horizontal />
+            <Divider horizontal/>
             <div className='project-detail-about'>
               <h2> About this project </h2>
               {this.state.project.long_description}

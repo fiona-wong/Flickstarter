@@ -6,7 +6,10 @@
     "start": "node server",
     "test": "NODE_ENV=test grunt test",
     "build": "webpack --watch",
-    "postinstall": "knex migrate:latest & knex seed:run"
+    "migrate": "knex migrate:latest",
+    "seed": "knex seed:run",
+    "createdb": "grunt pgcreatedb:default && knex migrate:latest & knex seed:run",
+    "prepdb": "knex migrate:latest & knex seed:run"
   },
   "author": "Hack Reactor",
   "license": "MIT",
@@ -47,7 +50,9 @@
     "redis": "^2.7.1",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.72.0",
-    "style-loader": "^0.18.2"
+    "stripe": "^5.0.0",
+    "style-loader": "^0.18.2",
+    "tracer": "^0.8.11"
   },
   "devDependencies": {
     "babel-loader": "^7.0.0",

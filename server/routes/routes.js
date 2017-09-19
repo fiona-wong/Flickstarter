@@ -6,6 +6,7 @@ const middleware = require('../middleware');
 
 router.route('/')
   .get(middleware.auth.verify, (req, res) => {
+    logger.trace(req.user);
     res.render('index.ejs');
   });
 
