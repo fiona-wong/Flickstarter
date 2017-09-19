@@ -29,8 +29,8 @@ class FeaturedProjectStatus extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default FeaturedProjectStatus;

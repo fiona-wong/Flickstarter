@@ -12,8 +12,8 @@ class FeaturedProject extends React.Component {
   render() {
     return (
       <Segment raised id='featured-project-segment'>
-        <Label 
-          color='teal' 
+        <Label
+          color='teal'
           ribbon size='large'
           id='featured-project-label'
         >Featured</Label>
@@ -21,8 +21,8 @@ class FeaturedProject extends React.Component {
           <div className='basic-flex-column featured-project-container'>
             <div id='featured-project-image-container'>
               <Image fluid
-                shape='rounded' 
-                src='http://freewallpapersstock.com/download/171750/640x480/80235_terminator_arnold_schwarzenegger_gun_3546_2560x1600-640x480-c.jpg' 
+                shape='rounded'
+                src='http://freewallpapersstock.com/download/171750/640x480/80235_terminator_arnold_schwarzenegger_gun_3546_2560x1600-640x480-c.jpg'
               />
             </div>
           </div>
@@ -49,7 +49,6 @@ class FeaturedProject extends React.Component {
               <FeaturedProjectStatus />
             </div>
             <div id='featured-project-contribute-button-container'>
-              <SupportModal/>
             </div>
           </div>
         </div>

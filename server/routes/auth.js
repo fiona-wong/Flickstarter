@@ -28,7 +28,6 @@ router.route('/signup')
     failureFlash: true
   }));
 
-
 router.route('/logout')
   .get((req, res) => {
     req.logout();

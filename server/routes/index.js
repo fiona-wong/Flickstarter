@@ -1,4 +1,5 @@
 module.exports = {
+  charge: require('./charge'),
   api: require('./api'),
   auth: require('./auth'),
   profiles: require('./profiles'),
