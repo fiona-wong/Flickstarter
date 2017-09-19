@@ -43,6 +43,7 @@ class SupportModal extends React.Component {
       })
         .then(output => {
           if (output.status === 200) {
+            // add success modal
             console.log('donation went through');
             informer();
           } else {
