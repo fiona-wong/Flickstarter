@@ -102,7 +102,6 @@ class ProjectDetails extends React.Component {
               </div> : null
             }
             <Divider horizontal />
-            <SupportModal />
           </Segment>
         </div>
       </div>
