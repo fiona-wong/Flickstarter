@@ -318,6 +318,7 @@ class EditProfile extends React.Component {
             saveRoles={this.saveRoles}
             roleComplete={this.state.roleComplete}
             handleOnRoleClick={this.handleOnRoleClick}
+            chosenRole={this.state.chosenRole}
           />
 
           <AddLocation

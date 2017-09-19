@@ -3,10 +3,10 @@ const db = require('../');
 const OpenRole = db.Model.extend({
   tableName: 'open_roles',
   project: function() {
-    return this.belongsTo('Project');
+    return this.belongsTo('Project', 'project_id');
   },
-  openRole: function() {
-    this.belongsTo('Role');
+  role: function() {
+    return this.belongsTo('OpenRole', 'open_role');
   }
 });
 

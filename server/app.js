@@ -28,8 +28,8 @@ app.use('/editprofile', routes.editprofile);
 app.use('/projects', routes.projects);
 app.use('/messages', routes.messages);
 app.use('/followsUpvotes', routes.followsUpvotes);
-// app.use('/api/openRoles', routes.openRoles);
-// app.use('/api/userProjectContributions', routes.userProjectContributions);
+app.use('/openRoles', routes.openRoles);
+// app.use('/userProjectContributions', routes.userProjectContributions);
 app.use('/api/youtubes', routes.youtubes);
 
 app.use(['/createproject', '/messages', '/profile', '/editprofile', '/exploreprojects'], routes.allOtherRoutes);

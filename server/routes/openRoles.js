@@ -11,3 +11,8 @@ router.route('/removeRole')
 
 router.route('/getRolesForProjects')
   .post(OpenRoleController.getProjectRoles);
+
+router.route('/update/:id')
+  .post(OpenRoleController.update);
+
+  module.exports = router;

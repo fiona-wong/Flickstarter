@@ -15,7 +15,12 @@ const PickRole = (props) => (
     <Grid.Column width={11}>
       {props.roleActive ? (
         <Container>
-          <Dropdown onChange={props.handleRoleSelect} placeholder='Select Roles' fluid multiple selection options={props.roles} />
+          <Dropdown fluid multiple selection
+            onChange={props.handleRoleSelect} 
+            placeholder='Select roles' 
+            options={props.roles} 
+            value={props.chosenRole}
+          />
           <Button floated='right' onClick={props.saveRoles}>Next</Button>
         </Container>
       ) : (<div></div>)}

@@ -21,7 +21,7 @@ class ExploreProjects extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     $.ajax({
       method: 'GET',
       url: '/projects',

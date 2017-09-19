@@ -24,12 +24,11 @@ class Home extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     $.ajax({
       method: 'GET',
       url: '/projects',
       success: (projectData) => {
-        console.log(projectData);
         this.setState({
           projects: projectData.projects,
           userUpvotes: projectData.userUpvotes

@@ -47,7 +47,7 @@ class Profile extends React.Component {
         youtubes: data.youtubes,
         projects: data.projects,
         fullProfile: data.profile,
-        roles: data.profile.roles
+        roles: data.profile.roles,
         userUpvotes: data.userUpvotes
       });
     });
@@ -142,7 +142,7 @@ class Profile extends React.Component {
           <Divider/>
           <Grid.Row>
             <Grid.Column>
-              <Label as='a' color='teal' ribbon>Projects Created</Label>
+              <Label as='a' ribbon>Projects Created</Label>
               <Container>
                 {this.state.projects.map((project, index) =>
                   <ProjectCard
@@ -160,7 +160,7 @@ class Profile extends React.Component {
               </Container>
             </Grid.Column>
             <Grid.Column>
-              <Label as='a' color='teal' ribbon='right'>Past Work</Label>
+              <Label as='a' ribbon='right'>Past Work</Label>
               <Container>
                 {this.state.youtubes.map((youtube, index) =>
                   <Youtube

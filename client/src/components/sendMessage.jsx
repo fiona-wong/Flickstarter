@@ -8,8 +8,8 @@ const SendMessage = (props) => {
   });
 
   return (
-    <Modal trigger={<Button floated="right" size="mini" content='Message Me!' icon='mail'/>} closeIcon>
-      <Modal.Header>Send a Message to {props.username}!</Modal.Header>
+    <Modal trigger={<Button floated="right" size="mini" content='Message me!' icon='mail'/>} closeIcon>
+      <Modal.Header>Send a message to {props.username}!</Modal.Header>
       <Modal.Content>
         <Form onSubmit={props.submitMessage}>
           <Grid columns={2}>

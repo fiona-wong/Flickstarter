@@ -21,7 +21,7 @@ class SaveProjectModal extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getVideoType(this.props.projectVideo);
   }
 
@@ -33,21 +33,20 @@ class SaveProjectModal extends React.Component {
             <Modal.Content>
               <div className='basic-flex-row' >
                 <div id='save-modal-media-container'>
-                  <Image fluid
-                    size='medium' 
+                  <Image
                     shape='rounded' 
                     src={this.props.projectImage} 
                     style={{paddingBottom: '1rem'}}
                   />
-                  <div id='video-preview-container'>
+                  <div>
                     {
                       this.state.videoType === 'vimeo' ?
-                      <Embed wrapped
+                      <Embed 
                         id={this.props.projectVideo.substr(this.props.projectVideo.length - 9)}
                         source='vimeo'
                         defaultActive={true}
                       /> :
-                      <Embed wrapped
+                      <Embed 
                         id={this.props.projectVideo.substr(this.props.projectVideo.length - 11)}
                         source='youtube'
                         defaultActive={true}

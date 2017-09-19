@@ -10,6 +10,7 @@ import ProjectBlurb from './components/projectBlurb.jsx';
 import ProjectDescription from './components/projectDescription.jsx';
 import ProjectGenre from './components/projectGenre.jsx';
 import ProjectLocation from './components/projectLocation.jsx';
+import ProjectRoles from './components/projectRoles.jsx';
 import ProjectDuration from './components/projectDuration.jsx';
 import ProjectFundingGoal from './components/projectFundingGoal.jsx';
 import SaveProjectModal from './components/saveProjectModal.jsx';
@@ -19,6 +20,7 @@ class CreateProject extends React.Component {
     super(props);
     this.state = {
       projectGenre: '',
+      projectRoles: [],
       projectTitle: '',
       projectLocation: '',
       projectDuration: '',
@@ -28,12 +30,14 @@ class CreateProject extends React.Component {
       projectImage: '',
       projectVideo: '',
       projectId: '',
+      roleOptions: [],
       currentPage: 'start',
       incompleteField: false,
       saving: false,
       showSaveModal: false
     };
     this.handleGenreSelection = this.handleGenreSelection.bind(this);
+    this.handleRoleSelection = this.handleRoleSelection.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleContinueClick = this.handleContinueClick.bind(this);
     this.getWarningMessage = this.getWarningMessage.bind(this);
@@ -45,6 +49,14 @@ class CreateProject extends React.Component {
     event.preventDefault();
     this.setState({
       projectGenre: data.value, genreDropdownText: data.value, incompleteField: false
+    });
+  }
+
+  handleRoleSelection(event, data) {
+    event.preventDefault();
+    this.setState({
+      projectRoles: data.value,
+      incompleteField: false
     });
   }
 
@@ -86,7 +98,8 @@ class CreateProject extends React.Component {
           videoUrl: this.state.projectVideo,
           goalAmount: this.state.projectFundingGoal,
           goalDeadline: moment().add(this.state.projectDuration, 'days').calendar(),
-          genre: this.state.projectGenre
+          genre: this.state.projectGenre,
+          projectRoles: this.state.projectRoles
         },
         success: (data) => {
           _this.setState({
@@ -147,6 +160,18 @@ class CreateProject extends React.Component {
     }
   }
 
+  componentDidMount () {
+    $.get('/editprofile/getroles', data => {
+      let options = [];
+      data.map(role => {
+        options.push({key: role.id, text: role.position, value: role.position});
+      });
+      this.setState({
+        roleOptions: options
+      });
+    });
+  }
+
   render() {
     return (
       this.state.currentPage === 'start' ?
@@ -200,6 +225,11 @@ class CreateProject extends React.Component {
             <ProjectLocation 
               handleProjectLocationInput={this.handleInputChange} 
               projectLocation={this.state.projectLocation}
+            />
+            <ProjectRoles 
+              handleRoleSelection={this.handleRoleSelection}
+              projectRoles={this.state.projectRoles}
+              roleOptions={this.state.roleOptions}
             />
             <ProjectDuration handleProjectDurationInput={this.handleInputChange}/>
             <ProjectFundingGoal handleFundingGoalInput={this.handleInputChange}/>

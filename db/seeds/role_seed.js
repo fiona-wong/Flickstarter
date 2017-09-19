@@ -2,11 +2,12 @@ const models = require('../models');
 
 exports.seed = function (knex, Promise) {
   return knex('roles').insert([
-    {position: 'Producer'},
-    {position: 'Director'},
-    {position: 'Screenwriter'},
-    {position: 'Designer'},
+    {position: 'Actor'},
     {position: 'Cinematographer'},
+    {position: 'Composer'},
+    {position: 'Designer'},
+    {position: 'Director'},
     {position: 'Editor'},
-    {position: 'Actor'}]);
+    {position: 'Producer'},
+    {position: 'Screenwriter'}])
 };

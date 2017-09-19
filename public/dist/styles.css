@@ -68,7 +68,6 @@
   position: absolute;
   right: .4rem;
   top: .65rem;
-  opacity: 1;
 }
 
 .featured-project-container {
@@ -152,7 +151,14 @@ h2 {
   padding-top: 10px;
 }
 
-i.icon {
+i.edit.circular.inverted.icon {
+  background-color: rgba(33, 133, 208, .8)!important;
+  font-size: 1.2rem;
+  padding-left: .55em!important;
+  padding-top: .56em!important;
+}
+
+i.thumbs.up.icon {
   font-size: 1.3em;
 }
 
@@ -253,7 +259,6 @@ i.icon {
   display: flex;
   justify-content: space-evenly;
   align-items: left; 
-  background-color: #F8F9FD;
   margin-bottom: 15px;
   margin-left: 1%;
   padding-top: 15px;
@@ -264,6 +269,9 @@ i.icon {
   text-align: left;
   margin-bottom: 15px;
   padding-right: 15px;
+}
+.project-detail-item-content-container p {
+  padding-top: .5rem;
 }
 
 .project-detail-item-header-container {
@@ -316,6 +324,10 @@ i.icon {
   line-height: 2.4rem;
 }
 
+div.ui.one.item.project-role-dropdown.menu {
+  margin-bottom: 0;
+}
+
 .project-status-container {
   height: 15%;
   display: flex;
@@ -336,6 +348,7 @@ i.icon {
   display: flex;
   flex-direction: column;
   width: 60%;
+  padding-left: 2%;
 }
 
 #save-modal-media-container {
@@ -355,6 +368,12 @@ i.icon {
   margin-right: 2%;
 }
 
+.ui.menu .item>.label {
+  background: #e8e8e8;
+  color: rgba(0,0,0,.6);
+  align-items: left;
+}
+
 #upvote-button {
   opacity: 1;
   background: white;
@@ -368,7 +387,7 @@ i.icon {
 #upvote-button-clicked {
   opacity: 1;
   color: #2185d0;
-  background: white;
+  background: rgba(33, 133, 208, 0);
   margin-top: -19.4%;
 }
 
@@ -382,9 +401,5 @@ i.icon {
 
 #upvote-button-clicked.ui.icon.button {
   padding: .6em .3em .78571429em;
-}
-
-#video-preview-container {
-  max-width: 300px;
 }
 
