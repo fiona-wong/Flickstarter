@@ -16,4 +16,7 @@ router.route('/send')
 router.route('/inbox')
   .get(MessageController.getMessages);
 
+router.route('/get')
+  .post(MessageController.getMessagesFromOne);
+
 module.exports = router;
