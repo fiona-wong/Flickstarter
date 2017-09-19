@@ -93,16 +93,16 @@ exports.up = function (knex, Promise) {
 
 exports.down = function (knex, Promise) {
   return Promise.all([
-    // knex.schema.dropTableIfExists('youtubes'),
-    // knex.schema.dropTableIfExists('open_roles'),
-    // knex.schema.dropTableIfExists('follows_upvotes'),
-    // knex.schema.dropTableIfExists('messages'),
-    // knex.schema.dropTableIfExists('user_project_contributions'),
-    // knex.schema.dropTableIfExists('genres'),
-    // knex.schema.dropTableIfExists('projects'),
-    // knex.schema.dropTableIfExists('auths'),
-    // knex.schema.dropTableIfExists('users_roles'),
-    // knex.schema.dropTableIfExists('profiles'),
-    // knex.schema.dropTableIfExists('roles')
+    knex.schema.dropTableIfExists('youtubes'),
+    knex.schema.dropTableIfExists('open_roles'),
+    knex.schema.dropTableIfExists('follows_upvotes'),
+    knex.schema.dropTableIfExists('messages'),
+    knex.schema.dropTableIfExists('user_project_contributions'),
+    knex.schema.dropTableIfExists('genres'),
+    knex.schema.dropTableIfExists('projects'),
+    knex.schema.dropTableIfExists('auths'),
+    knex.schema.dropTableIfExists('users_roles'),
+    knex.schema.dropTableIfExists('profiles'),
+    knex.schema.dropTableIfExists('roles')
   ]);
 };
