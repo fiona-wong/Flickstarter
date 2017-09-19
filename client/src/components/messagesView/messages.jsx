@@ -102,7 +102,6 @@ class Messages extends React.Component {
                 />
               ))}
             </Grid>
-
           </Tab.Pane>},
           {menuItem: 'Read', render: () => <Tab.Pane attached={false}>
             <Grid celled>
