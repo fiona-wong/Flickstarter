@@ -15,8 +15,13 @@ class Messages extends React.Component {
       receivers: [],
       all: [],
       targetMessages: [],
-      myself: null
+      myself: null,
+      replyMessage: '',
+      targetReplyPerson: '',
+      successMessage: false
     };
+    this.messageChange = this.messageChange.bind(this);
+    this.sendReply = this.sendReply.bind(this);
     this.handleMessageClose = this.handleMessageClose.bind(this);
     this.handleMessageClick = this.handleMessageClick.bind(this);
   }
@@ -69,8 +74,8 @@ class Messages extends React.Component {
   }
 
   handleMessageClick(event, data) {
+    console.log(data.trigger);
     $.post('/messages/get', {sender: this.state.unread[data.trigger.key].sender_id}, data => {
-      console.log(data);
       this.setState({
         targetMessages: data
       });
@@ -79,7 +84,26 @@ class Messages extends React.Component {
 
   handleMessageClose() {
     this.setState({
-      targetMessages: []
+      targetMessages: [],
+      successMessage: false
+    });
+  }
+
+  sendReply() {
+    $.post('/messages/reply', {receiver_id: this.state.targetReplyPerson, text: this.state.replyMessage}, data => {
+      this.setState({
+        targetReplyPerson: '',
+        replyMessage: '',
+        successMessage: true
+      });
+    });
+  }
+
+  messageChange(event) {
+    event.preventDefault();
+    this.setState({
+      targetReplyPerson: event.target.name,
+      replyMessage: event.target.value
     });
   }
 
@@ -92,6 +116,9 @@ class Messages extends React.Component {
             <Grid celled>
               {this.state.unread.map((message, index) => (
                 <MessagesPreview
+                  successMessage={this.state.successMessage}
+                  messageChange={this.messageChange}
+                  sendReply={this.sendReply}
                   myself={this.state.myself}
                   handleMessageClose={this.handleMessageClose}
                   targetMessages={this.state.targetMessages}
@@ -107,6 +134,14 @@ class Messages extends React.Component {
             <Grid celled>
               {this.state.read.map((message, index) => (
                 <MessagesPreview
+                  successMessage={this.state.successMessage}
+                  messageChange={this.messageChange}
+                  sendReply={this.sendReply}
+                  myself={this.state.myself}
+                  handleMessageClose={this.handleMessageClose}
+                  targetMessages={this.state.targetMessages}
+                  handleMessageClick={this.handleMessageClick}
+                  index={index}
                   key={index}
                   message={message}
                 />
@@ -117,6 +152,14 @@ class Messages extends React.Component {
             <Grid celled>
               {this.state.sent.map((message, index) => (
                 <MessagesPreview
+                  successMessage={this.state.successMessage}
+                  messageChange={this.messageChange}
+                  sendReply={this.sendReply}
+                  myself={this.state.myself}
+                  handleMessageClose={this.handleMessageClose}
+                  targetMessages={this.state.targetMessages}
+                  handleMessageClick={this.handleMessageClick}
+                  index={index}
                   key={index}
                   message={message}
                 />

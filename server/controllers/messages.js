@@ -70,6 +70,24 @@ module.exports.getMessages = (req, res) => {
     });
 };
 
+
+module.exports.reply = (req, res) => {
+  models.Message.forge({sender_id: req.user.id, receiver_id: Number(req.body.receiver_id), text: req.body.text, viewed: false}).save()
+    .then(message => {
+      models.Message.where({receiver_id: req.user.id, sender_id: Number(req.body.receiver_id)}).save({viewed: true}, {method: 'update'})
+        .then(message => {
+          console.log(message);
+        });
+      return message;
+    })
+    .then(message => {
+      res.status(200).send(message);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
+
 module.exports.getMessagesFromOne = (req, res) => {
   let allMessages = {};
   models.Message.query({where: {receiver_id: req.user.id, sender_id: req.body.sender}, orWhere: {sender_id: req.user.id, receiver_id: req.body.sender}}).orderBy('id').fetchAll({withRelated: ['sender', 'receiver', 'project']})

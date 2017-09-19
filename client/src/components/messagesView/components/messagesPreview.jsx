@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Modal } from 'semantic-ui-react';
+import { Grid, Image, Modal, Form, Button, Icon, Message } from 'semantic-ui-react';
 import MessagesView from './messagesView.jsx';
 
 const MessagesPreview = (props) => (
@@ -19,10 +19,9 @@ const MessagesPreview = (props) => (
       </Grid.Column>
     </Grid.Row>
   }>
-    <Modal.Header>Chat with {props.message.sender.display}</Modal.Header>
+    <Modal.Header>Chat with {props.message.sender ? props.message.sender.display : props.message.receiver.display}</Modal.Header>
     <Modal.Content>
       <Grid>
-
         {props.targetMessages.map((message, index) => (
           <MessagesView
             key={index}
@@ -30,6 +29,17 @@ const MessagesPreview = (props) => (
             message={message}
           />
         ))}
+        <Grid.Row stretched>
+          <Grid.Column stretched>
+            <Form success={props.successMessage} onSubmit={props.sendReply}>
+              <input name={props.message.sender_id} onChange={props.messageChange} placeholder='Let them know if you are interested or not!'/><Button fluid animated><Button.Content visible>Send</Button.Content><Button.Content hidden><Icon name='send outline' /></Button.Content></Button>
+              <Message
+                success
+                header='Message has been sent.'
+              />
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </Modal.Content>
   </Modal>
