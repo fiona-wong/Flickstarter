@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Modal, Form, Button, Icon, Message } from 'semantic-ui-react';
+import { Label, Grid, Image, Modal, Form, Button, Icon, Message } from 'semantic-ui-react';
 import MessagesView from './messagesView.jsx';
 
 const MessagesPreview = (props) => (
@@ -13,6 +13,7 @@ const MessagesPreview = (props) => (
       <Grid.Column width={14}>
         <strong>{props.message.subject}</strong>
         <br/>
+        <Label attached="top right">{props.message.project.name}</Label>
         <br/>
         {props.message.text.length > 200 ?
           props.message.text.slice(0, 200) + '...' : props.message.text}

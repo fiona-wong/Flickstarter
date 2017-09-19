@@ -13,6 +13,9 @@ const MessageController = require('../controllers').Messages;
 router.route('/reply')
   .post(MessageController.reply);
 
+router.route('/viewed')
+  .post(MessageController.view);
+
 router.route('/send')
   .post(MessageController.save);
 

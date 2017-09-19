@@ -22,13 +22,16 @@ class Messages extends React.Component {
     };
     this.messageChange = this.messageChange.bind(this);
     this.sendReply = this.sendReply.bind(this);
+    this.handleUnreadMessageClose = this.handleUnreadMessageClose.bind(this);
     this.handleMessageClose = this.handleMessageClose.bind(this);
     this.handleMessageClick = this.handleMessageClick.bind(this);
+    this.handleReadMessageClick = this.handleReadMessageClick.bind(this);
+    this.handleSentMessageClick = this.handleSentMessageClick.bind(this);
   }
 
   componentDidMount() {
     $.get('/messages/inbox', data => {
-      if (data.sentMessages) {
+      if (data.sentMessages.length > 0) {
         data.sentMessages.forEach(message => {
           this.setState({
             all: this.state.all.concat([message])
@@ -44,7 +47,8 @@ class Messages extends React.Component {
           myself: data.sentMessages[0].sender_id
         });
       }
-      if (data.receivedMessages) {
+
+      if (data.receivedMessages.length > 0) {
         data.receivedMessages.forEach(message => {
           this.setState({
             all: this.state.all.concat([message])
@@ -74,10 +78,34 @@ class Messages extends React.Component {
   }
 
   handleMessageClick(event, data) {
-    console.log(data.trigger);
     $.post('/messages/get', {sender: this.state.unread[data.trigger.key].sender_id}, data => {
       this.setState({
         targetMessages: data
+      });
+    });
+  }
+
+  handleReadMessageClick(event, data) {
+    $.post('/messages/get', {sender: this.state.read[data.trigger.key].sender_id}, data => {
+      this.setState({
+        targetMessages: data
+      });
+    });
+  }
+
+  handleSentMessageClick(event, data) {
+    $.post('/messages/get', {sender: this.state.sent[data.trigger.key].receiver_id}, data => {
+      this.setState({
+        targetMessages: data
+      });
+    });
+  }
+
+  handleUnreadMessageClose() {
+    $.post('/messages/viewed', {sender: this.state.targetMessages[0].sender_id}, data => {
+      this.setState({
+        targetMessages: [],
+        successMessage: false
       });
     });
   }
@@ -88,6 +116,7 @@ class Messages extends React.Component {
       successMessage: false
     });
   }
+
 
   sendReply() {
     $.post('/messages/reply', {receiver_id: this.state.targetReplyPerson, text: this.state.replyMessage}, data => {
@@ -120,7 +149,7 @@ class Messages extends React.Component {
                   messageChange={this.messageChange}
                   sendReply={this.sendReply}
                   myself={this.state.myself}
-                  handleMessageClose={this.handleMessageClose}
+                  handleMessageClose={this.handleUnreadMessageClose}
                   targetMessages={this.state.targetMessages}
                   handleMessageClick={this.handleMessageClick}
                   index={index}
@@ -140,7 +169,7 @@ class Messages extends React.Component {
                   myself={this.state.myself}
                   handleMessageClose={this.handleMessageClose}
                   targetMessages={this.state.targetMessages}
-                  handleMessageClick={this.handleMessageClick}
+                  handleMessageClick={this.handleReadMessageClick}
                   index={index}
                   key={index}
                   message={message}
@@ -158,7 +187,7 @@ class Messages extends React.Component {
                   myself={this.state.myself}
                   handleMessageClose={this.handleMessageClose}
                   targetMessages={this.state.targetMessages}
-                  handleMessageClick={this.handleMessageClick}
+                  handleMessageClick={this.handleSentMessageClick}
                   index={index}
                   key={index}
                   message={message}
