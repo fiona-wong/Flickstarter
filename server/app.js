@@ -34,7 +34,7 @@ app.use('/openRoles', routes.openRoles);
 app.use('/userProjectContributions', routes.userProjectContributions);
 app.use('/api/youtubes', routes.youtubes);
 
-app.use(['/createproject', '/messages', '/profile', '/editprofile', '/exploreprojects'], routes.allOtherRoutes);
+app.use(['/createproject', '/messages', '/profile', '/editprofile', '/exploreprojects', 'projects'], routes.allOtherRoutes);
 
 
 module.exports = app;

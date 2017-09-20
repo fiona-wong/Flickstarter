@@ -20,18 +20,31 @@ class Home extends React.Component {
       projects: [],
       searchTerm: '',
       filterTerm: null,
-      userUpvotes: []
+      userUpvotes: [],
+      totalDollars: '',
+      totalBackers: '',
+      totalProjects: ''
     };
   }
+
+  // getTotalDollars(data) {
+  //   return data.reduce((totalSum, projectSum) =>
+
+  //   );
+  // }
 
   componentDidMount() {
     $.ajax({
       method: 'GET',
       url: '/projects',
       success: (projectData) => {
+        console.log(projectData.projects);
         this.setState({
           projects: projectData.projects,
-          userUpvotes: projectData.userUpvotes
+          userUpvotes: projectData.userUpvotes,
+          // totalDollars: projectData.,
+          // totalBackers: ,
+          // totalProjects:
         });
       },
       error: function () {
