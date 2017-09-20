@@ -197,6 +197,7 @@ class CreateProject extends React.Component {
             projectLocation={this.state.projectLocation} 
             projectGenre={this.state.projectGenre} 
             projectId={this.state.projectId}
+            projectRoles={this.state.projectRoles}
           /> : null
         }
         <div id='create-project-detail-header'>

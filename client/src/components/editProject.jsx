@@ -153,6 +153,7 @@ class EditProject extends React.Component {
   }
 
   componentDidMount() {
+    let _this = this;
     $.ajax({
       url: `/projects/${this.props.match.params.id}`,
       type: 'GET',
@@ -203,6 +204,7 @@ class EditProject extends React.Component {
             projectLocation={this.state.projectLocation} 
             projectGenre={this.state.projectGenre} 
             projectId={this.props.match.params.id}
+            projectRoles={this.state.projectRoles}
           /> : null
         }
         <div id='create-project-detail-header'>

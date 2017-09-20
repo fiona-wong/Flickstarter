@@ -28,7 +28,7 @@ class ProjectStatus extends React.Component {
             contributed
           </div>
           <div>
-            <h5>{this.props.contributed / 50}</h5>
+            <h5>{this.props.backers ? this.props.backers : 0}</h5>
             backers
           </div>
           <div>

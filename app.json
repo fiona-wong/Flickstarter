@@ -12,25 +12,7 @@
     "FACEBOOK_CLIENT_SECRET": {
       "required": true
     },
-    "GOOGLE_CALLBACK_URL": {
-      "required": true
-    },
-    "GOOGLE_CLIENT_ID": {
-      "required": true
-    },
-    "GOOGLE_CLIENT_SECRET": {
-      "required": true
-    },
     "NODE_ENV": {
-      "required": true
-    },
-    "TWITTER_CALLBACK_URL": {
-      "required": true
-    },
-    "TWITTER_CONSUMER_KEY": {
-      "required": true
-    },
-    "TWITTER_CONSUMER_SECRET": {
       "required": true
     }
   },

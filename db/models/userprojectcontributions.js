@@ -3,10 +3,10 @@ const db = require('../');
 const UserProjectContribution = db.Model.extend({
   tableName: 'user_project_contributions',
   project: function() {
-    return this.belongsTo('Project');
+    return this.belongsTo('Project', 'project_id');
   },
   profile: function() {
-    this.belongsTo('Profile');
+    return this.belongsTo('Profile');
   }
 });
 

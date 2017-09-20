@@ -1,5 +1,5 @@
 import React from 'react';
-import {Progress} from 'semantic-ui-react';
+import {Progress, Icon, Segment} from 'semantic-ui-react';
 import SupportModal from '../../supportModal.jsx';
 
 const ProjectDetailStatus = (props) => {
@@ -13,12 +13,24 @@ const ProjectDetailStatus = (props) => {
       <div className='project-detail-stats'>
         <h2>${props.raisedAmount}</h2>
         <p>contributed of ${props.goalAmount} goal</p>
-        <h2>20</h2>
-        <p>contributors</p>
+        <h2>{props.project.contributions ? props.project.contributions.length : null}</h2>
+        <p>backers</p>
         <h2>{props.daysRemaining}</h2>
         <p>days remaining</p>
       </div>
-      <SupportModal project={props.project} informer={props.informer}/>
+      {
+        props.userBacked === true ?
+        <div className='user-contribution-text'>
+          <Icon name='star' size='large'/> 
+          <div className='basic-flex-row'>
+            You contributed <p>${props.userContribution.contribution}</p>
+          </div>
+        </div> :
+        <SupportModal
+          project={props.project} 
+          informer={props.informer}
+        />
+      }
     </div>
   );
 };

@@ -118,14 +118,15 @@ class Profile extends React.Component {
         <Grid centered columns={2}>
           <Grid.Row>
             <Grid.Column width={4}>
-              <Image shape="circular" size='medium' src={this.state.photo}/>
-              <SendMessage
-                successMessage={this.state.successMessage}
-                projects={this.state.projects}
-                username={this.state.username}
-                submitMessage={this.submitMessage}
-                handleChange={this.handleChange}
-              />
+              <div className='basic-flex-centered-column'>
+                <Image shape="circular" size='medium' src={this.state.photo}/>
+                <SendMessage
+                  projects={this.state.projects}
+                  username={this.state.username}
+                  submitMessage={this.submitMessage}
+                  handleChange={this.handleChange}
+                />
+              </div>
             </Grid.Column>
             <Grid.Column width={12}>
               <Container>

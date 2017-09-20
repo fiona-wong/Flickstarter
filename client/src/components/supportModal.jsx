@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Popup, Button, Container, Header, Dropdown, Input, Label} from 'semantic-ui-react';
+import {Modal, Popup, Button, Container, Header, Dropdown, Input, Label, Divider} from 'semantic-ui-react';
 import fetch from 'isomorphic-fetch';
 
 
@@ -68,20 +68,17 @@ class SupportModal extends React.Component {
 
   render() {
 
-    const inStyle = {
-      maxWidth: 100
-    };
     return (
-      <div className='basic-flex-centered-row'>
-
-        <Input labelPosition='right' type='text' placeholder='Amount'>
+      <div className='project-detail-support-modal'>
+        <Input fluid labelPosition='right' type='text' placeholder='Amount'>
           <Label basic>$</Label>
-          <input style={inStyle} value={this.state.value} onChange={this.handleChange}/>
+          <input value={this.state.value} onChange={this.handleChange}/>
           <Label>.00</Label>
         </Input>
         <Button positive disabled={!this.state.isEnabled} onClick={this.handleClick}>
           Donate
         </Button>
+        <Divider horizontal>Or</Divider>
         {/* <Dropdown text='Donate' icon='dollar' floating labeled button className='icon'>
           <Dropdown.Menu>
             <Dropdown.Divider/>

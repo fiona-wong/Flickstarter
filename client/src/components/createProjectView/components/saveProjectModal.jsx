@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from '../../home.jsx';
 import EditProject from '../../editProject.jsx';
-import { Button, Header, Icon, Modal, Image, List, Embed } from 'semantic-ui-react';
+import { Button, Header, Icon, Modal, Image, List, Embed, Label } from 'semantic-ui-react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { commafy } from '../../../helpers.js';
 
@@ -79,6 +79,15 @@ class SaveProjectModal extends React.Component {
                         <List.Header>Location</List.Header>
                         {this.props.projectLocation}
                       </List.Item>
+                        {
+                          this.props.projectRoles.length > 0 ?
+                          <List.Item>
+                            <List.Header>Open roles</List.Header>
+                            {this.props.projectRoles.map((role, index) => 
+                              <Label key={index}>{role}</Label>
+                            )}
+                          </List.Item> : null
+                        }
                       <List.Item>
                         <List.Header>Campaign End Date</List.Header>
                         {this.props.projectDeadline}
@@ -96,6 +105,9 @@ class SaveProjectModal extends React.Component {
             <Button as={Link} to={'/'} color='blue' basic>
               <Icon name='home' /> Home
             </Button>
+            <Button as={Link} to={`/projects/${this.props.projectId}`} color='blue' basic>
+              <Icon name='video camera' /> View project
+            </Button>
             <Link to={`/editproject/${this.props.projectId}`}>
               <Button basic
                 color='blue'
@@ -106,7 +118,6 @@ class SaveProjectModal extends React.Component {
             </Link>
           </Modal.Actions>
         </Modal>
-        <Route path='/' component={Home} />
       </div>
     );
   }

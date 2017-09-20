@@ -1,5 +1,5 @@
 import React from 'react';
-import {Segment, Progress, Icon, Divider, Label} from 'semantic-ui-react';
+import {Segment, Icon, Divider, Label} from 'semantic-ui-react';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import $ from 'jquery';
 import {commafy, getDaysRemaining} from '../../helpers.js';
@@ -20,7 +20,8 @@ class ProjectDetails extends React.Component {
       videoId: '',
       raisedAmount: '',
       goalAmount: '',
-      openRoles: []
+      openRoles: [],
+      userBacked: false
     };
 
     this.informer = this.informer.bind(this);
@@ -45,7 +46,9 @@ class ProjectDetails extends React.Component {
           daysRemaining: getDaysRemaining(data.project),
           raisedAmount: commafy(data.project.raised_amount),
           goalAmount: commafy(data.project.goal_amount),
-          openRoles: data.openRoles
+          openRoles: data.openRoles,
+          userBacked: data.userContribution ? true : false,
+          userContribution: data.userContribution
         });
       },
       error: (err) => {
@@ -79,6 +82,8 @@ class ProjectDetails extends React.Component {
                 raisedAmount={this.state.raisedAmount}
                 goalAmount={this.state.goalAmount}
                 daysRemaining={this.state.daysRemaining}
+                userBacked={this.state.userBacked}
+                userContribution={this.state.userContribution}
               />
             </div>
             <Divider horizontal/>

@@ -13,7 +13,6 @@ class FeaturedProject extends React.Component {
     return (
       <Segment raised id='featured-project-segment'>
         <Label
-          color='teal'
           ribbon size='large'
           id='featured-project-label'
         >Featured</Label>

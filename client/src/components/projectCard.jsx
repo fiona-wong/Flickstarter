@@ -119,6 +119,7 @@ class ProjectCard extends React.Component {
             contributed={this.props.project.raised_amount}
             funded={Math.round(100 * (this.props.project.raised_amount / this.props.project.goal_amount)).toString()}
             daysRemaining={getDaysRemaining(this.props.project)}
+            backers={this.props.project.contributions ? this.props.project.contributions.length : null}
           />
 
         </Card.Content>

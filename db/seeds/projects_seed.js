@@ -11,7 +11,7 @@ exports.seed = function (knex, Promise) {
     goal_amount: 4000,
     goal_deadline: '11/20/2017',
     upvote_count: 87,
-    raised_amount: 3600,
+    raised_amount: 1600,
     creator_id: 7,
     genre: 'Action'
   }).save()
@@ -56,7 +56,7 @@ exports.seed = function (knex, Promise) {
         goal_amount: 2000,
         goal_deadline: '10/20/2017',
         upvote_count: 7,
-        raised_amount: 1500,
+        raised_amount: 1000,
         creator_id: 3,
         genre: 'Comedy'
       }).save()
@@ -71,7 +71,7 @@ exports.seed = function (knex, Promise) {
         goal_amount: 2500,
         goal_deadline: '10/28/2017',
         upvote_count: 2,
-        raised_amount: 2300,
+        raised_amount: 1300,
         creator_id: 4,
         genre: 'Crime'
       }).save()
@@ -101,7 +101,7 @@ exports.seed = function (knex, Promise) {
         goal_amount: 3500,
         goal_deadline: '11/10/2017',
         upvote_count: 23,
-        raised_amount: 3400,
+        raised_amount: 1400,
         creator_id: 6,
         genre: 'Drama'
       }).save()

@@ -22,8 +22,6 @@
   },
 
   "passport": {
-    "Google": {},
-    "Facebook": {},
-    "Twitter": {}
+    "Facebook": {}
   }
 }

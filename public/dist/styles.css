@@ -24,6 +24,68 @@
   margin: 0% 2% 0% 2%;
 }
 
+.bubble-left
+{
+  position: relative;
+  display:inline-block;
+  max-width:350px;
+  min-height:1.5em;
+  padding: 20px;
+  background: #1678C2;
+  border: #1678C2 solid 4px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  text-align: center;
+  color: #ffffff
+}
+
+.bubble-left:after
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 12px 14px 12px 0;
+border-color: transparent #1678C2;
+display: block;
+width: 0;
+z-index: 1;
+margin-top: -12px;
+left: -14px;
+top: 50%;
+}
+
+.bubble-right
+{
+  position: relative;
+  display:inline-block;
+  max-width:350px;
+  min-height:1.5em;
+  padding: 20px;
+  background: #1678C2;
+  border: #1678C2 solid 4px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  text-align: center;
+  color: #ffffff
+}
+
+.bubble-right:after
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 12px 0 12px 14px;
+border-color: transparent #1678C2;
+display: block;
+width: 0;
+z-index: 1;
+margin-top: -12px;
+right: -14px;
+top: 50%;
+}
+
 .card-genre-upvotes {
   display: flex;
   justify-content: space-between;;
@@ -113,6 +175,8 @@
 #featured-project-label {
   z-index: 1;
   font-size: 1.2rem;
+  background: #2185d0;
+  color: white;
 }
 
 #featured-project-segment {
@@ -324,6 +388,22 @@ i.thumbs.up.icon {
   line-height: 2.4rem;
 }
 
+.project-detail-support-modal {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-detail-support-modal button {
+  width: 60%;
+}
+
+.project-detail-support-modal div.ui.fluid.right.labeled.input {
+  width: 60%;
+  margin-right: .5%;
+}
+
 div.ui.one.item.project-role-dropdown.menu {
   margin-bottom: 0;
 }
@@ -374,6 +454,10 @@ div.ui.one.item.project-role-dropdown.menu {
   align-items: left;
 }
 
+.ui.modal .actions>.button {
+  margin-left: 0;
+}
+
 #upvote-button {
   opacity: 1;
   background: white;
@@ -403,65 +487,15 @@ div.ui.one.item.project-role-dropdown.menu {
   padding: .6em .3em .78571429em;
 }
 
-
-.bubble-left
-{
-  position: relative;
-  display:inline-block;
-  max-width:350px;
-  min-height:1.5em;
-  padding: 20px;
-  background: #1678C2;
-  border: #1678C2 solid 4px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-  text-align: center;
-  color: #ffffff
+.user-contribution-text {
+  display: flex;
+  padding-top: 3rem;
+  font-size: 110%;
+  justify-content: center;
+  align-items: center;
 }
 
-.bubble-left:after
-{
-content: '';
-position: absolute;
-border-style: solid;
-border-width: 12px 14px 12px 0;
-border-color: transparent #1678C2;
-display: block;
-width: 0;
-z-index: 1;
-margin-top: -12px;
-left: -14px;
-top: 50%;
-}
-
-.bubble-right
-{
-  position: relative;
-  display:inline-block;
-  max-width:350px;
-  min-height:1.5em;
-  padding: 20px;
-  background: #1678C2;
-  border: #1678C2 solid 4px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-  text-align: center;
-  color: #ffffff
-}
-
-.bubble-right:after
-{
-content: '';
-position: absolute;
-border-style: solid;
-border-width: 12px 0 12px 14px;
-border-color: transparent #1678C2;
-display: block;
-width: 0;
-z-index: 1;
-margin-top: -12px;
-right: -14px;
-top: 50%;
+.user-contribution-text p {
+  font-weight: bold;
+  padding-left: 4px;
 }
