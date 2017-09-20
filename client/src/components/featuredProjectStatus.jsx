@@ -12,11 +12,11 @@ class FeaturedProjectStatus extends React.Component {
         <Progress id='featured-project-status-bar' size='small' percent='88' indicating />
         <div id='featured-project-statistics-container'>
           <div className='featured-project-stat'>
-            <h5>88%</h5>
+            <h5>83%</h5>
             <p>funded</p>
           </div>
           <div className='featured-project-stat'>
-            <h5>$840,301</h5>
+            <h5>$8,301</h5>
             <p>contributed</p>
           </div>
           <div className='featured-project-stat'>
