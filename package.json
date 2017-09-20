@@ -2,11 +2,10 @@
   "name": "course.thesis",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "webpack --config webpack.config.js & knex migrate:latest & knex seed:run",
     "test": "NODE_ENV=test grunt test",
     "build": "webpack -d --watch",
     "heroku-postbuild": "webpack -d",
-    "start": "nodemon server & npm run build"
+    "start": "nodemon server"
   },
   "author": "Hack Reactor",
   "license": "MIT",
