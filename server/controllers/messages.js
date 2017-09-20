@@ -29,14 +29,12 @@ module.exports.save = (req, res) => {
 };
 
 module.exports.view = (req, res) => {
-  models.Message.where({
-    receiver_id: req.params.receiverId
-  }).fetch()
+  models.Message.where({receiver_id: req.user.id, sender_id: Number(req.body.sender), viewed: false}).save({viewed: true}, {method: 'update'})
     .then(messages => {
       if (!messages) {
         throw messages;
       }
-      return messages.save({viewed: true}, { method: 'update' });
+      return messages;
     })
     .then(() => {
       res.sendStatus(201);
@@ -49,15 +47,49 @@ module.exports.view = (req, res) => {
     });
 };
 
-module.exports.get = (req, res) => {
-  models.Message.where({
-    receiver_id: req.params.receiverId
-  }).fetch()
+module.exports.getMessages = (req, res) => {
+  let allMessages = {};
+  models.Message.where({receiver_id: req.user.id}).orderBy('created_at', 'DESC').fetchAll({withRelated: ['sender', 'project']})
+    .then(received => {
+      received = received.toJSON();
+      allMessages.receivedMessages = received;
+      models.Message.where({sender_id: req.user.id}).orderBy('created_at', 'DESC').fetchAll({withRelated: ['receiver', 'project']})
+        .then(sent => {
+          sent = sent.toJSON();
+          allMessages.sentMessages = sent;
+          res.status(200).send(allMessages);
+        });
+    })
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
+
+
+module.exports.reply = (req, res) => {
+  models.Message.forge({sender_id: req.user.id, receiver_id: Number(req.body.receiver_id), text: req.body.text, viewed: false}).save()
+    .then(message => {
+      // models.Message.where({receiver_id: req.user.id, sender_id: Number(req.body.receiver_id), viewed: false}).save({viewed: true}, {method: 'update'})
+      // .then(() => {
+      res.status(200).send(message);
+      // });
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
+
+module.exports.getMessagesFromOne = (req, res) => {
+  models.Message.query({where: {receiver_id: req.user.id, sender_id: req.body.sender}, orWhere: {sender_id: req.user.id, receiver_id: req.body.sender}}).orderBy('id').fetchAll({withRelated: ['sender', 'receiver', 'project']})
     .then(messages => {
-      if (!messages) {
-        throw messages;
-      }
+      // models.Message.where({receiver_id: req.user.id, sender_id: req.body.sender, viewed: false}).save({viewed: true}, {method: 'update'})
+      // .then(() => {
+      messages = messages.toJSON();
       res.status(200).send(messages);
+      // })
     })
     .error(err => {
       res.status(500).send(err);

@@ -6,10 +6,10 @@ const Message = db.Model.extend({
     return this.belongsTo('Project');
   },
   sender: function() {
-    return this.belongsTo('Profile');
+    return this.belongsTo('Profile', 'sender_id');
   },
   receiver: function() {
-    return this.belongsTo('Profile');
+    return this.belongsTo('Profile', 'receiver_id');
   }
 });
 

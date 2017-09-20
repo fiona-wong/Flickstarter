@@ -83,7 +83,7 @@
 
 #featured-project-contribute-button-container {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   bottom: .8rem;
   width: 100%;
   position: absolute;
@@ -101,7 +101,7 @@
 }
 
 #featured-project-header {
-  margin-left: 2%; 
+  margin-left: 2%;
   margin-bottom: -1%;
 }
 
@@ -130,8 +130,8 @@
 }
 
 #featured-project-statistics-container {
-  display: flex; 
-  justify-content: space-evenly; 
+  display: flex;
+  justify-content: space-evenly;
   margin-top: 1%;
   text-align: center;
   padding-bottom: 20px;
@@ -258,7 +258,7 @@ i.thumbs.up.icon {
   width: 98%;
   display: flex;
   justify-content: space-evenly;
-  align-items: left; 
+  align-items: left;
   margin-bottom: 15px;
   margin-left: 1%;
   padding-top: 15px;
@@ -403,3 +403,65 @@ div.ui.one.item.project-role-dropdown.menu {
   padding: .6em .3em .78571429em;
 }
 
+
+.bubble-left
+{
+  position: relative;
+  display:inline-block;
+  max-width:350px;
+  min-height:1.5em;
+  padding: 20px;
+  background: #1678C2;
+  border: #1678C2 solid 4px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  text-align: center;
+  color: #ffffff
+}
+
+.bubble-left:after
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 12px 14px 12px 0;
+border-color: transparent #1678C2;
+display: block;
+width: 0;
+z-index: 1;
+margin-top: -12px;
+left: -14px;
+top: 50%;
+}
+
+.bubble-right
+{
+  position: relative;
+  display:inline-block;
+  max-width:350px;
+  min-height:1.5em;
+  padding: 20px;
+  background: #1678C2;
+  border: #1678C2 solid 4px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  text-align: center;
+  color: #ffffff
+}
+
+.bubble-right:after
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 12px 0 12px 14px;
+border-color: transparent #1678C2;
+display: block;
+width: 0;
+z-index: 1;
+margin-top: -12px;
+right: -14px;
+top: 50%;
+}

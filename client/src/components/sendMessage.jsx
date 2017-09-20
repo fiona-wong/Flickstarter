@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Form, TextArea, Modal, Icon, Button, Dropdown, Grid } from 'semantic-ui-react';
+import { Input, Form, TextArea, Modal, Icon, Button, Dropdown, Grid, Message } from 'semantic-ui-react';
 
 const SendMessage = (props) => {
   let projectOptions = [];
@@ -11,7 +11,7 @@ const SendMessage = (props) => {
     <Modal trigger={<Button floated="right" size="mini" content='Message me!' icon='mail'/>} closeIcon>
       <Modal.Header>Send a message to {props.username}!</Modal.Header>
       <Modal.Content>
-        <Form onSubmit={props.submitMessage}>
+        <Form success={props.successMessage} onSubmit={props.submitMessage}>
           <Grid columns={2}>
             <Grid.Row>
               <Grid.Column>
@@ -29,6 +29,10 @@ const SendMessage = (props) => {
               <Icon name='send outline' />
             </Button.Content>
           </Button>
+          <Message
+            success
+            header='Message has been sent.'
+          />
         </Form>
       </Modal.Content>
     </Modal>

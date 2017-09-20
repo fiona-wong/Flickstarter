@@ -26,7 +26,8 @@ class Profile extends React.Component {
       message: '',
       subject: '',
       project: '',
-      fullProfile: {}
+      fullProfile: {},
+      successMessage: false
     };
     this.getVideoId = this.getVideoId.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
@@ -94,9 +95,13 @@ class Profile extends React.Component {
       },
       data => {
         console.log('success');
+        this.setState({
+          successMessage: true
+        });
       }
     );
   }
+
 
   handleChange(event, data) {
     event.preventDefault();
@@ -104,6 +109,7 @@ class Profile extends React.Component {
       [data.name]: data.value
     });
   }
+
 
   render() {
     return (
@@ -114,6 +120,7 @@ class Profile extends React.Component {
             <Grid.Column width={4}>
               <Image shape="circular" size='medium' src={this.state.photo}/>
               <SendMessage
+                successMessage={this.state.successMessage}
                 projects={this.state.projects}
                 username={this.state.username}
                 submitMessage={this.submitMessage}
