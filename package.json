@@ -2,15 +2,14 @@
   "name": "course.thesis",
   "version": "1.0.0",
   "scripts": {
-    "server-dev": "nodemon server",
-    "start": "node server",
     "test": "NODE_ENV=test grunt test",
-    "build": "webpack --watch",
+    "build": "webpack -d --watch",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run",
     "createdb": "grunt pgcreatedb:default && knex migrate:latest & knex seed:run",
     "prepdb": "knex migrate:latest & knex seed:run",
-    "heroku-postbuild": "webpack -d"
+    "heroku-postbuild": "webpack -d",
+    "start": "nodemon server & npm run build"
   },
   "author": "Hack Reactor",
   "license": "MIT",
@@ -51,7 +50,8 @@
     "semantic-ui-react": "^0.72.0",
     "stripe": "^5.0.0",
     "style-loader": "^0.18.2",
-    "tracer": "^0.8.11"
+    "tracer": "^0.8.11",
+    "webpack": "^2.3.2"
   },
   "devDependencies": {
     "babel-loader": "^7.0.0",
