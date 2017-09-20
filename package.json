@@ -2,12 +2,9 @@
   "name": "course.thesis",
   "version": "1.0.0",
   "scripts": {
+    "postinstall": "webpack --config webpack.config.js & knex migrate:latest & knex seed:run",
     "test": "NODE_ENV=test grunt test",
     "build": "webpack -d --watch",
-    "migrate": "knex migrate:latest",
-    "seed": "knex seed:run",
-    "createdb": "grunt pgcreatedb:default && knex migrate:latest & knex seed:run",
-    "prepdb": "knex migrate:latest & knex seed:run",
     "heroku-postbuild": "webpack -d",
     "start": "nodemon server & npm run build"
   },
