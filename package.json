@@ -4,7 +4,7 @@
   "scripts": {
     "test": "NODE_ENV=test grunt test",
     "build": "webpack -d --watch",
-    "heroku-postbuild": "webpack --config webpack.config.babel.js",
+    "heroku-postbuild": "webpack --config webpack.config.babel.js & knex migrate:latest & knex seed:run",
     "start": "nodemon server",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run",
@@ -15,10 +15,6 @@
   "license": "MIT",
   "dependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.0.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
-    "babel-preset-latest": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
