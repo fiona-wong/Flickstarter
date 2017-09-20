@@ -15,7 +15,7 @@ const Project = db.Model.extend({
     return this.hasMany('FollowUpvote');
   },
   contributions: function() {
-    return this.hasMany('UserProjectContribution', 'project_id');
+    return this.belongsToMany('Profile').through('UserProjectContribution');
   },
   openRoles: function() {
     return this.belongsTo('OpenRole', 'project_id');

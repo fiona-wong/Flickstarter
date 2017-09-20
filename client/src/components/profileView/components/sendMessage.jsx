@@ -8,7 +8,7 @@ const SendMessage = (props) => {
   });
 
   return (
-    <Modal trigger={<Button size="mini" content='Message me!' icon='mail'/>} closeIcon>
+    <Modal trigger={<Button primary content='Message me!' icon='mail'/>} closeIcon>
       <Modal.Header>Send a message to {props.username}!</Modal.Header>
       <Modal.Content>
         <Form success={props.successMessage} onSubmit={props.submitMessage}>

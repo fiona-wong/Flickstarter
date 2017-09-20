@@ -6,7 +6,7 @@ const UserProjectContribution = db.Model.extend({
     return this.belongsTo('Project', 'project_id');
   },
   profile: function() {
-    return this.belongsTo('Profile');
+    this.belongsTo('Profile', 'user_id');
   }
 });
 
