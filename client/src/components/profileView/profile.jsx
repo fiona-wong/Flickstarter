@@ -146,8 +146,8 @@ class Profile extends React.Component {
             </Container>
           </Grid.Row>
           <Divider/>
-          <Grid.Row>
-            <Tab menu={{ secondary: true, pointing: true }} panes={[
+          <Grid.Row >
+            <Tab menu={{ secondary: true, pointing: true }} style={{width: '50%'}} panes={[
               {menuItem: 'Projects Created', render: () => <Tab.Pane attached={false}>
                 {this.state.projects.map((project, index) =>
                   <ProjectCard

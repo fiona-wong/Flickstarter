@@ -487,6 +487,10 @@ div.ui.one.item.project-role-dropdown.menu {
   padding: .6em .3em .78571429em;
 }
 
+.ui.card>.content>.description, .ui.cards>.card>.content>.description {
+  text-align: left;
+}
+
 .user-contribution-text {
   display: flex;
   padding-top: 3rem;
