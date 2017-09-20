@@ -2,7 +2,6 @@
 config/development.json
 config/staging.json
 config/test.json
-config/default.json
 .idea
 package-lock.json
 
