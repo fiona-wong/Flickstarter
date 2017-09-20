@@ -1,10 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
 import Youtube from 'react-youtube';
-import { Form, TextArea, Modal, Embed, Label, Grid, Header, Container, Divider, Icon, Image, Button } from 'semantic-ui-react';
-import ProjectCard from './projectCard.jsx';
+import { Tab, Form, TextArea, Modal, Embed, Label, Grid, Header, Container, Divider, Icon, Image, Button } from 'semantic-ui-react';
+import ProjectCard from '../projectCard.jsx';
 import moment from 'moment';
-import SendMessage from './sendMessage.jsx';
+import SendMessage from './components/sendMessage.jsx';
 
 
 class Profile extends React.Component {

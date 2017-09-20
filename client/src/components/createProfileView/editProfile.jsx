@@ -9,7 +9,7 @@ import AddWebsites from './components/addWebsite.jsx';
 import AddYoutube from './components/addYoutube.jsx';
 import UploadPhoto from './components/uploadProfilePhoto.jsx';
 import { BrowserRouter as Router, Link, Route, browserHistory } from 'react-router-dom';
-import Profile from '../profile.jsx';
+import Profile from '../profileView/profile.jsx';
 
 class EditProfile extends React.Component {
 
@@ -318,7 +318,6 @@ class EditProfile extends React.Component {
             saveRoles={this.saveRoles}
             roleComplete={this.state.roleComplete}
             handleOnRoleClick={this.handleOnRoleClick}
-            chosenRole={this.state.chosenRole}
           />
 
           <AddLocation
