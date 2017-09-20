@@ -5,12 +5,16 @@
     "test": "NODE_ENV=test grunt test",
     "build": "webpack -d --watch",
     "heroku-postbuild": "webpack -d",
-    "start": "nodemon server"
+    "start": "nodemon server",
+    "migrate": "knex migrate:latest",
+    "seed": "knex seed:run",
+    "createdb": "grunt pgcreatedb:default && knex migrate:latest & knex seed:run",
+    "prepdb": "knex migrate:latest & knex seed:run"
   },
   "author": "Hack Reactor",
   "license": "MIT",
   "dependencies": {
-    "babel-core": "^6.24.1",
+    "babel-core": "^6.26.0",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
@@ -31,6 +35,7 @@
     "knex": "^0.12.9",
     "moment": "^2.18.1",
     "morgan": "^1.8.1",
+    "nodemon": "^1.12.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
@@ -63,6 +68,7 @@
     "grunt-mocha-test": "^0.13.2",
     "mocha": "^3.2.0",
     "node-mocks-http": "^1.6.1",
+    "nodemon": "^1.12.1",
     "supertest": "^3.0.0",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2"
