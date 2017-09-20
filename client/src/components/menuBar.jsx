@@ -80,7 +80,7 @@ class MenuBar extends React.Component {
             <Dropdown.Menu >
               <Dropdown.Item as={Link} to={'/profile'} name='Profile'>View Profile</Dropdown.Item>
               <Dropdown.Item as={Link} to={'/editprofile'} name='Profile'>Edit Profile</Dropdown.Item>
-              <Dropdown.Item as={Link} to={'/logout'}>Log Out</Dropdown.Item>
+              <Dropdown.Item as='a' href={'/logout'}>Log Out</Dropdown.Item>
             </Dropdown.Menu>
           </Menu.Item>
         </Menu>
