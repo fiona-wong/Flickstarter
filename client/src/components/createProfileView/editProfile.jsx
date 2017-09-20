@@ -9,7 +9,7 @@ import AddWebsites from './components/addWebsite.jsx';
 import AddYoutube from './components/addYoutube.jsx';
 import UploadPhoto from './components/uploadProfilePhoto.jsx';
 import { BrowserRouter as Router, Link, Route, browserHistory } from 'react-router-dom';
-import Profile from '../profile.jsx';
+import Profile from '../profileView/profile.jsx';
 
 class EditProfile extends React.Component {
 
@@ -83,6 +83,11 @@ class EditProfile extends React.Component {
           photo: data.profile.photo,
           youtubes: data.youtubes,
           projects: data.projects
+        });
+        data.profile.roles.forEach(role => {
+          this.setState({
+            chosenRole: this.state.chosenRole.concat([role.position])
+          });
         });
       });
     });
@@ -311,6 +316,7 @@ class EditProfile extends React.Component {
             handleOnNameClick={this.handleOnNameClick}
           />
           <PickRole
+            chosenRole={this.state.chosenRole}
             roleComplete={this.state.roleComplete}
             roleActive={this.state.roleActive}
             roles={this.state.roles}
@@ -318,7 +324,6 @@ class EditProfile extends React.Component {
             saveRoles={this.saveRoles}
             roleComplete={this.state.roleComplete}
             handleOnRoleClick={this.handleOnRoleClick}
-            chosenRole={this.state.chosenRole}
           />
 
           <AddLocation

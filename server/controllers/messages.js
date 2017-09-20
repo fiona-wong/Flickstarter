@@ -1,7 +1,7 @@
 const models = require('../../db/models');
 
 module.exports.save = (req, res) => {
-  models.Profile.where({username: req.body.receiver}).fetch({columns: ['id']})
+  models.Profile.where({id: req.body.receiver}).fetch({columns: ['id']})
     .then(profile => {
       if (!profile) {
         throw profile;

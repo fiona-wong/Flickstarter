@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Container, Grid, Step, Button } from 'semantic-ui-react';
 import ImageUploader from '../../imageUploader.jsx';
-import Profile from '../../profile.jsx';
+import Profile from '../../profileView/profile.jsx';
 
 const UploadPhoto = (props) => (
 

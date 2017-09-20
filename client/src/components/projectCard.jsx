@@ -6,7 +6,7 @@ import { getDaysRemaining } from '../helpers.js';
 import $ from 'jquery';
 import EditProject from './editProject.jsx';
 import ProjectStatus from './projectStatus.jsx';
-import Profile from './profile.jsx';
+import Profile from './profileView/profile.jsx';
 import Upvote from './upvote.jsx';
 
 class ProjectCard extends React.Component {
@@ -15,7 +15,7 @@ class ProjectCard extends React.Component {
     this.state = {
       upvoteCount: this.props.project.upvote_count,
       upvoted: this.props.userUpvotes[this.props.project.id] ? true : false
-    }
+    };
     this.handleUpvote = this.handleUpvote.bind(this);
   }
 
@@ -47,7 +47,7 @@ class ProjectCard extends React.Component {
             trigger={
               <div className='card-title edit-project-button'>
                 <Link to={`/editproject/${this.props.project.id}`}>
-                  <Icon circular inverted 
+                  <Icon circular inverted
                     name='edit'
                   />
                 </Link>
@@ -69,7 +69,7 @@ class ProjectCard extends React.Component {
                   handleUpvote={this.handleUpvote}
                   upvoted={this.state.upvoted}
                 />
-                  {this.state.upvoteCount}
+                {this.state.upvoteCount}
               </div>
             </div>
           </div>
@@ -127,6 +127,6 @@ class ProjectCard extends React.Component {
       </Card>
     );
   }
-};
+}
 
 export default ProjectCard;

@@ -13,9 +13,17 @@ module.exports.getAll = (req, res) => {
 
 module.exports.getOne = (req, res) => {
   let fullProfile = {};
-  models.Profile.where({id: req.params.id}).fetch({withRelated: ['roles']})
+  models.Profile.where({id: req.params.id}).fetch({withRelated: ['roles', 'contributions']})
     .then((profile) => {
       profile = profile.toJSON();
+      profile.contributions.map(contribution => {
+        models.Profile.where({id: contribution.creator_id}).fetch({columns: ['display', 'username', 'photo']})
+          .then(creator => {
+            creator = creator.toJSON();
+            contribution.creator = creator;
+            return contribution;
+          });
+      });
       fullProfile.profile = profile;
       return models.Youtube.where({user_id: req.params.id}).fetchAll({columns: ['link']})
         .then(youtubes => {
@@ -25,18 +33,18 @@ module.exports.getOne = (req, res) => {
             .then(projects => {
               projects = projects.toJSON();
               fullProfile.projects = projects;
-              return models.FollowUpvote.where({user_id: req.user.id}).fetchAll()
+              return models.FollowUpvote.where({user_id: req.user.id}).fetchAll();
             })
-              .then(upvotes => {
-                let upvoteStorage = {};
-                upvotes.forEach(upvote => {
-                  upvoteStorage[upvote.attributes.project_id] = upvote.attributes.project_id;
-                });
-                fullProfile.userUpvotes = upvoteStorage;
-                res.status(200).send(fullProfile);
-              })
+            .then(upvotes => {
+              let upvoteStorage = {};
+              upvotes.forEach(upvote => {
+                upvoteStorage[upvote.attributes.project_id] = upvote.attributes.project_id;
+              });
+              fullProfile.userUpvotes = upvoteStorage;
+              res.status(200).send(fullProfile);
             });
-        })
+        });
+    })
     .catch(()=> {
       res.status(500).send('Could not retrieve data');
     });
@@ -45,10 +53,17 @@ module.exports.getOne = (req, res) => {
 
 module.exports.getOwn = (req, res, next) => {
   let fullProfile = {};
-  models.Profile.where({id: req.user.id}).fetch({withRelated: ['roles']})
+  models.Profile.where({id: req.user.id}).fetch({withRelated: ['roles', 'contributions']})
     .then((profile) => {
-      // console.log(profile)
       profile = profile.toJSON();
+      profile.contributions.map(contribution => {
+        models.Profile.where({id: contribution.creator_id}).fetch({columns: ['display', 'username', 'photo']})
+          .then(creator => {
+            creator = creator.toJSON();
+            contribution.creator = creator;
+            return contribution;
+          });
+      });
       fullProfile.profile = profile;
       models.Youtube.where({user_id: req.user.id}).fetchAll({columns: ['link']})
         .then(youtubes => {
@@ -58,16 +73,16 @@ module.exports.getOwn = (req, res, next) => {
             .then(projects => {
               projects = projects.toJSON();
               fullProfile.projects = projects;
-              return models.FollowUpvote.where({user_id: req.user.id}).fetchAll()
+              return models.FollowUpvote.where({user_id: req.user.id}).fetchAll();
             })
-              .then(upvotes => {
-                let upvoteStorage = {};
-                upvotes.forEach(upvote => {
-                  upvoteStorage[upvote.attributes.project_id] = upvote.attributes.project_id;
-                });
-                fullProfile.userUpvotes = upvoteStorage;
-                res.status(200).send(fullProfile);
-              })
+            .then(upvotes => {
+              let upvoteStorage = {};
+              upvotes.forEach(upvote => {
+                upvoteStorage[upvote.attributes.project_id] = upvote.attributes.project_id;
+              });
+              fullProfile.userUpvotes = upvoteStorage;
+              res.status(200).send(fullProfile);
+            });
         });
     })
     .catch(()=> {

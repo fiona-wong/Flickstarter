@@ -3,7 +3,7 @@ import { Link, Route, browserHistory } from 'react-router-dom';
 import { Dropdown, Image, Menu, Icon } from 'semantic-ui-react';
 import CreateProject from './createProjectView/createProject.jsx';
 import ExploreProjects from './exploreProjects.jsx';
-import Profile from './profile.jsx';
+import Profile from './profileView/profile.jsx';
 import Messages from './messagesView/messages.jsx';
 import EditProfile from './createProfileView/editProfile.jsx';
 import Home from './home.jsx';

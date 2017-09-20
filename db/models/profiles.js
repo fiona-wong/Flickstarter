@@ -21,7 +21,7 @@ const Profile = db.Model.extend({
     return this.hasMany('Follow_Upvote');
   },
   contributions: function() {
-    return this.hasMany('UserProjectContribution');
+    return this.belongsToMany('Project', 'user_project_contributions', 'user_id');
   }
 });
 

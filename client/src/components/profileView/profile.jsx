@@ -1,10 +1,10 @@
 import React from 'react';
 import $ from 'jquery';
 import Youtube from 'react-youtube';
-import { Form, TextArea, Modal, Embed, Label, Grid, Header, Container, Divider, Icon, Image, Button } from 'semantic-ui-react';
-import ProjectCard from './projectCard.jsx';
+import { Tab, Form, TextArea, Modal, Embed, Label, Grid, Header, Container, Divider, Icon, Image, Button } from 'semantic-ui-react';
+import ProjectCard from '../projectCard.jsx';
 import moment from 'moment';
-import SendMessage from './sendMessage.jsx';
+import SendMessage from './components/sendMessage.jsx';
 
 
 class Profile extends React.Component {
@@ -21,6 +21,7 @@ class Profile extends React.Component {
       personalsite: '',
       youtubes: [],
       photo: '',
+      contributedProjects: [],
       totalContributions: null,
       projects: [],
       message: '',
@@ -46,6 +47,7 @@ class Profile extends React.Component {
         personalsite: data.profile.personalsite,
         photo: data.profile.photo,
         youtubes: data.youtubes,
+        contributedProjects: data.profile.contributions,
         projects: data.projects,
         fullProfile: data.profile,
         roles: data.profile.roles,
@@ -88,7 +90,7 @@ class Profile extends React.Component {
 
   submitMessage(event) {
     $.post('/messages/send',
-      {receiver: this.state.username,
+      {receiver: this.state.fullProfile.id,
         message: this.state.message,
         subject: this.state.subject,
         project: this.state.project
@@ -114,44 +116,39 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="page-header-padding">
-
-        <Grid centered columns={2}>
+        <Grid centered>
           <Grid.Row>
-            <Grid.Column width={4}>
-              <div className='basic-flex-centered-column'>
-                <Image shape="circular" size='medium' src={this.state.photo}/>
-                <SendMessage
-                  projects={this.state.projects}
-                  username={this.state.username}
-                  submitMessage={this.submitMessage}
-                  handleChange={this.handleChange}
-                />
-              </div>
-            </Grid.Column>
-            <Grid.Column width={12}>
-              <Container>
-                <Container>
-                  <Header as="h2" textAlign="left" >{this.state.first + ' ' + this.state.last}</Header>
-                  <Icon name="marker"/>{this.state.location}
-                  <br/>
-                  {this.state.roles.map((role, index) => (
-                    <Label key={index}>{role.position}</Label>
-                  ))}
-                  <br/>
-                  <a target="_blank" href={this.state.linkedin}>LinkedIn</a> | <a target="_blank" href={this.state.personalsite}>Personal Website</a>
-                  <br/><br/>
-                </Container>
-                <Container>
-                  {this.state.about}
-                </Container>
+            <Container>
+              <Header as="h2" textAlign="center" >{this.state.first + ' ' + this.state.last}</Header>
+              <Image centered shape="circular" size='medium' src={this.state.photo}/>
+              <Container textAlign="center">
+                <Icon name="marker"/>{this.state.location}
               </Container>
-            </Grid.Column>
+              <Container textAlign="center">
+                {this.state.roles.map((role, index) => (
+                  <Label key={index}>{role.position}</Label>
+                ))}
+                <br/>
+                <a target="_blank" href={this.state.linkedin}>LinkedIn</a> | <a target="_blank" href={this.state.personalsite}>Personal Website</a>
+                <br/><br/>
+              </Container>
+              <Container textAlign="center">
+                {this.state.about}
+              </Container>
+              <SendMessage
+                successMessage={this.state.successMessage}
+                projects={this.state.projects}
+                username={this.state.fullProfile.id}
+                name={this.state.fullProfile.display}
+                submitMessage={this.submitMessage}
+                handleChange={this.handleChange}
+              />
+            </Container>
           </Grid.Row>
           <Divider/>
           <Grid.Row>
-            <Grid.Column>
-              <Label as='a' ribbon>Projects Created</Label>
-              <Container>
+            <Tab menu={{ secondary: true, pointing: true }} panes={[
+              {menuItem: 'Projects Created', render: () => <Tab.Pane attached={false}>
                 {this.state.projects.map((project, index) =>
                   <ProjectCard
                     pathName={this.props.location.pathname}
@@ -165,20 +162,34 @@ class Profile extends React.Component {
                     userUpvotes={this.state.userUpvotes}
                   />
                 )}
-              </Container>
-            </Grid.Column>
-            <Grid.Column>
-              <Label as='a' ribbon='right'>Past Work</Label>
-              <Container>
-                {this.state.youtubes.map((youtube, index) =>
-                  <Youtube
+              </Tab.Pane>},
+              { menuItem: 'Projects Backed', render: () => <Tab.Pane attached={false}>
+                {this.state.contributedProjects.map((project, index) =>
+                  <ProjectCard
                     key={index}
-                    videoId={this.getVideoId(youtube.link)}
-                    opts={{width: '100%'}}
+                    project={project}
+                    creatorName={project.creator.display}
+                    photo={project.creator.photo}
+                    profilePage={this.state.first}
+                    profile={this.state.fullProfile}
+                    id={project.id}
+                    userUpvotes={this.state.userUpvotes}
                   />
                 )}
-              </Container>
-            </Grid.Column>
+              </Tab.Pane> },
+              { menuItem: 'Portfolio', render: () => <Tab.Pane attached={false}>
+                <Grid.Column>
+                  {this.state.youtubes.map((youtube, index) =>
+                    <Grid.Row key={index}>
+                      <Youtube
+                        key={index}
+                        videoId={this.getVideoId(youtube.link)}
+                      />
+                    </Grid.Row>
+                  )}
+                </Grid.Column>
+              </Tab.Pane> },
+            ]} />
           </Grid.Row>
         </Grid>
       </div>
