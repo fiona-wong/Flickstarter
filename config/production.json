@@ -1,7 +1,14 @@
 {
   "knex": {
     "client": "postgresql",
-    "connection": "postgres://dwzqlghplzyfzi:c4c1aa193fd998c933e2b8122e46b123f5ce71838015de162796ca1973699888@ec2-54-83-48-188.compute-1.amazonaws.com:5432/d7a4hmgge0uoj2",
+    "connection": {
+      "database": "d7a4hmgge0uoj2",
+      "user": "dwzqlghplzyfzi",
+      "password": "c4c1aa193fd998c933e2b8122e46b123f5ce71838015de162796ca1973699888",
+      "host": "ec2-54-83-48-188.compute-1.amazonaws.com",
+      "port": 5432,
+      "ssl": true
+    },
     "debug": false,
     "pool": {
       "min": 2,
