@@ -84,7 +84,7 @@ module.exports.create = (req, res) => {
               open_role: role.id
             }).save();
           });
-      } else {
+      } else if (req.body['projectRoles[]']) {
         req.body['projectRoles[]'].forEach(role => {
           return models.Role.where({position: role}).fetch()
             .then(result => {
@@ -94,10 +94,12 @@ module.exports.create = (req, res) => {
               }).save();
             });
         });
+      } else {
+        res.status(201).send(project);
       }
     })
-    .then(result => {
-      res.status(201).send(result);
+    .then(project => {
+      res.status(201).send(project);
     })
     .catch(err => {
       res.status(500).send(err);

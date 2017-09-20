@@ -110,19 +110,21 @@ class EditProject extends React.Component {
         incompleteField: true
       });
     }
-    $.ajax({
-      url: `/openRoles/update/${this.props.match.params.id}`,
-      type: 'POST',
-      data: {
-        openRoles: this.state.projectRoles
-      },
-      success: (data) => {
-        console.log(data);
-      },
-      error: (err) => {
-        console.log(err.statusText, err);
-      }
-    });
+    if (this.state.projectRoles.length > 0) {
+      $.ajax({
+        url: `/openRoles/update/${this.props.match.params.id}`,
+        type: 'POST',
+        data: {
+          openRoles: this.state.projectRoles
+        },
+        success: (data) => {
+          console.log(data);
+        },
+        error: (err) => {
+          console.log(err.statusText, err);
+        }
+      });
+    }
   }
 
   getWarningMessage() {
