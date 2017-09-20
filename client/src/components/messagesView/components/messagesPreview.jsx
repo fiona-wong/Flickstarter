@@ -33,7 +33,7 @@ const MessagesPreview = (props) => (
         <Grid.Row stretched>
           <Grid.Column stretched>
             <Form success={props.successMessage} onSubmit={props.sendReply}>
-              <input name={props.message.sender_id} onChange={props.messageChange} placeholder='Let them know if you are interested or not!'/><Button fluid animated><Button.Content visible>Send</Button.Content><Button.Content hidden><Icon name='send outline' /></Button.Content></Button>
+              <input name={props.message.sender_id === props.myself ? props.message.receiver_id : props.message.sender_id} onChange={props.messageChange} placeholder='Let them know if you are interested or not!'/><Button fluid animated><Button.Content visible>Send</Button.Content><Button.Content hidden><Icon name='send outline' /></Button.Content></Button>
               <Message
                 success
                 header='Message has been sent.'
