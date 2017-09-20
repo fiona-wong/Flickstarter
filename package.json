@@ -5,7 +5,7 @@
     "test": "NODE_ENV=test grunt test",
     "build": "webpack -d --watch",
     "heroku-postbuild": "webpack -d",
-    "start": "nodemon server & npm run build"
+    "start": "nodemon server"
   },
   "author": "Hack Reactor",
   "license": "MIT",
