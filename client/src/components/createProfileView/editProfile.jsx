@@ -84,6 +84,11 @@ class EditProfile extends React.Component {
           youtubes: data.youtubes,
           projects: data.projects
         });
+        data.profile.roles.forEach(role => {
+          this.setState({
+            chosenRole: this.state.chosenRole.concat([role.position])
+          });
+        });
       });
     });
   }
@@ -311,6 +316,7 @@ class EditProfile extends React.Component {
             handleOnNameClick={this.handleOnNameClick}
           />
           <PickRole
+            chosenRole={this.state.chosenRole}
             roleComplete={this.state.roleComplete}
             roleActive={this.state.roleActive}
             roles={this.state.roles}
