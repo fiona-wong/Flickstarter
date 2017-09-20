@@ -1,8 +1,8 @@
 import React from 'react';
 import {Header, Segment, Container, Button} from 'semantic-ui-react';
-import LandingGenre from './components/LandingGenre.jsx';
-import LandingTitle from './components/LandingTitle.jsx';
-import LandingLocation from './components/LandingLocation.jsx';
+import LandingGenre from './components/landingGenre.jsx';
+import LandingTitle from './components/landingTitle.jsx';
+import LandingLocation from './components/landingLocation.jsx';
 
 const LandingPage = (props) => (
   <div id='landing-flex-centered-column'>
