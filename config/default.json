@@ -5,7 +5,7 @@
       "database": "thesis",
       "user": "postgres",
       "password": "postgres",
-      "host": "localhost",
+      "host": "ec2-54-83-48-188.compute-1.amazonaws.com",
       "port": 5432
     },
     "pool": {
