@@ -13,9 +13,17 @@ module.exports.getAll = (req, res) => {
 
 module.exports.getOne = (req, res) => {
   let fullProfile = {};
-  models.Profile.where({id: req.params.id}).fetch({withRelated: ['roles']})
+  models.Profile.where({id: req.params.id}).fetch({withRelated: ['roles', 'contributions']})
     .then((profile) => {
       profile = profile.toJSON();
+      profile.contributions.map(contribution => {
+        models.Profile.where({id: contribution.creator_id}).fetch({columns: ['display', 'username', 'photo']})
+          .then(creator => {
+            creator = creator.toJSON();
+            contribution.creator = creator;
+            return contribution;
+          });
+      });
       fullProfile.profile = profile;
       return models.Youtube.where({user_id: req.params.id}).fetchAll({columns: ['link']})
         .then(youtubes => {
@@ -48,6 +56,14 @@ module.exports.getOwn = (req, res, next) => {
   models.Profile.where({id: req.user.id}).fetch({withRelated: ['roles', 'contributions']})
     .then((profile) => {
       profile = profile.toJSON();
+      profile.contributions.map(contribution => {
+        models.Profile.where({id: contribution.creator_id}).fetch({columns: ['display', 'username', 'photo']})
+          .then(creator => {
+            creator = creator.toJSON();
+            contribution.creator = creator;
+            return contribution;
+          });
+      });
       fullProfile.profile = profile;
       models.Youtube.where({user_id: req.user.id}).fetchAll({columns: ['link']})
         .then(youtubes => {

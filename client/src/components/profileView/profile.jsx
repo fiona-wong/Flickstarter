@@ -37,7 +37,6 @@ class Profile extends React.Component {
 
   componentDidMount() {
     $.get(`${this.props.location.pathname}/u`, data => {
-      console.log(data);
       this.setState({
         username: data.profile.username,
         first: data.profile.first,
@@ -117,7 +116,6 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="page-header-padding">
-
         <Grid centered>
           <Grid.Row>
             <Container>
@@ -141,6 +139,7 @@ class Profile extends React.Component {
                 successMessage={this.state.successMessage}
                 projects={this.state.projects}
                 username={this.state.fullProfile.id}
+                name={this.state.fullProfile.display}
                 submitMessage={this.submitMessage}
                 handleChange={this.handleChange}
               />
@@ -169,6 +168,8 @@ class Profile extends React.Component {
                   <ProjectCard
                     key={index}
                     project={project}
+                    creatorName={project.creator.display}
+                    photo={project.creator.photo}
                     profilePage={this.state.first}
                     profile={this.state.fullProfile}
                     id={project.id}
