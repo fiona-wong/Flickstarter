@@ -65,3 +65,13 @@ module.exports.getUserProjectContributions = (req, res) => {
       res.sendStatus(404);
     });
 };
+
+
+module.exports.getProjectContributionsCount = (req, res) => {
+  models.UserProjectContribution.count()
+  .then(n => {
+    console.log('no of backersssssss', n);
+    res.status(200).send(n)
+  })
+  .catch(err => res.send(err));
+};

@@ -34,23 +34,23 @@ class SaveProjectModal extends React.Component {
               <div className='basic-flex-row' >
                 <div id='save-modal-media-container'>
                   <Image
-                    shape='rounded' 
-                    src={this.props.projectImage} 
+                    shape='rounded'
+                    src={this.props.projectImage}
                     style={{paddingBottom: '1rem'}}
                   />
                   <div>
                     {
                       this.state.videoType === 'vimeo' ?
-                      <Embed 
+                      <Embed
                         id={this.props.projectVideo.substr(this.props.projectVideo.length - 9)}
                         source='vimeo'
                         defaultActive={true}
                       /> :
-                      <Embed 
+                      <Embed
                         id={this.props.projectVideo.substr(this.props.projectVideo.length - 11)}
                         source='youtube'
                         defaultActive={true}
-                      />                      
+                      />
                     }
                   </div>
                 </div>
@@ -83,7 +83,7 @@ class SaveProjectModal extends React.Component {
                           this.props.projectRoles.length > 0 ?
                           <List.Item>
                             <List.Header>Open roles</List.Header>
-                            {this.props.projectRoles.map((role, index) => 
+                            {this.props.projectRoles.map((role, index) =>
                               <Label key={index}>{role}</Label>
                             )}
                           </List.Item> : null
@@ -105,7 +105,7 @@ class SaveProjectModal extends React.Component {
             <Button as={Link} to={'/'} color='blue' basic>
               <Icon name='home' /> Home
             </Button>
-            <Button as={Link} to={`/projects/${this.props.projectId}`} color='blue' basic>
+            <Button as={Link} to={`/allprojects/${this.props.projectId}`} color='blue' basic>
               <Icon name='video camera' /> View project
             </Button>
             <Link to={`/editproject/${this.props.projectId}`}>

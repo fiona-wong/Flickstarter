@@ -8,6 +8,7 @@ import Messages from './messagesView/messages.jsx';
 import EditProfile from './createProfileView/editProfile.jsx';
 import Home from './home.jsx';
 import EditProject from './editProject.jsx';
+import RouteNotFound from './routeNotFound.jsx';
 import ProjectDetails from './projectDetailView/projectDetails.jsx';
 
 class MenuBar extends React.Component {
@@ -84,13 +85,14 @@ class MenuBar extends React.Component {
             </Dropdown.Menu>
           </Menu.Item>
         </Menu>
-        <Route path='/createproject' component={CreateProject} />
-        <Route path='/exploreprojects' component={ExploreProjects} />
-        <Route path='/messages' component={Messages} />
-        <Route path='/profile' component={Profile} />
-        <Route path='/editprofile' component={EditProfile} />
-        <Route path='/editproject/:id' component={EditProject} />
-        <Route path='/projects/:id' component={ProjectDetails} />
+        <Route exact path='/createproject' component={CreateProject} />
+        <Route exact path='/exploreprojects' component={ExploreProjects} />
+        <Route exact path='/messages' component={Messages} />
+        <Route exact path='/profile' component={Profile} />
+        <Route exact path='/editprofile' component={EditProfile} />
+        <Route exact path='/editproject/:id' component={EditProject} />
+        <Route exact path='/allprojects/:id' component={ProjectDetails} />
+        {/*<Route exact path='*' component={RouteNotFound} /> */}
       </div>
     );
   }
