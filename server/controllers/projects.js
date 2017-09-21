@@ -77,23 +77,25 @@ module.exports.create = (req, res) => {
   }).save()
     .then((project) => {
       if (req.body['projectRoles[]'] && typeof req.body['projectRoles[]'] === 'string') {
-        return models.Role.where({position: req.body['projectRoles[]']}).fetch()
+        models.Role.where({position: req.body['projectRoles[]']}).fetch()
           .then(role => {
-            return models.OpenRole.forge({
+            models.OpenRole.forge({
               project_id: project.id,
               open_role: role.id
             }).save();
           });
+        return project;
       } else if (req.body['projectRoles[]']) {
         req.body['projectRoles[]'].forEach(role => {
-          return models.Role.where({position: role}).fetch()
+          models.Role.where({position: role}).fetch()
             .then(result => {
-              return models.OpenRole.forge({
+              models.OpenRole.forge({
                 project_id: project.id,
                 open_role: result.id
               }).save();
             });
         });
+        return project;
       } else {
         res.status(201).send(project);
       }
