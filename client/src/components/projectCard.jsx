@@ -78,7 +78,7 @@ class ProjectCard extends React.Component {
 
           <Card.Header>
             <div id='project-card-content-container'>
-              <Link to={`/projects/${this.props.project.id}`}>
+              <Link to={`/allprojects/${this.props.project.id}`}>
                 <p>{this.props.project.name}</p>
               </Link>
             </div>

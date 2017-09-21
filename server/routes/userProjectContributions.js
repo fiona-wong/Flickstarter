@@ -18,4 +18,7 @@ router.route('/userContributions')
 router.route('/userProjectContributions')
   .get(UserProjectContributionController.getUserProjectContributions);
 
+router.route('/getProjectContributionsCount')
+  .get(UserProjectContributionController.getProjectContributionsCount);
+
 module.exports = router;

@@ -1,7 +1,7 @@
 const models = require('../../db/models');
 
 module.exports.getAll = (req, res) => {
-  let projectData = {}
+  let projectData = {};
   models.Project.fetchAll({withRelated: ['profile', 'contributions']})
     .then(projects => {
       projectData.projects = projects;
@@ -137,3 +137,6 @@ module.exports.deleteOne = (req, res) => {
     });
 };
 
+module.exports.getTotalProjectContributions = (req, res) => {
+  res.send('33333');
+};

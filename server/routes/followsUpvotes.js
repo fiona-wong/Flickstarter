@@ -6,7 +6,7 @@ const ProjectController = require('../controllers').Projects;
 
 
 router.route('/upvote')
-  .post(FollowsUpvotesController.upvote)
+  .post(FollowsUpvotesController.upvote);
 
 router.route('/follow')
   .post(FollowsUpvotesController.follow);

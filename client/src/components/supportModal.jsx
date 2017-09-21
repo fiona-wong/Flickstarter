@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Modal, Popup, Button, Container, Header, Dropdown, Input, Label, Divider} from 'semantic-ui-react';
 import fetch from 'isomorphic-fetch';
-
+import ThanksModal from './thanksModal.jsx';
 
 
 class SupportModal extends React.Component {
@@ -26,8 +26,9 @@ class SupportModal extends React.Component {
   }
 
   handleClick(event) {
-    const {project, informer} = this.props;
+    const {project, informer, handlePaid} = this.props;
     let amount = this.state.amount * 100;
+    var that = this;
 
     function handleToken(token) {
       token.amount = amount;
@@ -44,12 +45,13 @@ class SupportModal extends React.Component {
         .then(output => {
           if (output.status === 200) {
             // add success modal
+            //alert('donation went through');
+            handlePaid();
             console.log('donation went through');
             informer();
           } else {
             //if charge not processed
             //..do Something
-
             //if session expired
             if (output.status === 401) {
               window.location.href = '/login';
@@ -70,7 +72,8 @@ class SupportModal extends React.Component {
 
     return (
       <div className='project-detail-support-modal'>
-        <Input fluid labelPosition='right' type='text' placeholder='Amount'>
+
+      <Input fluid labelPosition='right' type='text' placeholder='Amount'>
           <Label basic>$</Label>
           <input value={this.state.value} onChange={this.handleChange}/>
           <Label>.00</Label>
@@ -79,26 +82,7 @@ class SupportModal extends React.Component {
           Donate
         </Button>
         <Divider horizontal>Or</Divider>
-        {/* <Dropdown text='Donate' icon='dollar' floating labeled button className='icon'>
-          <Dropdown.Menu>
-            <Dropdown.Divider/>
-            <Dropdown.Menu scrolling>
-              <Dropdown.Item text='Bitcoin' icon='bitcoin yellow'/>
-              <Dropdown.Item text='Credit Card' icon='stripe blue'/>
-            </Dropdown.Menu>
-          </Dropdown.Menu>
-        </Dropdown> */}
 
-        <Modal dimmer='blurring' trigger={< Button color='blue'> Support
-          </Button>}>
-          <Modal.Header>Support Project</Modal.Header>
-          <Modal.Content>
-            <Popup trigger={< Button color='red' content='Contact Creator'/>} content={
-              <Container>
-                <Header as='h1'>This is Popup Content</Header>
-              </Container>} position='top right'/>
-          </Modal.Content>
-        </Modal>
       </div>
     );
   }
