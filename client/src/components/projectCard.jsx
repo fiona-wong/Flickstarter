@@ -41,7 +41,9 @@ class ProjectCard extends React.Component {
   render() {
     return (
       <Card fluid raised>
-        <Image fluid src={this.props.project.photo_url}/>
+        <Link to={`/projects/${this.props.project.id}`}>
+          <Image fluid src={this.props.project.photo_url} />
+        </Link>
         {this.props.pathName === '/profile' ?
           <Popup
             trigger={
