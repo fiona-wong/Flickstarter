@@ -24,7 +24,7 @@ class ExploreProjects extends React.Component {
   componentDidMount() {
     $.ajax({
       method: 'GET',
-      url: '/projects',
+      url: '/projects/explore',
       success: (projectData) => {
         this.setState({
           projects: projectData.projects,

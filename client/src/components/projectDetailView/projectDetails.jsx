@@ -38,7 +38,6 @@ class ProjectDetails extends React.Component {
       url: `/projects/${this.props.match.params.id}`,
       type: 'GET',
       success: (data) => {
-        console.log(data);
         _this.setState({
           project: data.project,
           videoId: data.project.video_url.includes('vimeo') ? data.project.video_url.substr(data.project.video_url.length - 9) : data.project.video_url.substr(data.project.video_url.length - 11),
@@ -103,7 +102,7 @@ class ProjectDetails extends React.Component {
                 <Link to={`/profile/${this.state.project.profile.id}`}>
                   {' ' + this.state.project.profile.display + ' '}
                 </Link>
-                if you are insterested in helping with this project.
+                if you are interested in helping with this project.
               </div> : null
             }
             <Divider horizontal />

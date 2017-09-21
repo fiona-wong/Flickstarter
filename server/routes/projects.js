@@ -4,6 +4,9 @@ const router = express.Router();
 const ProjectController = require('../controllers').Projects;
 
 router.route('/')
+  .get(ProjectController.getAllByUpvote);
+
+router.route('/explore')
   .get(ProjectController.getAll);
 
 router.route('/:id')

@@ -43,7 +43,7 @@ class CreateProject extends React.Component {
     this.getWarningMessage = this.getWarningMessage.bind(this);
     this.getUploadWidget = this.getUploadWidget.bind(this);
     this.handleSaveClick = this.handleSaveClick.bind(this);
-  };
+  }
 
   handleGenreSelection(event, data) {
     event.preventDefault();
@@ -90,7 +90,7 @@ class CreateProject extends React.Component {
         url: '/projects/new',
         type: 'POST',
         data: {
-          name: this.state.projectTitle, 
+          name: this.state.projectTitle,
           shortDescription: this.state.projectBlurb,
           longDescription: this.state.projectDescription,
           location: this.state.projectLocation,
@@ -130,13 +130,13 @@ class CreateProject extends React.Component {
           <Message.Header>You must complete each field to continue. </Message.Header>
         </Message>
       </div>
-    )
+    );
   }
 
-   getUploadWidget() {
+  getUploadWidget() {
     let _this = this;
-    cloudinary.openUploadWidget({ 
-      cloud_name: 'dyrrwpemp', 
+    cloudinary.openUploadWidget({
+      cloud_name: 'dyrrwpemp',
       upload_preset: 'us2utltx',
       multiple: false,
       cropping: 'server',
@@ -145,17 +145,17 @@ class CreateProject extends React.Component {
       max_image_width: 640,
       max_image_height: 480,
       cropping_validate_dimensions: true
-      },
-      function(error, result) {
-        _this.setState({
-          projectImage: result[0].url
-        });
+    },
+    function(error, result) {
+      _this.setState({
+        projectImage: result[0].url
       });
+    });
   }
 
-    componentDidUpdate() {
+  componentDidUpdate() {
     if (this.state.incompleteField === true) {
-      let element = document.getElementById("save-project-warning-alert");
+      let element = document.getElementById('save-project-warning-alert');
       element.scrollIntoView();
     }
   }
@@ -175,70 +175,70 @@ class CreateProject extends React.Component {
   render() {
     return (
       this.state.currentPage === 'start' ?
-      <LandingPage 
-        handleGenreSelection={this.handleGenreSelection}
-        handleInputChange={this.handleInputChange}
-        getWarningMessage={this.getWarningMessage}
-        handleContinueClick={this.handleContinueClick}
-        incompleteField={this.state.incompleteField}
-      />
-      :
-      <div id='create-project-detail-body'>
-        {
-          this.state.showSaveModal ? 
-          <SaveProjectModal 
-            projectImage={this.state.projectImage}
-            projectVideo={this.state.projectVideo} 
-            projectTitle={this.state.projectTitle} 
-            projectFundingGoal={this.state.projectFundingGoal} 
-            projectDescription={this.state.projectDescription} 
-            projectBlurb={this.state.projectBlurb} 
-            projectDeadline={moment().add(this.state.projectDuration, 'days').calendar()} 
-            projectLocation={this.state.projectLocation} 
-            projectGenre={this.state.projectGenre} 
-            projectId={this.state.projectId}
-            projectRoles={this.state.projectRoles}
-          /> : null
-        }
-        <div id='create-project-detail-header'>
-          <Header as='h1'>Let's get into the details</Header>
-        </div>
-        <Segment raised id='create-project-detail-segment'>
-          <div id='create-project-detail-container'>
-            <ProjectImage 
-              getUploadWidget={this.getUploadWidget} 
-              projectImage={this.state.projectImage}
-            />
-            <ProjectVideo 
-              handleProjectVideoInput={this.handleInputChange} 
-              projectVideo={this.state.projectVideo}
-            />
-            <ProjectTitle 
-              handleProjectTitleInput={this.handleInputChange} 
-              projectTitle={this.state.projectTitle}
-            />
-            <ProjectBlurb handleBlurbInput={this.handleInputChange}/>
-            <ProjectDescription handleDescriptionInput={this.handleInputChange}/>
-            <ProjectGenre 
-              handleGenreSelection={this.handleGenreSelection} 
-              projectGenre={this.state.projectGenre}
-            />
-            <ProjectLocation 
-              handleProjectLocationInput={this.handleInputChange} 
-              projectLocation={this.state.projectLocation}
-            />
-            <ProjectRoles 
-              handleRoleSelection={this.handleRoleSelection}
-              projectRoles={this.state.projectRoles}
-              roleOptions={this.state.roleOptions}
-            />
-            <ProjectDuration handleProjectDurationInput={this.handleInputChange}/>
-            <ProjectFundingGoal handleFundingGoalInput={this.handleInputChange}/>
+        <LandingPage
+          handleGenreSelection={this.handleGenreSelection}
+          handleInputChange={this.handleInputChange}
+          getWarningMessage={this.getWarningMessage}
+          handleContinueClick={this.handleContinueClick}
+          incompleteField={this.state.incompleteField}
+        />
+        :
+        <div id='create-project-detail-body'>
+          {
+            this.state.showSaveModal ?
+              <SaveProjectModal
+                projectImage={this.state.projectImage}
+                projectVideo={this.state.projectVideo}
+                projectTitle={this.state.projectTitle}
+                projectFundingGoal={this.state.projectFundingGoal}
+                projectDescription={this.state.projectDescription}
+                projectBlurb={this.state.projectBlurb}
+                projectDeadline={moment().add(this.state.projectDuration, 'days').calendar()}
+                projectLocation={this.state.projectLocation}
+                projectGenre={this.state.projectGenre}
+                projectId={this.state.projectId}
+                projectRoles={this.state.projectRoles}
+              /> : null
+          }
+          <div id='create-project-detail-header'>
+            <Header as='h1'>Let's get into the details</Header>
           </div>
-          {this.state.saving ? <Button loading primary onClick={this.handleSaveClick}>Save</Button> : <Button primary onClick={this.handleSaveClick}>Save</Button>}
-          {this.state.incompleteField ? this.getWarningMessage() : null}
-        </Segment>
-      </div>
+          <Segment raised id='create-project-detail-segment'>
+            <div id='create-project-detail-container'>
+              <ProjectImage
+                getUploadWidget={this.getUploadWidget}
+                projectImage={this.state.projectImage}
+              />
+              <ProjectVideo
+                handleProjectVideoInput={this.handleInputChange}
+                projectVideo={this.state.projectVideo}
+              />
+              <ProjectTitle
+                handleProjectTitleInput={this.handleInputChange}
+                projectTitle={this.state.projectTitle}
+              />
+              <ProjectBlurb handleBlurbInput={this.handleInputChange}/>
+              <ProjectDescription handleDescriptionInput={this.handleInputChange}/>
+              <ProjectGenre
+                handleGenreSelection={this.handleGenreSelection}
+                projectGenre={this.state.projectGenre}
+              />
+              <ProjectLocation
+                handleProjectLocationInput={this.handleInputChange}
+                projectLocation={this.state.projectLocation}
+              />
+              <ProjectRoles
+                handleRoleSelection={this.handleRoleSelection}
+                projectRoles={this.state.projectRoles}
+                roleOptions={this.state.roleOptions}
+              />
+              <ProjectDuration handleProjectDurationInput={this.handleInputChange}/>
+              <ProjectFundingGoal handleFundingGoalInput={this.handleInputChange}/>
+            </div>
+            {this.state.saving ? <Button loading primary onClick={this.handleSaveClick}>Save</Button> : <Button primary onClick={this.handleSaveClick}>Save</Button>}
+            {this.state.incompleteField ? this.getWarningMessage() : null}
+          </Segment>
+        </div>
     );
   }
 }

@@ -20,6 +20,26 @@ module.exports.getAll = (req, res) => {
     });
 };
 
+module.exports.getAllByUpvote = (req, res) => {
+  let projectData = {};
+  models.Project.forge().orderBy('-upvote_count').fetchAll({withRelated: ['profile', 'contributions']})
+    .then(projects => {
+      projectData.projects = projects;
+      return models.FollowUpvote.where({user_id: req.user.id}).fetchAll();
+    })
+    .then(upvotes => {
+      let upvoteStorage = {};
+      upvotes.forEach(upvote => {
+        upvoteStorage[upvote.attributes.project_id] = upvote.attributes.project_id;
+      });
+      projectData.userUpvotes = upvoteStorage;
+      res.status(200).send(projectData);
+    })
+    .catch(err => {
+      res.status(503).send(err);
+    });
+};
+
 module.exports.getOne = (req, res) => {
   let projectData = {};
   models.Project.where({id: req.params.id}).fetch({withRelated: ['profile', 'contributions']})
@@ -30,28 +50,28 @@ module.exports.getOne = (req, res) => {
       projectData.project = project;
       return models.UserProjectContribution.where({user_id: req.user.id, project_id: project.id}).fetch();
     })
-      .then(contribution => {
-        if (contribution) {
-          projectData.userContribution = contribution;
-        }
-        return models.OpenRole.where({project_id: projectData.project.id}).fetchAll();
-      })
-        .then(roles => {
-          projectData.openRoles = [];
-          if (roles.length > 0) {
-            roles.forEach(role => {
-              return models.Role.where({id: role.attributes.open_role}).fetch()
-              .then(role => {
-                projectData.openRoles.push(role.attributes.position);
-                if (projectData.openRoles.length === roles.length) {
-                  res.status(200).send(projectData);
-                }
-              });
+    .then(contribution => {
+      if (contribution) {
+        projectData.userContribution = contribution;
+      }
+      return models.OpenRole.where({project_id: projectData.project.id}).fetchAll();
+    })
+    .then(roles => {
+      projectData.openRoles = [];
+      if (roles.length > 0) {
+        roles.forEach(role => {
+          return models.Role.where({id: role.attributes.open_role}).fetch()
+            .then(role => {
+              projectData.openRoles.push(role.attributes.position);
+              if (projectData.openRoles.length === roles.length) {
+                res.status(200).send(projectData);
+              }
             });
-          } else {
-            res.status(200).send(projectData);
-          }
-        })
+        });
+      } else {
+        res.status(200).send(projectData);
+      }
+    })
     .error(err => {
       res.status(503).send(err);
     })
@@ -135,8 +155,4 @@ module.exports.deleteOne = (req, res) => {
     .catch(() => {
       res.sendStatus(404);
     });
-};
-
-module.exports.getTotalProjectContributions = (req, res) => {
-  res.send('33333');
 };

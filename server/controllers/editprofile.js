@@ -61,7 +61,6 @@ module.exports.updateUserRoles = (req, res) => {
 };
 
 module.exports.updateYoutube = (req, res) => {
-  console.log(req.body);
   model.Youtube.where({user_id: req.user.id}).destroy()
     .then(() => {
       if (JSON.stringify(req.body) === '{}') {
