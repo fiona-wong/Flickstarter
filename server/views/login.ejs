@@ -5,7 +5,7 @@
   <div class="column" style="max-width: 450px">
     <h2 class="ui image header">
       <div class="content">
-        FlickStarter
+        Log in to Flickstarter
       </div>
     </h2>
     <% if (message.length) { %>
@@ -28,10 +28,11 @@
             <input type="password" name="password" placeholder="Password">
           </div>
         </div>
-        <button class="ui fluid large teal submit button">Login With E-mail</button>
-        or
-        <br>
-        <button class="ui fluid large teal submit button" href="/auth/facebook">Login With Facebook</button>
+        <button class="ui fluid large teal submit button">Login with email</button>
+        <br/>
+        OR
+
+        <% include social.login.ejs%>
       </div>
 
       <div class="ui error message"></div>
@@ -40,7 +41,7 @@
     </form>
 
     <div class="ui message">
-      Don't have an account yet? <a href="/signup">Register</a>
+      New to us? <a href="/signup">Register</a>
     </div>
   </div>
 </div>

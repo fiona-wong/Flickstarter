@@ -21,8 +21,4 @@ router.route('/update/:id')
 router.route('/delete/:id')
   .delete(ProjectController.deleteOne);
 
-router.route('/getTotalProjectContributions')
-  .get(ProjectController.getTotalProjectContributions);
-
-
 module.exports = router;
