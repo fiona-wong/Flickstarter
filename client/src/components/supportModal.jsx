@@ -82,7 +82,16 @@ class SupportModal extends React.Component {
           Donate
         </Button>
         <Divider horizontal>Or</Divider>
-
+        <Modal dimmer='blurring' trigger={< Button color='blue'> Support
+          </Button>}>
+          <Modal.Header>Support Project</Modal.Header>
+          <Modal.Content>
+            <Popup trigger={< Button color='red' content='Contact Creator'/>} content={
+              <Container>
+                <Header as='h1'>This is Popup Content</Header>
+              </Container>} position='top right'/>
+          </Modal.Content>
+        </Modal>
       </div>
     );
   }
