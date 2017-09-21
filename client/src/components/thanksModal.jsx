@@ -8,8 +8,8 @@ class ThanksModal extends Component {
     this.state = {
       open: false
     };
-    // this.show = this.show.bind(this);
-    this.close = this.close.bind(this);
+
+    this.show = this.show.bind(this);
   }
 
   componentWillMount() {
@@ -24,19 +24,13 @@ class ThanksModal extends Component {
     });
   }
 
-  close() {
-    this.setState({
-      open: false
-    });
-  }
-
   render() {
     const { open, size } = this.state;
 
     return (
       <div>
 
-        <Modal size={size} open={true} onClose={this.close}>
+        <Modal size={size} open={true} >
           <Modal.Header>
             Thank You For Your Donation!
           </Modal.Header>
@@ -47,7 +41,7 @@ class ThanksModal extends Component {
             </Modal.Description>
           </Modal.Content>
             <Modal.Actions>
-              <Button positive icon='checkmark' labelPosition='right' content="You're Welcome!" />
+              <Button positive icon='checkmark' labelPosition='right' content="You're Welcome!" onClick={this.props.close}/>
             </Modal.Actions>
         </Modal>
       </div>

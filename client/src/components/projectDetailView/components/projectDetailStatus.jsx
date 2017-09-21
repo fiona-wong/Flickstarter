@@ -12,16 +12,23 @@ class ProjectDetailStatus extends React.Component {
     };
 
     this.handlePaid = this.handlePaid.bind(this);
+    this.close = this.close.bind(this);
   }
 
   handlePaid() {
     this.setState({paid: true});
   }
 
+  close() {
+    this.setState({
+      paid: false
+    });
+  }
+
   render() {
     return (
       <div className='basic-flex-column' style={{width: '35%', paddingLeft: '2%'}}>
-      {this.state.paid ? <ThanksModal /> : null}
+      {this.state.paid ? <ThanksModal close={this.close}/> : null}
         <Progress indicating
           id='featured-project-status-bar'
           size='small'
@@ -48,6 +55,7 @@ class ProjectDetailStatus extends React.Component {
             informer={this.props.informer}
             paid={this.state.paid}
             handlePaid={this.handlePaid}
+
           />
         }
       </div>
