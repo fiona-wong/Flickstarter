@@ -102,7 +102,6 @@ class CreateProject extends React.Component {
           projectRoles: this.state.projectRoles
         },
         success: (data) => {
-          console.log(data);
           _this.setState({
             saving: false,
             showSaveModal: true,
