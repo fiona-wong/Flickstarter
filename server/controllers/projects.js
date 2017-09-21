@@ -156,3 +156,7 @@ module.exports.deleteOne = (req, res) => {
       res.sendStatus(404);
     });
 };
+
+module.exports.getTotalProjectContributions = (req, res) => {
+  res.send('33333');
+};
